@@ -141,7 +141,7 @@ function initNavbar() {
   const nav = document.querySelector('.navbar') as HTMLElement;
   if (!nav) return;
 
-  let lastScroll = 0;
+
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
     if (scrollY > 60) {
@@ -149,7 +149,7 @@ function initNavbar() {
     } else {
       nav.classList.remove('scrolled');
     }
-    lastScroll = scrollY;
+
   });
 
   // Mobile toggle
