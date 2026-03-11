@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci — Matematik Pusulası</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;600;800&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #3a5a3a;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: #FAFAF5;
+            padding: 10mm 12mm 16mm;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            font-family: 'Crimson Pro', serif;
+            color: #2d3a2d;
+            overflow: hidden;
+        }
+
+        .gold-stripe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
+            z-index: 10;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #4A7C59;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .header span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9pt;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #4A7C59;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 30pt;
+            font-weight: 900;
+            text-align: center;
+            color: #2d3a2d;
+            margin-bottom: 2px;
+        }
+
+        .page-subtitle {
+            font-family: 'Caveat', cursive;
+            font-size: 15pt;
+            color: #8B6914;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .fib-sequence {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin: 8px 0;
+            flex-wrap: wrap;
+        }
+
+        .fib-num {
+            background: #4A7C59;
+            color: #F0EDE5;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 10pt;
+        }
+
+        .fib-num.highlight {
+            background: #8B6914;
+        }
+
+        .fib-plus {
+            display: flex;
+            align-items: center;
+            font-size: 14pt;
+            color: #999;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .col p {
+            font-size: 11pt;
+            text-align: justify;
+            line-height: 1.5;
+            margin-bottom: 0.4em;
+        }
+
+        .nature-card {
+            background: rgba(74, 124, 89, 0.08);
+            border: 1px solid rgba(74, 124, 89, 0.3);
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 6px;
+        }
+
+        .nature-card .title {
+            font-family: 'Caveat', cursive;
+            font-size: 13pt;
+            font-weight: 700;
+            color: #4A7C59;
+            margin-bottom: 2px;
+        }
+
+        .nature-card p {
+            font-size: 10pt;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .rabbit-story {
+            background: #4A7C59;
+            color: #F0EDE5;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 6px 0;
+        }
+
+        .rabbit-story .label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            opacity: 0.7;
+        }
+
+        .rabbit-story p {
+            font-size: 10.5pt;
+            line-height: 1.4;
+            margin: 0;
+            color: #F0EDE5;
+        }
+
+        .handwritten-note {
+            font-family: 'Caveat', cursive;
+            font-size: 13pt;
+            color: #4A7C59;
+            padding: 8px 12px;
+            margin: 6px 0;
+            border: 2px dashed rgba(74, 124, 89, 0.3);
+            border-radius: 6px;
+            line-height: 1.4;
+        }
+
+        .pull-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 12pt;
+            font-style: italic;
+            text-align: center;
+            color: #0A1931;
+            padding: 8px 14px;
+            margin: 6px 0;
+            border-left: 3px solid #C9A84C;
+            border-right: 3px solid #C9A84C;
+            line-height: 1.4;
+            background: rgba(201, 168, 76, 0.04);
+        }
+
+        .pull-quote .attribution {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            font-style: normal;
+            color: #888;
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        .page-footer {
+            position: absolute;
+            bottom: 8mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 11pt;
+            color: #0A1931;
+            font-weight: 700;
+            border: 2px solid #C9A84C;
+            padding: 3px 14px;
+            background: #fff;
+            z-index: 20;
+        }
+
+        .page-footer::before {
+            content: '◆';
+            font-size: 8px;
+            color: #C9A84C;
+            margin-right: 7px;
+        }
+
+        .page-footer::after {
+            content: '◆';
+            font-size: 8px;
+            color: #C9A84C;
+            margin-left: 7px;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background: none;
+                display: block;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="gold-stripe"></div>
+        <div class="header">
+            <span>🌿 Doğada Matematik</span>
+            <span style="color:#999;font-weight:600;">Matematik Pusulası</span>
+        </div>
+        <h1>FİBONACCİ & DOĞA</h1>
+        <div class="page-subtitle">Tavşanlardan Ayçiçeğine — Bir Sayı Dizisinin İnanılmaz Yolculuğu 🐇</div>
+
+        <div class="fib-sequence">
+            <div class="fib-num">1</div>
+            <div class="fib-plus">+</div>
+            <div class="fib-num">1</div>
+            <div class="fib-plus">=</div>
+            <div class="fib-num highlight">2</div>
+            <div class="fib-plus">+</div>
+            <div class="fib-num">1</div>
+            <div class="fib-plus">=</div>
+            <div class="fib-num highlight">3</div>
+            <div class="fib-plus">+</div>
+            <div class="fib-num">2</div>
+            <div class="fib-plus">=</div>
+            <div class="fib-num highlight">5</div>
+            <div class="fib-plus">+</div>
+            <div class="fib-num">3</div>
+            <div class="fib-plus">=</div>
+            <div class="fib-num highlight">8</div>
+            <div class="fib-plus">+</div>
+            <div class="fib-num">5</div>
+            <div class="fib-plus">=</div>
+            <div class="fib-num highlight">13</div>
+        </div>
+
+        <div class="columns">
+            <div class="col">
+                <p>1202 yılında İtalyan matematikçi Leonardo Fibonacci, <em>Liber Abaci</em> adlı kitabında ilginç bir
+                    problem sordu: "Bir çift tavşan her ay bir çift yavru yapıyorsa, bir yılda kaç çift tavşan olur?"
+                </p>
+                <div class="rabbit-story">
+                    <div class="label">🐇 Tavşan Problemi</div>
+                    <p>1. Ay: 1 çift · 2. Ay: 1 çift · 3. Ay: 2 çift · 4. Ay: 3 çift · 5. Ay: 5 çift · 6. Ay: 8 çift...
+                        Her sayı, önceki iki sayının toplamı! İşte Fibonacci dizisi böyle doğdu.</p>
+                </div>
+                <p>Fibonacci aslında bu diziyi icat etmedi — Hintli matematikçiler yüzyıllar önce biliyordu. Ama onun
+                    kitabı sayesinde Avrupa bunu öğrendi ve "Arap rakamlarına" geçiş hızlandı.</p>
+                <div class="nature-card">
+                    <div class="title">🌻 Ayçiçeğinin Sırrı</div>
+                    <p>Ayçiçeği tohumları saat yönünde 34, saat yönünün tersine 55 spiral oluşturur. 34 ve 55 ardışık
+                        Fibonacci sayılarıdır! Bu düzen, tohumların en verimli şekilde sığmasını sağlar.</p>
+                </div>
+                <div class="nature-card">
+                    <div class="title">🍍 Ananas</div>
+                    <p>Ananas kabuğundaki altıgenler 8, 13 ve 21 spiral oluşturur — üçü de Fibonacci! Doğa bu optimum
+                        düzeni milyonlarca yılda "keşfetti."</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="nature-card">
+                    <div class="title">🌸 Çiçek Yaprakları</div>
+                    <p>Zambaklar 3, düğün çiçekleri 5, kırmızı yıldız 8, kadife çiçeği 13, papatya 21 veya 34 yaprak
+                        taşır. Hepsi Fibonacci sayıları!</p>
+                </div>
+                <div class="nature-card">
+                    <div class="title">🌲 Kozalaklar</div>
+                    <p>Çam kozalaklarının pulları iki yönde spiraller oluşturur ve bu spirallerin sayısı ardışık
+                        Fibonacci sayılarıdır (genellikle 8 ve 13).</p>
+                </div>
+                <div class="nature-card">
+                    <div class="title">🐚 Nautilus Kabuğu</div>
+                    <p>Nautilus her yeni odayı bir öncekinin 1.618 katı (altın oran!) büyüklüğünde inşa eder. Fibonacci
+                        ve altın oran böyle bağlanır.</p>
+                </div>
+                <p>Fibonacci dizisinde ardışık iki sayının oranı giderek altın orana (φ ≈ 1.618) yaklaşır:</p>
+                <p style="text-align:center;font-family:'Montserrat',sans-serif;font-size:10pt;color:#8B6914;">1/1=1 ·
+                    2/1=2 · 3/2=1.5 · 5/3=1.667 · 8/5=1.6 · 13/8=1.625 · 21/13≈1.615...→φ</p>
+                <div class="handwritten-note">
+                    🌿 Bir dahaki sefere dışarı çıktığında ayçiçeği ya da papatya bulursan, yapraklarını say.
+                    Fibonacci'nin binlerce yıllık keşfini kendi gözlerinle göreceksin!
+                </div>
+            </div>
+        </div>
+
+        <div class="pull-quote">
+            "Fibonacci dizisi her yerde: çiçeklerde, deniz kabuklarında, galaksilerde..."
+            <div class="attribution">— Ian Stewart</div>
+        </div>
+
+        <div class="page-footer">18</div>
+    </div>
+</body>
+
+</html>

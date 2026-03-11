@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pi Sayısı — Matematik Pusulası</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #0f1a35;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: #FAF8F0;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            font-family: 'Cormorant Garamond', serif;
+            color: #2a1f0e;
+            padding: 18mm 15mm 22mm;
+            overflow: hidden;
+        }
+
+        .top-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
+        }
+
+        .section-label {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #C9A84C;
+            margin-bottom: 6px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26pt;
+            font-weight: 900;
+            text-align: center;
+            color: #2a1f0e;
+        }
+
+        .page-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11pt;
+            font-style: italic;
+            color: #8B7355;
+            text-align: center;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .title-rule {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+            margin: 0 auto 10px;
+        }
+
+        .pi-display {
+            text-align: center;
+            padding: 14px;
+            margin: 6px 0;
+            background: #0A1931;
+            color: #F5ECD7;
+        }
+
+        .pi-display .symbol {
+            font-size: 44pt;
+            font-family: 'Playfair Display', serif;
+            color: #C9A84C;
+        }
+
+        .pi-display .digits {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8.5pt;
+            word-break: break-all;
+            margin-top: 4px;
+            opacity: 0.5;
+            line-height: 1.4;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .col p {
+            font-size: 9.5pt;
+            text-align: justify;
+            line-height: 1.5;
+            margin-bottom: 0.4em;
+        }
+
+        .era {
+            margin-bottom: 7px;
+            padding-left: 12px;
+            border-left: 3px solid #C9A84C;
+        }
+
+        .era-date {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            font-weight: 700;
+            color: #C9A84C;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .era-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 10.5pt;
+            font-weight: 900;
+            margin: 1px 0;
+            color: #2a1f0e;
+        }
+
+        .era-desc {
+            font-size: 9pt;
+            line-height: 1.4;
+            color: #4a3a25;
+        }
+
+        .info-box {
+            background: rgba(201, 168, 76, 0.08);
+            border: 1px solid rgba(201, 168, 76, 0.35);
+            padding: 8px 11px;
+            margin: 5px 0;
+        }
+
+        .info-box .label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            font-weight: 800;
+            color: #C9A84C;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2px;
+        }
+
+        .info-box p {
+            font-size: 9pt;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .page-footer {
+            position: absolute;
+            bottom: 12mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 9pt;
+            color: #C9A84C;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-dot {
+            width: 4px;
+            height: 4px;
+            background: #C9A84C;
+            border-radius: 50%;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background: none;
+                display: block;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="top-accent"></div>
+        <div class="section-label">Matematik Tarihi</div>
+
+        <h1>π — Sonsuz Bir Yolculuk</h1>
+        <div class="page-subtitle">Arşimet'ten Süper Bilgisayarlara</div>
+        <div class="title-rule"></div>
+
+        <div class="pi-display">
+            <div class="symbol">π</div>
+            <div class="digits">3.14159265358979323846264338327950288419716939937510...</div>
+        </div>
+
+        <div class="columns">
+            <div class="col">
+                <p>Bir çemberin çevresini çapına böldüğünüzde her zaman aynı sayıyı elde edersiniz: 3.14159... Bu sayı
+                    hiç bitmez, hiç tekrar etmez. İnsanlık binlerce yıldır bu gizemli sayının peşinde koşuyor.</p>
+                <div class="era">
+                    <div class="era-date">M.Ö. ~1900</div>
+                    <div class="era-title">🏺 Babil & Mısır</div>
+                    <div class="era-desc">Babilliler π ≈ 3.125, Mısırlılar π ≈ 3.1605 kullandı. Piramitleri inşa etmek
+                        bile bu sayıyı bilmeyi gerektiriyordu!</div>
+                </div>
+                <div class="era">
+                    <div class="era-date">M.Ö. ~250</div>
+                    <div class="era-title">⚙️ Arşimet'in Yöntemi</div>
+                    <div class="era-desc">Arşimet çemberin içine ve dışına çokgenler çizerek π'yi sıkıştırdı: 3.1408 < π
+                            < 3.1429. Bu yöntem 2000 yıl boyunca en iyi tahmin olarak kaldı.</div>
+                    </div>
+                    <div class="era">
+                        <div class="era-date">M.S. ~480</div>
+                        <div class="era-title">🇨🇳 Zu Chongzhi</div>
+                        <div class="era-desc">Çinli matematikçi π'yi 7 basamağa kadar doğru hesapladı: 3.1415926. Bu
+                            rekor 1000 yıl boyunca kırılamadı!</div>
+                    </div>
+                    <div class="era">
+                        <div class="era-date">1706</div>
+                        <div class="era-title">π Sembolü Doğdu</div>
+                        <div class="era-desc">William Jones, Yunan alfabesinin "π" harfini ilk kez bu sayı için
+                            kullandı. Euler'in benimsemesiyle standart oldu.</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="era">
+                        <div class="era-date">1873</div>
+                        <div class="era-title">✍️ William Shanks</div>
+                        <div class="era-desc">Elle 707 basamak hesapladı. 15 yılını verdi! Sonra 527. basamaktan
+                            itibaren hatalı olduğu anlaşıldı. Acı ama gerçek.</div>
+                    </div>
+                    <div class="era">
+                        <div class="era-date">1949</div>
+                        <div class="era-title">💻 İlk Bilgisayar Hesabı</div>
+                        <div class="era-desc">ENIAC bilgisayarı 70 saatte 2.037 basamak hesapladı. Dijital çağın π
+                            yarışı başladı.</div>
+                    </div>
+                    <div class="era">
+                        <div class="era-date">2024</div>
+                        <div class="era-title">🤖 105 Trilyon Basamak!</div>
+                        <div class="era-desc">Günümüzde süper bilgisayarlar 105 trilyon basamak hesapladı. Ama π hâlâ
+                            bitmedi ve asla bitmeyecek — çünkü irrasyonel ve transandantal!</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="label">🎉 Pi Günü</div>
+                        <p>14 Mart (3/14) her yıl "Pi Günü" olarak kutlanır. Albert Einstein'ın doğum günü de bu
+                            tarihtedir — tesadüf mü?</p>
+                    </div>
+                    <div class="info-box">
+                        <div class="label">🧠 Ezberleme Rekoru</div>
+                        <p>Suresh Kumar Sharma (Hindistan) π'nin <strong>70.030 basamağını</strong> ezbere okudu — 17
+                            saat 14 dakika sürdü!</p>
+                    </div>
+                    <div class="info-box">
+                        <div class="label">🤔 İlginç Gerçek</div>
+                        <p>NASA, uzay hesaplamalarında π'nin sadece <strong>15 basamağını</strong> kullanır. Bu kadarı,
+                            gözlemlenebilir evrenin çevresini bir atom kalınlığında hassasiyetle hesaplamaya yeter!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span class="footer-dot"></span>
+                <span>6</span>
+                <span class="footer-dot"></span>
+            </div>
+        </div>
+</body>
+
+</html>

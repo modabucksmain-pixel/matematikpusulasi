@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru Bankası — Matematik Pusulası</title>
+    <meta name="description" content="Matematik Pusulası dergisindeki karışık bulmaca sorularını kategoriye göre filtrele ve çöz.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#050a18;--surface:#0c1225;--card:#111a32;--border:rgba(99,140,255,.12);
+            --accent:#6c8cff;--accent2:#a78bfa;--gold:#f0c040;
+            --text:#c8d6f0;--text2:#7b8db5;--white:#eef2ff;
+            --glow:0 0 30px rgba(108,140,255,.15);--radius:16px;
+        }
+        html{scroll-behavior:smooth}
+        body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+
+        .ambient{position:fixed;inset:0;pointer-events:none;z-index:0}
+        .ambient .orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.25;animation:drift 20s ease-in-out infinite alternate}
+        .orb.o1{width:500px;height:500px;background:#6c8cff;top:-10%;left:-5%}
+        .orb.o2{width:400px;height:400px;background:#a78bfa;bottom:0;right:-5%;animation-delay:-7s}
+        @keyframes drift{0%{transform:translate(0,0)}50%{transform:translate(30px,-40px)}100%{transform:translate(-20px,30px)}}
+
+        .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,10,24,.7);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+        .nav-brand{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:900;color:var(--white);text-decoration:none}
+        .nav-links{display:flex;gap:.25rem}
+        .nav-links a{color:var(--text2);text-decoration:none;font-size:.875rem;font-weight:600;padding:.5rem 1rem;border-radius:10px;transition:all .2s}
+        .nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(108,140,255,.1)}
+        .nav-cta{background:linear-gradient(135deg,var(--accent),var(--accent2))!important;color:#fff!important;font-weight:700!important}
+
+        .page{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:100px 1.5rem 4rem}
+
+        .hero{text-align:center;margin-bottom:3rem}
+        .hero-badge{display:inline-block;padding:.35rem 1rem;border-radius:99px;font-size:.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);border:1px solid var(--border);background:rgba(108,140,255,.06);margin-bottom:1rem}
+        .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,3.5rem);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:.75rem}
+        .hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .hero p{max-width:36rem;margin:0 auto;color:var(--text2);font-size:1rem}
+
+        /* Filters */
+        .filters{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-bottom:2.5rem}
+        .filter{padding:.5rem 1.2rem;border-radius:99px;font-size:.8rem;font-weight:600;color:var(--text2);background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:all .25s}
+        .filter:hover{color:var(--white);border-color:var(--accent)}
+        .filter.on{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent;box-shadow:0 4px 15px rgba(108,140,255,.25)}
+
+        /* Question Grid */
+        .q-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:1.25rem}
+        @media(max-width:500px){.q-grid{grid-template-columns:1fr}}
+
+        .q-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:all .25s;position:relative;overflow:hidden}
+        .q-card:hover{transform:translateY(-3px);box-shadow:var(--glow)}
+        .q-card.hide{display:none}
+
+        .q-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .2s}
+        .q-card:hover::before{opacity:1}
+
+        .q-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem}
+        .q-title{font-size:1.1rem;font-weight:700;color:var(--white)}
+        .q-tag{font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);background:rgba(240,192,64,.08);padding:.25rem .65rem;border-radius:6px;white-space:nowrap}
+        .q-body{font-size:.925rem;color:var(--text);margin-bottom:1rem;min-height:3.5rem}
+
+        .btn-reveal{padding:.45rem 1.2rem;border-radius:8px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;border:1px solid var(--border);background:transparent;color:var(--accent)}
+        .btn-reveal:hover{background:rgba(108,140,255,.1);border-color:var(--accent)}
+
+        .answer{margin-top:.75rem;padding:.75rem 1rem;background:rgba(15,20,40,.7);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;font-size:.875rem;display:none;animation:fadeUp .3s}
+        .answer.open{display:block}
+        .answer strong{color:var(--gold)}
+
+        @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+        .site-footer{text-align:center;padding:2rem;color:var(--text2);font-size:.85rem;border-top:1px solid var(--border);margin-top:3rem}
+    </style>
+</head>
+<body>
+<div class="ambient"><div class="orb o1"></div><div class="orb o2"></div></div>
+
+<nav class="nav">
+    <a href="index.html" class="nav-brand">📐 Matematik Pusulası</a>
+    <div class="nav-links">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="bulmacalar.html">Bulmacalar</a>
+        <a href="sorular.html" class="active">Sorular</a>
+        <a href="cevaplar.html">Cevaplar</a>
+        <a href="kaynakca.html">Kaynakça</a>
+        <a href="magazine.html" class="nav-cta">📖 Dergi</a>
+    </div>
+</nav>
+
+<main class="page">
+    <section class="hero">
+        <div class="hero-badge">📝 Sayfa 36</div>
+        <h1>Soru <em>Bankası</em></h1>
+        <p>Derginin karışık bulmaca sayfasındaki soruları kategoriye göre filtrele ve çöz.</p>
+    </section>
+
+    <div class="filters">
+        <button class="filter on" onclick="fil('all',this)">Hepsi</button>
+        <button class="filter" onclick="fil('cebir',this)">Cebir</button>
+        <button class="filter" onclick="fil('mantik',this)">Mantık</button>
+        <button class="filter" onclick="fil('geometri',this)">Geometri</button>
+        <button class="filter" onclick="fil('olasilik',this)">Olasılık</button>
+        <button class="filter" onclick="fil('kombinatorik',this)">Kombinatorik</button>
+    </div>
+
+    <div class="q-grid">
+        <div class="q-card" data-cat="cebir">
+            <div class="q-top"><span class="q-title">① Yaş Problemi</span><span class="q-tag">Cebir</span></div>
+            <div class="q-body">Ayşe 15 yaşına geldiğinde babası 45 yaşında olacak. Şu an Ayşe'nin yaşı babasının yaşının 1/5'i ise Ayşe şu an kaç yaşındadır?</div>
+            <button class="btn-reveal" onclick="tog('a1')">Çözümü Gör</button>
+            <div id="a1" class="answer"><strong>Cevap: 10 yaş.</strong> Ayşe = x, Baba = 5x → x+5 = 15 → x = 10</div>
+        </div>
+
+        <div class="q-card" data-cat="mantik">
+            <div class="q-top"><span class="q-title">② Saat Problemi</span><span class="q-tag">Mantık</span></div>
+            <div class="q-body">Bir saat her gün 3 dakika geri kalıyor. 20 gün sonra saat 14:00'ü gösterdiğinde gerçek saat kaçtır?</div>
+            <button class="btn-reveal" onclick="tog('a2')">Çözümü Gör</button>
+            <div id="a2" class="answer"><strong>Cevap: 15:00.</strong> 20 gün × 3 dk = 60 dk geri → 14:00 + 1 saat = 15:00</div>
+        </div>
+
+        <div class="q-card" data-cat="cebir">
+            <div class="q-top"><span class="q-title">③ Havuz Problemi</span><span class="q-tag">Oran</span></div>
+            <div class="q-body">Bir musluk havuzu 6 saatte dolduruyor, diğeri 12 saatte. İkisi birlikte açılırsa havuz kaç saatte dolar?</div>
+            <button class="btn-reveal" onclick="tog('a3')">Çözümü Gör</button>
+            <div id="a3" class="answer"><strong>Cevap: 4 saat.</strong> 1/6 + 1/12 = 3/12 = 1/4 → 4 saat</div>
+        </div>
+
+        <div class="q-card" data-cat="cebir">
+            <div class="q-top"><span class="q-title">④ Sayı Bulmaca</span><span class="q-tag">Cebir</span></div>
+            <div class="q-body">Bir sayının 3 katının 7 fazlası, o sayının 5 katının 3 eksiğine eşittir. Sayıyı bulunuz.</div>
+            <button class="btn-reveal" onclick="tog('a4')">Çözümü Gör</button>
+            <div id="a4" class="answer"><strong>Cevap: 5.</strong> 3x + 7 = 5x − 3 → 2x = 10 → x = 5</div>
+        </div>
+
+        <div class="q-card" data-cat="geometri">
+            <div class="q-top"><span class="q-title">⑤ Geometri</span><span class="q-tag">Geometri</span></div>
+            <div class="q-body">Bir karenin köşegeninin uzunluğu 10√2 cm ise kenar uzunluğu kaç cm'dir?</div>
+            <button class="btn-reveal" onclick="tog('a5')">Çözümü Gör</button>
+            <div id="a5" class="answer"><strong>Cevap: 10 cm.</strong> Köşegen = a√2 → 10√2 = a√2 → a = 10</div>
+        </div>
+
+        <div class="q-card" data-cat="olasilik">
+            <div class="q-top"><span class="q-title">⑥ Olasılık</span><span class="q-tag">Olasılık</span></div>
+            <div class="q-body">İki zar atılıyor. Zarların toplamının 7 gelme olasılığı nedir?</div>
+            <button class="btn-reveal" onclick="tog('a6')">Çözümü Gör</button>
+            <div id="a6" class="answer"><strong>Cevap: 1/6.</strong> 36 sonuçtan 6'sı (1+6, 2+5, 3+4, 4+3, 5+2, 6+1) toplamı 7 verir.</div>
+        </div>
+
+        <div class="q-card" data-cat="kombinatorik">
+            <div class="q-top"><span class="q-title">⑦ Oturma Düzeni</span><span class="q-tag">Kombinatorik</span></div>
+            <div class="q-body">5 kişi bir sırada oturuyor. Ali ve Veli yan yana oturmak istemiyor. Kaç farklı oturma düzeni mümkündür?</div>
+            <button class="btn-reveal" onclick="tog('a7')">Çözümü Gör</button>
+            <div id="a7" class="answer"><strong>Cevap: 72.</strong> Toplam = 5! = 120, yan yana = 2×4! = 48 → 120 − 48 = 72</div>
+        </div>
+
+        <div class="q-card" data-cat="mantik">
+            <div class="q-top"><span class="q-title">⑧ Kodlama</span><span class="q-tag">Kodlama</span></div>
+            <div class="q-body">A=1, B=2, C=3 ... Z=26 olduğuna göre, MATEMATİK kelimesinin harflerinin toplamı kaçtır?</div>
+            <button class="btn-reveal" onclick="tog('a8')">Çözümü Gör</button>
+            <div id="a8" class="answer"><strong>Cevap: 93.</strong> M(13)+A(1)+T(20)+E(5)+M(13)+A(1)+T(20)+İ(9)+K(11) = 93</div>
+        </div>
+
+        <div class="q-card" data-cat="mantik" style="border-color:rgba(240,192,64,.2);background:linear-gradient(135deg,var(--card),rgba(240,192,64,.04))">
+            <div class="q-top"><span class="q-title">🌟 Bonus Soru</span><span class="q-tag" style="background:rgba(240,192,64,.15)">Bonus</span></div>
+            <div class="q-body">0'dan 1000'e kadar kaç kez "3" rakamı yazılır? (Tüm basamakları say!)</div>
+            <button class="btn-reveal" onclick="tog('ab')">Çözümü Gör</button>
+            <div id="ab" class="answer"><strong>Cevap: 300 kez.</strong> Birler, onlar ve yüzler basamaklarında 100'er kez → 300.</div>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">📐 Matematik Pusulası — 9. Sınıf Özel Sayısı · Mart 2026</footer>
+
+<script>
+function fil(cat,btn){
+    document.querySelectorAll('.filter').forEach(f=>f.classList.remove('on'));
+    btn.classList.add('on');
+    document.querySelectorAll('.q-card').forEach(c=>{
+        if(cat==='all'||c.dataset.cat===cat) c.classList.remove('hide');
+        else c.classList.add('hide');
+    });
+}
+function tog(id){
+    const el=document.getElementById(id);
+    el.classList.toggle('open');
+    el.style.display=el.classList.contains('open')?'block':'none';
+}
+</script>
+</body>
+</html>

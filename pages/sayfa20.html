@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evrendeki Matematik — Matematik Pusulası</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;600;800&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #0d1b2a;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: #0A0A0A;
+            padding: 10mm 12mm 16mm;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            font-family: 'Crimson Pro', serif;
+            color: #e0e0e0;
+            overflow: hidden;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(100, 200, 255, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .page>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .gold-stripe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
+            z-index: 10;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(74, 124, 89, 0.4);
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .header span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9pt;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #4A7C59;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32pt;
+            font-weight: 900;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .page-subtitle {
+            font-family: 'Caveat', cursive;
+            font-size: 15pt;
+            color: #8B6914;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .col p {
+            font-size: 11pt;
+            line-height: 1.5;
+            margin-bottom: 0.4em;
+            color: #ccc;
+        }
+
+        .space-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(100, 200, 255, 0.15);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 6px;
+        }
+
+        .space-card .icon {
+            font-size: 22pt;
+            margin-bottom: 3px;
+        }
+
+        .space-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9.5pt;
+            font-weight: 800;
+            color: #64B5F6;
+            margin-bottom: 3px;
+        }
+
+        .space-card p {
+            font-size: 10pt;
+            line-height: 1.4;
+            color: #aaa;
+            margin: 0;
+        }
+
+        .quote-space {
+            text-align: center;
+            padding: 10px;
+            margin: 6px 0;
+            border-top: 1px solid rgba(100, 200, 255, 0.2);
+            border-bottom: 1px solid rgba(100, 200, 255, 0.2);
+        }
+
+        .quote-space p {
+            font-size: 12pt;
+            font-style: italic;
+            color: #64B5F6;
+            margin: 0;
+        }
+
+        .quote-space .attr {
+            font-size: 8pt;
+            color: #666;
+            display: block;
+            margin-top: 3px;
+            font-style: normal;
+        }
+
+        .handwritten-note {
+            font-family: 'Caveat', cursive;
+            font-size: 13pt;
+            color: #8B6914;
+            padding: 8px 12px;
+            margin: 6px 0;
+            border: 2px dashed rgba(139, 105, 20, 0.3);
+            border-radius: 6px;
+            line-height: 1.4;
+        }
+
+        .page-footer {
+            position: absolute;
+            bottom: 8mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 11pt;
+            color: #0A1931;
+            font-weight: 700;
+            border: 2px solid #C9A84C;
+            padding: 3px 14px;
+            background: #fff;
+            z-index: 20;
+        }
+
+        .page-footer::before {
+            content: '◆';
+            font-size: 8px;
+            color: #C9A84C;
+            margin-right: 7px;
+        }
+
+        .page-footer::after {
+            content: '◆';
+            font-size: 8px;
+            color: #C9A84C;
+            margin-left: 7px;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background: none;
+                display: block;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="gold-stripe"></div>
+        <div class="header"><span>🌿 Doğada Matematik</span><span style="color:#555;">Matematik Pusulası</span></div>
+        <h1>EVRENDEKİ MATEMATİK</h1>
+        <div class="page-subtitle">Yıldızlardan Kara Deliklere — Kozmik Denklemler ✨</div>
+
+        <div class="columns">
+            <div class="col">
+                <p>Evren, matematiğin en büyük laboratuvarıdır. Gezegenlerin yörüngeleri, yıldızların ömrü, galaksilerin
+                    şekli — hepsi matematiksel denklemlerle açıklanır. Peki uzayda hangi matematik kullanılır?</p>
+                <div class="space-card">
+                    <div class="icon">🪐</div>
+                    <h3>Kepler Yasaları — Gezegen Yörüngeleri</h3>
+                    <p>Gezegenler güneş etrafında elips şeklinde döner. Kepler, yörünge periyodunun küpünün, uzaklığın
+                        karesine oranlandığını keşfetti: T² ∝ r³. Bu basit formül, tüm güneş sistemini açıklar!</p>
+                </div>
+                <div class="space-card">
+                    <div class="icon">⚫</div>
+                    <h3>Kara Delikler — Schwarzschild Yarıçapı</h3>
+                    <p>Bir yıldız ne kadar küçülürse onu kara deliğe dönüştürecek kritik yarıçap: r = 2GM/c². Güneş'in
+                        kara delik olması için sadece 3 km çapa sıkışması gerekirdi!</p>
+                </div>
+                <div class="space-card">
+                    <div class="icon">🌌</div>
+                    <h3>Hubble Yasası — Evrenin Genişlemesi</h3>
+                    <p>v = H₀ × d — Galaksiler ne kadar uzaksa, o kadar hızlı uzaklaşır. Bu basit doğrusal denklem,
+                        evrenin genişlediğini ve bir zamanlar tek noktada (Big Bang) başladığını kanıtlar.</p>
+                </div>
+                <div class="quote-space">
+                    <p>"Evren, matematik dilinde yazılmıştır."</p>
+                    <span class="attr">— Galileo Galilei, 1623</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="space-card">
+                    <div class="icon">☀️</div>
+                    <h3>E = mc² — Yıldızların Enerji Kaynağı</h3>
+                    <p>Einstein'ın en ünlü denklemi: Kütle enerjiye dönüşür. Güneş her saniye 4 milyon ton kütle
+                        kaybeder — ama bu enerjiye dönüşerek dünyaya ışık ve sıcaklık sağlar.</p>
+                </div>
+                <div class="space-card">
+                    <div class="icon">📡</div>
+                    <h3>Drake Denklemi — Uzaylılar Var mı?</h3>
+                    <p>N = R* × fp × ne × fl × fi × fc × L — Bu denklem, galaksimizde iletişim kurabilecek uygarlık
+                        sayısını tahmin eder. Değişkenlerin çoğu bilinmiyor ama soru cezbedici!</p>
+                </div>
+                <div class="space-card">
+                    <div class="icon">🔭</div>
+                    <h3>Paralaks — Yıldızlara Olan Uzaklık</h3>
+                    <p>Başparmağınızı uzatıp bir gözünüzü kapatın, sonra diğerini. Parmak kayar! Aynı yöntemle
+                        yıldızlara olan mesafe trigonometriyle ölçülür.</p>
+                </div>
+                <div class="space-card">
+                    <div class="icon">🌀</div>
+                    <h3>Galaksilerin Şekli — Logaritmik Spiral</h3>
+                    <p>Sarmal galaksiler, deniz kabukları ve kasırgalar aynı matematiksel eğriyi takip eder: r =
+                        ae^(bθ). Evrenin farklı ölçeklerinde aynı formül!</p>
+                </div>
+                <div class="handwritten-note">
+                    🔭 Bir dahaki yıldızlı gecede gökyüzüne bak. Gördüğün her ışık, bir denklemin sonucu. Evren,
+                    matematiğin en büyük sanat eseridir.
+                </div>
+            </div>
+        </div>
+
+        <div
+            style="background:rgba(100,181,246,0.08);padding:8px 12px;border:1px solid rgba(100,181,246,0.3);border-radius:6px;margin-top:5px;">
+            <div
+                style="font-family:'Montserrat',sans-serif;font-size:7pt;font-weight:800;color:#64B5F6;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;">
+                💡 Biliyor Muydunuz?</div>
+            <p style="font-size:10pt;line-height:1.4;color:#aaa;margin:0;">Voyager 1 uzay aracı, Dünya'dan en uzak insan
+                yapımı nesnedir. 2024 itibarıyla 24 milyar km uzakta — ve konum hesaplaması hâlâ trigonometriyle
+                yapılıyor!</p>
+        </div>
+
+        <div class="page-footer">20</div>
+    </div>
+</body>
+
+</html>

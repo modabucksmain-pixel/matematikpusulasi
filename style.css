@@ -1,0 +1,272 @@
+/* ============================================
+   GLOBAL RESET & BASE STYLES
+   ============================================ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #525659;
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    color: #fff;
+    display: flex;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   NAVIGATION SIDEBAR
+   ============================================ */
+.nav-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    background: #1e293b;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    z-index: 1000;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.nav-sidebar::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+.nav-sidebar::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 3px;
+}
+
+.nav-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+.nav-btn {
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #334155;
+    color: white;
+    margin-bottom: 5px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.nav-btn:hover {
+    background: #d97706;
+    transform: scale(1.05);
+}
+
+.nav-btn.active {
+    background: #d97706;
+    box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.3);
+}
+
+/* ============================================
+   MAIN CONTENT AREA
+   ============================================ */
+.content {
+    margin-left: 70px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100% - 70px);
+    min-height: 100vh;
+}
+
+.page-wrapper {
+    position: relative;
+    margin-bottom: 50px;
+    scroll-margin-top: 20px;
+}
+
+.page-label {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.8;
+    margin-bottom: 8px;
+    text-align: left;
+    padding-left: 5px;
+}
+
+iframe {
+    width: 210mm;
+    height: 297mm;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    background: #fff;
+    display: block;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media screen and (max-width: 900px) {
+    .nav-sidebar {
+        width: 50px;
+    }
+
+    .nav-btn {
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 11px;
+    }
+
+    .content {
+        margin-left: 60px;
+        padding: 20px 10px;
+        width: calc(100% - 60px);
+    }
+
+    iframe {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 210 / 297;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .nav-sidebar {
+        width: 100%;
+        height: 50px;
+        bottom: auto;
+        flex-direction: row;
+        padding: 5px 10px;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .nav-btn {
+        margin-right: 5px;
+        margin-bottom: 0;
+    }
+
+    .content {
+        margin-left: 0;
+        margin-top: 60px;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .page-wrapper {
+        margin-bottom: 30px;
+    }
+}
+
+/* ============================================
+   PRINT STYLES - CRITICAL FOR PDF EXPORT
+   ============================================ */
+@media print {
+
+    /* Reset body for print */
+    body {
+        background: none;
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Hide navigation and labels */
+    .nav-sidebar,
+    .page-label {
+        display: none !important;
+    }
+
+    /* Reset content area */
+    .content {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    /* Page wrapper print settings */
+    .page-wrapper {
+        margin: 0;
+        padding: 0;
+        page-break-after: always;
+        break-after: page;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    /* Last page should not have page break */
+    .page-wrapper:last-child {
+        page-break-after: auto;
+        break-after: auto;
+    }
+
+    /* Iframe print settings */
+    iframe {
+        box-shadow: none;
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+        padding: 0;
+        border: none;
+        display: block;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    /* Page size settings */
+    @page {
+        size: A4 portrait;
+        margin: 0;
+    }
+
+    /* Ensure colors are preserved */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Focus styles for keyboard navigation */
+.nav-btn:focus {
+    outline: 2px solid #d97706;
+    outline-offset: 2px;
+}
+
+.nav-btn:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.nav-btn:focus-visible {
+    outline: 2px solid #d97706;
+    outline-offset: 2px;
+}

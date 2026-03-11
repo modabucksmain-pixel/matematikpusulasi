@@ -1,0 +1,336 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İslam Dünyasında Matematik — Matematik Pusulası</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #1a1408;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: #FAF8F0;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            font-family: 'Cormorant Garamond', serif;
+            color: #2a1f0e;
+            padding: 18mm 15mm 22mm;
+            overflow: hidden;
+        }
+
+        .top-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
+        }
+
+        .section-label {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #C9A84C;
+            margin-bottom: 6px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22pt;
+            font-weight: 900;
+            text-align: center;
+            color: #2a1f0e;
+            margin-bottom: 2px;
+        }
+
+        .page-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11pt;
+            font-style: italic;
+            color: #8B7355;
+            text-align: center;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .title-rule {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+            margin: 0 auto 10px;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .col p {
+            font-size: 9.5pt;
+            text-align: justify;
+            line-height: 1.5;
+            margin-bottom: 0.4em;
+        }
+
+        .scholar-card {
+            background: rgba(201, 168, 76, 0.06);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 8px 11px;
+            margin: 4px 0;
+        }
+
+        .scholar-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 10.5pt;
+            font-weight: 900;
+            color: #2a1f0e;
+            margin-bottom: 1px;
+        }
+
+        .scholar-card .era {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            font-weight: 700;
+            color: #C9A84C;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .scholar-card p {
+            font-size: 9pt;
+            line-height: 1.4;
+            margin-top: 2px;
+        }
+
+        .contrib-box {
+            background: #0A1931;
+            color: #F5ECD7;
+            padding: 10px 12px;
+            margin: 6px 0;
+        }
+
+        .contrib-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7.5pt;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #C9A84C;
+            margin-bottom: 5px;
+        }
+
+        .contrib-box .item {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 3px;
+            font-size: 9pt;
+        }
+
+        .contrib-box .bullet {
+            color: #C9A84C;
+            font-weight: 700;
+        }
+
+        .bottom-quote {
+            text-align: center;
+            padding: 10px 14px;
+            margin-top: 4px;
+            border-top: 1.5px solid rgba(201, 168, 76, 0.3);
+            border-bottom: 1.5px solid rgba(201, 168, 76, 0.3);
+        }
+
+        .bottom-quote p {
+            font-family: 'Playfair Display', serif;
+            font-size: 11pt;
+            font-style: italic;
+            color: #C9A84C;
+            margin: 0;
+        }
+
+        .bottom-quote .attr {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            color: #888;
+            display: block;
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        .did-you-know {
+            background: #2a1f0e;
+            color: #F5ECD7;
+            padding: 9px 12px;
+            margin-top: 6px;
+            border-radius: 4px;
+        }
+
+        .did-you-know .label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            font-weight: 800;
+            color: #C9A84C;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+
+        .did-you-know p {
+            font-size: 9pt;
+            line-height: 1.4;
+            margin: 0;
+            color: #d4c5a0;
+        }
+
+        .page-footer {
+            position: absolute;
+            bottom: 12mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 9pt;
+            color: #C9A84C;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-dot {
+            width: 4px;
+            height: 4px;
+            background: #C9A84C;
+            border-radius: 50%;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background: none;
+                display: block;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="top-accent"></div>
+        <div class="section-label">Matematik Tarihi</div>
+
+        <h1>İSLAM DÜNYASINDA MATEMATİK</h1>
+        <div class="page-subtitle">Altın Çağ — 8. Yüzyıldan 14. Yüzyıla</div>
+        <div class="title-rule"></div>
+
+        <div class="columns">
+            <div class="col">
+                <p>8-14. yüzyıllar arası, İslam medeniyeti bilimin altın çağını yaşadı. Bağdat'taki Beytül Hikme
+                    (Bilgelik Evi), dünyanın dört bir yanından bilginleri bir araya getirdi. Yunan, Hint ve Pers
+                    matematik birikimini koruyup geliştirdiler — ve Avrupa'ya aktardılar.</p>
+
+                <div class="scholar-card">
+                    <h3>📐 El-Harezmi (780–850)</h3>
+                    <div class="era">Bağdat — Cebirin Babası</div>
+                    <p>"Hesâbu'l-Cebr ve'l-Mukabele" kitabı, cebir biliminin doğuşudur. "Algoritma" kelimesi onun
+                        adından türemiştir. Hindu-Arap rakam sistemini dünyaya tanıttı.</p>
+                </div>
+
+                <div class="scholar-card">
+                    <h3>🔭 Ömer Hayyam (1048–1131)</h3>
+                    <div class="era">İran — Şair Matematikçi</div>
+                    <p>Kübik denklemleri geometrik yöntemlerle çözen ilk matematikçi. Hâyam takvimi, Gregoryen takvimden
+                        daha doğrudur.</p>
+                </div>
+
+                <div class="scholar-card">
+                    <h3>📊 El-Biruni (973–1048)</h3>
+                    <div class="era">Horasan — Evrensel Bilgin</div>
+                    <p>Trigonometrik yöntemlerle Dünya'nın çapını hesapladı — hata payı sadece %2! Hindistan'ın bilimsel
+                        bilgisini İslam dünyasına aktardı.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="scholar-card">
+                    <h3>🔬 İbn-i Heysem (965–1040)</h3>
+                    <div class="era">Mısır — Optiğin Babası</div>
+                    <p>Deneysel bilimin öncüsü. "Kitâbu'l-Menâzır" optik biliminin temel eseridir. Işığın düz gittiğini
+                        ve göze geldiğini kanıtladı.</p>
+                </div>
+
+                <div class="scholar-card">
+                    <h3>📏 Nasireddin Tûsi (1201–1274)</h3>
+                    <div class="era">İran — Trigonometri Üstadı</div>
+                    <p>Trigonometriyi astronomiden bağımsız bir matematik dalı olarak kurdu. Merağa Rasathanesi'ni inşa
+                        etti ve Sinüs Teoremi'ni ilk kez sistematik olarak ifade etti.</p>
+                </div>
+
+                <div class="contrib-box">
+                    <h3>🌟 İslam Dünyasının Matematiğe Katkıları</h3>
+                    <div class="item"><span class="bullet">◆</span> Sıfır ve ondalık sayı sistemi</div>
+                    <div class="item"><span class="bullet">◆</span> Cebir (Algebra) biliminin kurulması</div>
+                    <div class="item"><span class="bullet">◆</span> Trigonometrinin bağımsız bir dal olarak gelişmesi
+                    </div>
+                    <div class="item"><span class="bullet">◆</span> Optik ve deneysel yöntem</div>
+                    <div class="item"><span class="bullet">◆</span> Yunan bilgisinin korunması ve Avrupa'ya aktarılması
+                    </div>
+                    <div class="item"><span class="bullet">◆</span> Geometrik desen ve fayans sanatı (tessellation)
+                    </div>
+                </div>
+
+                <div class="bottom-quote">
+                    <p>"İlim Çin'de de olsa arayınız."</p>
+                    <span class="attr">— Hz. Muhammed (rivayet)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="did-you-know">
+            <div class="label">💡 Biliyor Muydunuz?</div>
+            <p>Andrew Wiles, Fermat'ın Son Teoremi'ni kanıtlamak için 7 yıl boyunca gizli bir şekilde çalıştı. Kanıtını
+                1995'te yayınladığında 358 yıllık bir matematik bulmacasını çözmüş oldu!</p>
+        </div>
+
+        <div class="page-footer">
+            <span class="footer-dot"></span>
+            <span>8</span>
+            <span class="footer-dot"></span>
+        </div>
+    </div>
+</body>
+
+</html>

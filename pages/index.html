@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematik Pusulası — Tam Dergi (40 Sayfa)</title>
+    <meta name="description"
+        content="Matematik Pusulası - 9. Sınıf Özel Sayısı. Tüm sayfaları görüntüle ve PDF olarak indir.">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #525659;
+            font-family: system-ui, -apple-system, sans-serif;
+            color: #fff;
+            display: flex;
+        }
+
+        /* ===== NAVIGATION SIDEBAR ===== */
+        .nav-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            background: #1e293b;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+            z-index: 1000;
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .nav-sidebar::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        .nav-sidebar::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 3px;
+        }
+
+        .nav-sidebar::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        .nav-btn {
+            display: block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: #334155;
+            color: white;
+            margin-bottom: 5px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .nav-btn:hover {
+            background: #d97706;
+            transform: scale(1.05);
+        }
+
+        .nav-btn.active {
+            background: #d97706;
+            box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.3);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .content {
+            margin-left: 70px;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: calc(100% - 70px);
+        }
+
+        .page-wrapper {
+            position: relative;
+            margin-bottom: 50px;
+            scroll-margin-top: 20px;
+        }
+
+        .page-label {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.8;
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        iframe {
+            width: 210mm;
+            height: 297mm;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background: #fff;
+            display: block;
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            body {
+                background: none;
+                display: block;
+            }
+
+            .nav-sidebar,
+            .page-label {
+                display: none !important;
+            }
+
+            .content {
+                margin-left: 0;
+                padding: 0;
+                width: 100%;
+            }
+
+            .page-wrapper {
+                margin: 0;
+                page-break-after: always;
+                break-after: page;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            .page-wrapper:last-child {
+                page-break-after: auto;
+                break-after: auto;
+            }
+
+            iframe {
+                box-shadow: none;
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                padding: 0;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-sidebar" id="nav"></div>
+    <div class="content" id="content"></div>
+    <script>
+        const totalPages = 40;
+        const pageTitles = {
+            1: 'Kapak', 2: 'İçindekiler', 3: 'Editörden',
+            4: 'Matematik Tarihi 1', 5: 'Matematik Tarihi 2',
+            6: 'Pi Sayısı', 7: 'Osmanlı Mat.', 8: 'İslam Mat.', 9: 'Euler Köprüleri',
+            10: 'Cahit Arf', 11: 'El-Harezmi', 12: 'Hypatia', 13: 'Emmy Noether',
+            14: 'Newton', 15: 'Turing', 16: 'Ramanujan',
+            17: 'Altın Oran', 18: 'Fibonacci', 19: 'Fraktallar', 20: 'Evren & Mat.',
+            21: 'AI & Matematik', 22: 'Teknoloji', 23: 'Kriptografi', 24: 'Oyun Teorisi',
+            25: 'Günlük Hayat', 26: 'Spor & Mat.', 27: 'Müzik & Mat.', 28: 'Sanat & Mat.',
+            29: 'Eğlenceli Gerçekler', 30: 'Mat. Sözlüğü', 31: 'Paradokslar',
+            32: 'Sudoku', 33: 'Mantık Bulmaca', 34: 'Sayı Piramidi',
+            35: 'Kakuro & KenKen', 36: 'Karışık Bulmaca',
+            37: 'Kariyer Köşesi', 38: 'Gelecek Sayı', 39: 'Sonsöz', 40: 'Arka Kapak'
+        };
+
+        const nav = document.getElementById('nav');
+        const content = document.getElementById('content');
+
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement('a');
+            btn.className = 'nav-btn';
+            btn.textContent = i;
+            btn.title = `Sayfa ${i}: ${pageTitles[i] || ''}`;
+            btn.href = `#page-${i}`;
+            nav.appendChild(btn);
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'page-wrapper';
+            wrapper.id = `page-${i}`;
+
+            const label = document.createElement('div');
+            label.className = 'page-label';
+            label.textContent = `Sayfa ${i} — ${pageTitles[i] || ''}`;
+            wrapper.appendChild(label);
+
+            const iframe = document.createElement('iframe');
+            iframe.src = `sayfa${i}.html`;
+            iframe.loading = i <= 5 ? 'eager' : 'lazy';
+            iframe.title = `Sayfa ${i}`;
+            wrapper.appendChild(iframe);
+
+            content.appendChild(wrapper);
+        }
+
+        // Active page highlighting
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                    const btn = document.querySelector(`a[href="#${id}"]`);
+                    if (btn) btn.classList.add('active');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.page-wrapper').forEach(w => observer.observe(w));
+
+        // Smooth scroll
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(btn.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Handle hash on load
+        if (window.location.hash) {
+            setTimeout(() => {
+                const target = document.querySelector(window.location.hash);
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 500);
+        }
+    </script>
+</body>
+
+</html>

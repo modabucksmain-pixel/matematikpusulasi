@@ -1,0 +1,355 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kriptografi — Matematik Pusulası</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Montserrat:wght@400;600;800&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #0a0e18;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: #0d1117;
+            padding: 10mm 12mm 16mm;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            font-family: 'Space Grotesk', sans-serif;
+            color: #e0e0e0;
+            overflow: hidden;
+        }
+
+        .gold-stripe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
+            z-index: 10;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.3);
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+        }
+
+        .header span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9pt;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #00FF88;
+        }
+
+        .header .right {
+            color: #555;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 30pt;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            font-size: 10pt;
+            color: #00FF88;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .cipher-demo {
+            background: #1E1E2E;
+            border: 1px solid #333;
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .cipher-demo .plain {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13pt;
+            color: #fff;
+            letter-spacing: 4px;
+        }
+
+        .cipher-demo .arrow {
+            font-size: 11pt;
+            color: #00FF88;
+            margin: 3px 0;
+        }
+
+        .cipher-demo .coded {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13pt;
+            color: #00FF88;
+            letter-spacing: 4px;
+        }
+
+        .cipher-demo .label {
+            font-size: 8pt;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .col p {
+            font-size: 10.5pt;
+            line-height: 1.5;
+            margin-bottom: 0.4em;
+            color: #ccc;
+        }
+
+        .tech-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            padding: 9px 11px;
+            margin: 5px 0;
+            border-radius: 8px;
+        }
+
+        .tech-card .tag {
+            font-size: 7pt;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #00FF88;
+            margin-bottom: 3px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .tech-card .title {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 3px;
+        }
+
+        .tech-card p {
+            font-size: 9.5pt;
+            margin: 0;
+            line-height: 1.4;
+            color: #999;
+        }
+
+        .rsa-box {
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            padding: 12px;
+            margin: 6px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .rsa-box .formula {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12pt;
+            color: #00FF88;
+            margin: 3px 0;
+        }
+
+        .rsa-box p {
+            font-size: 9pt;
+            color: #aaa;
+            margin: 2px 0;
+        }
+
+        .try-it {
+            background: rgba(201, 168, 76, 0.07);
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-top: 6px;
+            border-left: 3px solid #C9A84C;
+        }
+
+        .try-it p {
+            font-size: 9.5pt;
+            line-height: 1.4;
+            margin: 0;
+            color: #ccc;
+        }
+
+        .pull-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 11pt;
+            font-style: italic;
+            text-align: center;
+            color: #C9A84C;
+            padding: 7px 14px;
+            margin: 6px 0;
+            border-left: 3px solid #C9A84C;
+            border-right: 3px solid #C9A84C;
+            line-height: 1.4;
+        }
+
+        .pull-quote .attribution {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            font-style: normal;
+            color: #888;
+            margin-top: 3px;
+            letter-spacing: 1px;
+        }
+
+        .page-footer {
+            position: absolute;
+            bottom: 8mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 11pt;
+            color: #0A1931;
+            font-weight: 700;
+            border: 2px solid #C9A84C;
+            padding: 3px 14px;
+            background: #fff;
+            z-index: 20;
+        }
+
+        .page-footer::before {
+            content: '◆';
+            font-size: 8px;
+            color: #C9A84C;
+            margin-right: 7px;
+        }
+
+        .page-footer::after {
+            content: '◆';
+            font-size: 8px;
+            color: #C9A84C;
+            margin-left: 7px;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background: none;
+                display: block;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="gold-stripe"></div>
+        <div class="header"><span>🔐 Modern Matematik</span><span class="right">Matematik Pusulası</span></div>
+        <h1>KRİPTOGRAFİ</h1>
+        <div class="page-subtitle">Şifrelerin Matematiği — Sezar'dan Bitcoin'e</div>
+
+        <div class="cipher-demo">
+            <div class="plain">MATEMATİK HARIKA</div>
+            <div class="arrow">↓ Sezar Şifresi (kaydırma: 3) ↓</div>
+            <div class="coded">PDWHPDWLN KDUIND</div>
+            <div class="label">Her harf 3 sıra kaydırılır: A→D, B→E, M→P ...</div>
+        </div>
+
+        <div class="columns">
+            <div class="col">
+                <p>Şifreleme, bilgileri gizlemek için kullanılan bir sanattır — ve arkasında her zaman matematik vardır.
+                    Julius Caesar, mesajlarını düşmandan korumak için her harfi 3 sıra kaydırıyordu. Basit ama etkili!
+                </p>
+                <div class="tech-card">
+                    <div class="tag">Antik Dönem</div>
+                    <div class="title">Sezar Şifresi</div>
+                    <p>Alfabede her harfi sabit bir sayı kadar kaydırır. Çözmek kolay: sadece 25 olasılığı denemeniz
+                        yeter. Ama 2000 yıl önce devrim niteliğindeydi!</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tag">16. Yüzyıl</div>
+                    <div class="title">Vigenère Şifresi</div>
+                    <p>Her harf farklı miktarda kaydırılır — anahtar kelime kullanılır. 300 yıl boyunca "kırılamaz
+                        şifre" olarak biliniyordu. Babbage ve Kasiski bağımsız olarak kırdı.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tag">II. Dünya Savaşı</div>
+                    <div class="title">Enigma</div>
+                    <p>Nazilerin kullandığı elektrikli şifreleme makinesi. 158.962.555.217.826.360.000 olası ayar! Alan
+                        Turing ve ekibi bunu kırdı — savaşın gidişatını değiştirdi.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="rsa-box">
+                    <p style="font-size:8pt;color:#00FF88;letter-spacing:2px;font-family:'Montserrat',sans-serif;">RSA
+                        ŞİFRELEME</p>
+                    <div class="formula">n = p × q</div>
+                    <p>p ve q çok büyük asal sayılar</p>
+                    <p>Çarpma kolay, çarpanlarına ayırma neredeyse imkânsız!</p>
+                    <div class="formula" style="font-size:10pt;margin-top:5px;">2048-bit RSA → 10⁶⁰⁰+ olasılık</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tag">Günümüz</div>
+                    <div class="title">Kuantum Tehdidi</div>
+                    <p>Kuantum bilgisayarlar, RSA'yı kırabilir! Shor algoritması, çarpanlara ayırma işlemini
+                        hızlandırır. Bu yüzden "kuantum-güvenli" yeni şifreleme yöntemleri üzerinde çalışılıyor.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tag">Pratik Etkinlik</div>
+                    <div class="title">🔑 Kendi Şifreni Yaz!</div>
+                    <p>Arkadaşına bir mesaj yaz ve her harfi 7 sıra kaydır. Mesajı verebilir ve anahtarı (7) söylersen
+                        okuyabilir. Sezar'ın kullandığı yöntemin aynısı!</p>
+                </div>
+                <div class="try-it">
+                    <p>🤖 <strong>Dene Bakalım!</strong> 1-100 arası bir sayıyı en fazla 7 tahminde bulmak mümkün! İkili
+                        arama (binary search) yöntemini kullan: her seferinde ortayı tah min et.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pull-quote">
+            "Kriptografi olmadan dijital dünya var olamazdı."
+            <div class="attribution">— Whitfield Diffie</div>
+        </div>
+
+        <div class="page-footer">23</div>
+    </div>
+</body>
+
+</html>

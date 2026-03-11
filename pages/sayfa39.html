@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonsöz — Matematik Pusulası</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@400;600;800&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: #fff;
+            padding: 15mm 18mm 18mm;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            font-family: 'Crimson Pro', serif;
+            color: #333;
+            overflow: hidden;
+        }
+
+        .gold-stripe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
+            z-index: 10;
+        }
+
+        .gold-stripe-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
+            z-index: 10;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 30pt;
+            font-weight: 900;
+            text-align: center;
+            color: #1a1a2e;
+            margin: 10mm 0 4px;
+        }
+
+        .ornament {
+            text-align: center;
+            font-size: 14pt;
+            color: #C9A84C;
+            margin-bottom: 12px;
+            letter-spacing: 8px;
+        }
+
+        .content {
+            max-width: 150mm;
+            margin: 0 auto;
+        }
+
+        .content p {
+            font-size: 11.5pt;
+            text-align: justify;
+            line-height: 1.65;
+            margin-bottom: 0.9em;
+            color: #333;
+        }
+
+        .content p:first-of-type::first-letter {
+            font-family: 'Playfair Display', serif;
+            font-size: 44pt;
+            font-weight: 900;
+            float: left;
+            line-height: 0.8;
+            margin: 4px 6px 0 0;
+            color: #1a1a2e;
+        }
+
+        .closing-quote {
+            text-align: center;
+            padding: 14px 10px;
+            margin: 14px 0;
+            border-top: 1.5px solid #d4a574;
+            border-bottom: 1.5px solid #d4a574;
+        }
+
+        .closing-quote p {
+            font-style: italic;
+            font-size: 14pt;
+            color: #1a1a2e;
+            margin: 0;
+        }
+
+        .closing-quote .attr {
+            font-size: 9pt;
+            color: #999;
+            display: block;
+            margin-top: 4px;
+            font-style: normal;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .thanks-section {
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .thanks-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16pt;
+            font-weight: 900;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px 24px;
+        }
+
+        .team-member {
+            padding: 4px 0;
+            border-bottom: 1px dotted #e0e0e0;
+        }
+
+        .team-member .role {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #C9A84C;
+        }
+
+        .team-member .name {
+            font-size: 10pt;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .special-thanks {
+            margin-top: 12px;
+            font-size: 10pt;
+            line-height: 1.5;
+            text-align: center;
+            color: #555;
+        }
+
+        .handwritten {
+            font-family: 'Caveat', cursive;
+            font-size: 15pt;
+            color: #5D4037;
+            text-align: center;
+            margin-top: 14px;
+            line-height: 1.4;
+        }
+
+        .page-footer {
+            position: absolute;
+            bottom: 12mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 12pt;
+            color: #0A1931;
+            font-weight: 700;
+            border: 2px solid #C9A84C;
+            padding: 4px 16px;
+            background: #fff;
+            z-index: 20;
+        }
+
+        .page-footer::before {
+            content: '◆';
+            font-size: 9px;
+            color: #C9A84C;
+            margin-right: 8px;
+        }
+
+        .page-footer::after {
+            content: '◆';
+            font-size: 9px;
+            color: #C9A84C;
+            margin-left: 8px;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background: none;
+                display: block;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="gold-stripe"></div>
+        <div class="gold-stripe-bottom"></div>
+        <h1>SONSÖZ</h1>
+        <div class="ornament">✦ ✦ ✦</div>
+
+        <div class="content">
+            <p>Bu derginin her sayfasını hazırlarken bir şeyin farkına vardık: Matematik, sınav sorularından ve formül
+                ezberinden çok daha fazlası. Matematik, evrenin dilidir — yıldızların yörüngesinden kulaklığınızdan
+                çıkan müziğe, Instagram algoritmasından arı peteğine kadar her yerde bu dil konuşulur.</p>
+
+            <p>Amacımız, size "matematik zor" hissini unutturmak ve yerine merak koymaktı. Belki Ramanujan'ın hikâyesi
+                sizi etkiledi, belki fraktallar gözünüzü açtı, belki bir Sudoku bulmacası beyin kaslarınızı çalıştırdı.
+                Hangisi olursa olsun, küçük bir kıvılcım yaktıysak ne mutlu bize.</p>
+
+            <p>Gelecek sayıda daha fazla hikâye, daha fazla bulmaca ve daha fazla "vay be!" anı sizi bekliyor. Bu
+                yolculukta bizimle olduğunuz için teşekkürler.</p>
+
+            <div class="closing-quote">
+                <p>"Matematik, düşünmenin en mükemmel yoludur."</p>
+                <span class="attr">— Bertrand Russell</span>
+            </div>
+
+            <div class="thanks-section">
+                <h2>Teşekkürler</h2>
+                <div class="team-grid" style="grid-template-columns:1fr 1fr;gap:4px 24px">
+                    <div class="team-member">
+                        <div class="role">Proje Lideri</div>
+                        <div class="name">Miraç E. Abanoz</div>
+                    </div>
+                    <div class="team-member">
+                        <div class="role">Yazılım</div>
+                        <div class="name">Bahadır Değirmenci</div>
+                    </div>
+                    <div class="team-member">
+                        <div class="role">Araştırma</div>
+                        <div class="name">Yusuf Çınar</div>
+                    </div>
+                    <div class="team-member">
+                        <div class="role">Araştırma</div>
+                        <div class="name">Kadir Eski</div>
+                    </div>
+                    <div class="team-member">
+                        <div class="role">Araştırma</div>
+                        <div class="name">Arslan Özbayrak</div>
+                    </div>
+                    <div class="team-member">
+                        <div class="role">Kişisel LLM</div>
+                        <div class="name">gpt-oss-20b</div>
+                    </div>
+                </div>
+                <div class="special-thanks"><strong>Özel Teşekkür:</strong> Bu projeyi mümkün kılan matematik
+                    öğretmenlerimize, bize ilham veren tüm matematikçilere ve en önemlisi — merakını kaybetmeyen siz
+                    okuyuculara.</div>
+            </div>
+
+            <div class="handwritten">
+                Bir sonraki sayıda görüşmek üzere! 🧭✨<br>
+                — Matematik Pusulası Ekibi
+            </div>
+        </div>
+
+        <div class="page-footer">39</div>
+    </div>
+</body>
+
+</html>

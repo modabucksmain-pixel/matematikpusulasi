@@ -1,0 +1,362 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İçindekiler — Matematik Pusulası</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #121825;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: #FAFAF5;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            font-family: 'Montserrat', sans-serif;
+            color: #0A1931;
+            padding: 18mm 15mm 20mm;
+            overflow: hidden;
+        }
+
+        /* Top gold accent */
+        .top-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
+        }
+
+        /* Section label */
+        .section-label {
+            text-align: center;
+            font-size: 7pt;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #C9A84C;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 34pt;
+            font-weight: 900;
+            text-align: center;
+            color: #0A1931;
+            margin-bottom: 2px;
+        }
+
+        .toc-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11pt;
+            font-weight: 300;
+            font-style: italic;
+            color: #C9A84C;
+            text-align: center;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+
+        .title-rule {
+            width: 70px;
+            height: 2px;
+            background: #C9A84C;
+            margin: 0 auto 14px;
+        }
+
+        /* Two-column grid */
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 22px;
+        }
+
+        .section-block {
+            margin-bottom: 3px;
+        }
+
+        .section-title {
+            font-size: 7pt;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            color: #FAFAF5;
+            background: #0A1931;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 2px;
+        }
+
+        .section-title .emoji {
+            font-size: 9pt;
+        }
+
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 2px 10px;
+            font-size: 8.5pt;
+            line-height: 1.6;
+            border-bottom: 1px dotted rgba(10, 25, 49, 0.12);
+        }
+
+        .toc-item:last-child {
+            border-bottom: none;
+        }
+
+        .toc-item .title {
+            font-weight: 400;
+            color: #333;
+            flex: 1;
+        }
+
+        .toc-item .page-num {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 9pt;
+            margin-left: 8px;
+            color: #C9A84C;
+        }
+
+        /* Quote */
+        .quote-box {
+            margin-top: 8px;
+            padding: 12px 18px;
+            background: #0A1931;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 50pt;
+            color: #C9A84C;
+            position: absolute;
+            top: -8px;
+            left: 12px;
+            opacity: 0.25;
+        }
+
+        .quote-box p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 10.5pt;
+            color: #FAFAF5;
+            line-height: 1.5;
+            padding-left: 18px;
+        }
+
+        .quote-box .author {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 7.5pt;
+            color: #C9A84C;
+            margin-top: 5px;
+            display: block;
+            padding-left: 18px;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        .page-footer {
+            position: absolute;
+            bottom: 12mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 9pt;
+            color: #C9A84C;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-dot {
+            width: 4px;
+            height: 4px;
+            background: #C9A84C;
+            border-radius: 50%;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background: none;
+                display: block;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="top-accent"></div>
+        <div class="section-label">İçindekiler</div>
+
+        <h1>BU SAYIDA</h1>
+        <div class="toc-subtitle">40 Sayfa · 8 Bölüm · Sonsuz Keşif</div>
+        <div class="title-rule"></div>
+
+        <div class="toc-grid">
+            <!-- Left Column -->
+            <div>
+                <div class="section-block">
+                    <div class="section-title"><span class="emoji">📐</span> GİRİŞ</div>
+                    <div class="toc-item"><span class="title">Editörden</span><span class="page-num">03</span></div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title"><span class="emoji">📜</span> MATEMATİK TARİHİ</div>
+                    <div class="toc-item"><span class="title">Zaman Tüneli: Antik Çağ → Dijital Çağ</span><span
+                            class="page-num">04–05</span></div>
+                    <div class="toc-item"><span class="title">Pi Sayısının Destansı Yolculuğu</span><span
+                            class="page-num">06</span></div>
+                    <div class="toc-item"><span class="title">Osmanlı'da Matematik</span><span
+                            class="page-num">07</span></div>
+                    <div class="toc-item"><span class="title">İslam Dünyasında Matematik</span><span
+                            class="page-num">08</span></div>
+                    <div class="toc-item"><span class="title">Euler'in Köprüleri & Graf Teorisi</span><span
+                            class="page-num">09</span></div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title"><span class="emoji">🧠</span> DAHİLERİN HİKÂYESİ</div>
+                    <div class="toc-item"><span class="title">Cahit Arf — 10 TL'deki Dahi</span><span
+                            class="page-num">10</span></div>
+                    <div class="toc-item"><span class="title">El-Harezmi — Cebirin Babası</span><span
+                            class="page-num">11</span></div>
+                    <div class="toc-item"><span class="title">Hypatia — İlk Kadın Matematikçi</span><span
+                            class="page-num">12</span></div>
+                    <div class="toc-item"><span class="title">Emmy Noether — Cebirin Kraliçesi</span><span
+                            class="page-num">13</span></div>
+                    <div class="toc-item"><span class="title">Isaac Newton — Mucize Yıl</span><span
+                            class="page-num">14</span></div>
+                    <div class="toc-item"><span class="title">Alan Turing — Kodları Kıran Adam</span><span
+                            class="page-num">15</span></div>
+                    <div class="toc-item"><span class="title">Ramanujan — Sonsuzluğu Gören Dahi</span><span
+                            class="page-num">16</span></div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title"><span class="emoji">🌿</span> DOĞADA MATEMATİK</div>
+                    <div class="toc-item"><span class="title">Altın Oran — Doğanın Şifresi</span><span
+                            class="page-num">17</span></div>
+                    <div class="toc-item"><span class="title">Fibonacci & Doğa</span><span class="page-num">18</span>
+                    </div>
+                    <div class="toc-item"><span class="title">Fraktallar Dünyası</span><span class="page-num">19</span>
+                    </div>
+                    <div class="toc-item"><span class="title">Evrendeki Matematik</span><span class="page-num">20</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div>
+                <div class="section-block">
+                    <div class="section-title"><span class="emoji">🤖</span> MODERN MATEMATİK & TEKNOLOJİ</div>
+                    <div class="toc-item"><span class="title">Yapay Zekâ & Matematik</span><span
+                            class="page-num">21</span></div>
+                    <div class="toc-item"><span class="title">Teknolojide Matematik</span><span
+                            class="page-num">22</span></div>
+                    <div class="toc-item"><span class="title">Kriptografi — Şifrelerin Matematiği</span><span
+                            class="page-num">23</span></div>
+                    <div class="toc-item"><span class="title">Oyun Teorisi</span><span class="page-num">24</span></div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title"><span class="emoji">🎨</span> KÜLTÜR & HAYAT</div>
+                    <div class="toc-item"><span class="title">Günlük Hayatta Matematik</span><span
+                            class="page-num">25</span></div>
+                    <div class="toc-item"><span class="title">Sporda Matematik</span><span class="page-num">26</span>
+                    </div>
+                    <div class="toc-item"><span class="title">Müzikte Matematik</span><span class="page-num">27</span>
+                    </div>
+                    <div class="toc-item"><span class="title">Sanatta Matematik</span><span class="page-num">28</span>
+                    </div>
+                    <div class="toc-item"><span class="title">İlginç Matematik Gerçekleri</span><span
+                            class="page-num">29</span></div>
+                    <div class="toc-item"><span class="title">Matematik Sözlüğü</span><span class="page-num">30</span>
+                    </div>
+                    <div class="toc-item"><span class="title">Paradokslar Dünyası</span><span class="page-num">31</span>
+                    </div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title"><span class="emoji">🧩</span> BULMACALAR & BEYİN JİMNASTİĞİ</div>
+                    <div class="toc-item"><span class="title">Sudoku Çılgınlığı</span><span class="page-num">32</span>
+                    </div>
+                    <div class="toc-item"><span class="title">Mantık Bulmacaları</span><span class="page-num">33</span>
+                    </div>
+                    <div class="toc-item"><span class="title">Sayı Piramidi & Sihirli Kareler</span><span
+                            class="page-num">34</span></div>
+                    <div class="toc-item"><span class="title">Kakuro & KenKen</span><span class="page-num">35</span>
+                    </div>
+                    <div class="toc-item"><span class="title">Karışık Bulmaca Festivali</span><span
+                            class="page-num">36</span></div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title"><span class="emoji">🚀</span> KAPANIŞ</div>
+                    <div class="toc-item"><span class="title">Kariyer Köşesi</span><span class="page-num">37</span>
+                    </div>
+                    <div class="toc-item"><span class="title">Gelecek Sayıda & Mektup</span><span
+                            class="page-num">38</span></div>
+                    <div class="toc-item"><span class="title">Sonsöz & Teşekkür</span><span class="page-num">39</span>
+                    </div>
+                    <div class="toc-item"><span class="title">Arka Kapak</span><span class="page-num">40</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-box">
+            <p>"Matematik, Tanrı'nın evreni yazdığı dildir."</p>
+            <span class="author">— Galileo Galilei</span>
+        </div>
+
+        <div class="page-footer">
+            <span class="footer-dot"></span>
+            <span>2</span>
+            <span class="footer-dot"></span>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematik Pusulası — 9. Sınıf Özel Sayısı</title>
+    <meta name="description" content="Matematik Pusulası dergisi. Tarihi keşfet, dahileri tanı, bulmacaları çöz, geleceği oku.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#050a18;--surface:#0c1225;--card:#111a32;--border:rgba(99,140,255,.12);
+            --accent:#6c8cff;--accent2:#a78bfa;--gold:#f0c040;
+            --text:#c8d6f0;--text2:#7b8db5;--white:#eef2ff;
+            --glow:0 0 30px rgba(108,140,255,.15);--radius:16px;
+        }
+        html{scroll-behavior:smooth}
+        body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+
+        /* Ambient */
+        .ambient{position:fixed;inset:0;pointer-events:none;z-index:0}
+        .ambient .orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.22;animation:drift 20s ease-in-out infinite alternate}
+        .orb.o1{width:600px;height:600px;background:#6c8cff;top:-15%;left:-8%}
+        .orb.o2{width:500px;height:500px;background:#a78bfa;bottom:-10%;right:-8%;animation-delay:-7s}
+        .orb.o3{width:350px;height:350px;background:#38bdf8;top:50%;left:40%;animation-delay:-13s}
+        @keyframes drift{0%{transform:translate(0,0)}50%{transform:translate(40px,-50px)}100%{transform:translate(-30px,40px)}}
+
+        /* Nav */
+        .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,10,24,.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .3s}
+        .nav-brand{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:900;color:var(--white);text-decoration:none}
+        .nav-links{display:flex;gap:.25rem;align-items:center}
+        .nav-links a{color:var(--text2);text-decoration:none;font-size:.85rem;font-weight:600;padding:.45rem .9rem;border-radius:10px;transition:all .2s}
+        .nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(108,140,255,.1)}
+        .nav-cta{background:linear-gradient(135deg,var(--accent),var(--accent2))!important;color:#fff!important;font-weight:700!important}
+
+        /* Hero */
+        .hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 1.5rem 80px}
+        .hero-badge{display:inline-block;padding:.4rem 1.2rem;border-radius:99px;font-size:.8rem;font-weight:700;letter-spacing:1.5px;color:var(--gold);border:1px solid rgba(240,192,64,.2);background:rgba(240,192,64,.06);margin-bottom:1.5rem}
+        .hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,5.5rem);font-weight:900;color:var(--white);line-height:1.05;margin-bottom:1rem}
+        .hero h1 .accent{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+        .hero .sub{font-size:1.15rem;color:var(--text2);max-width:32rem;margin:0 auto 2rem;letter-spacing:.5px}
+        .hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+        .cta{padding:.85rem 2rem;border-radius:12px;font-size:1rem;font-weight:700;text-decoration:none;transition:all .25s;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem}
+        .cta-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 6px 25px rgba(108,140,255,.3)}
+        .cta-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(108,140,255,.4)}
+        .cta-secondary{background:transparent;border:1px solid var(--border);color:var(--white)}
+        .cta-secondary:hover{background:rgba(108,140,255,.08);border-color:var(--accent)}
+
+        .hero-cards{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+        .hero-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;text-decoration:none;color:var(--white);font-weight:700;font-size:.9rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;transition:all .25s;min-width:110px}
+        .hero-card:hover{transform:translateY(-5px);box-shadow:var(--glow);border-color:var(--accent)}
+        .hero-card span{font-size:1.8rem}
+
+        /* Sections */
+        .section{position:relative;z-index:1;padding:5rem 1.5rem}
+        .container{max-width:1100px;margin:0 auto}
+        .section-badge{display:inline-block;padding:.3rem 1rem;border-radius:99px;font-size:.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);border:1px solid var(--border);background:rgba(108,140,255,.06);margin-bottom:1rem}
+        .section h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,2.75rem);font-weight:900;color:var(--white);margin-bottom:.5rem}
+        .section-desc{color:var(--text2);font-size:1rem;margin-bottom:2.5rem;max-width:36rem}
+
+        /* TOC Grid */
+        .toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.25rem}
+        .toc-group{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:all .25s}
+        .toc-group:hover{box-shadow:var(--glow);transform:translateY(-3px)}
+        .toc-group-title{font-size:1.1rem;font-weight:800;color:var(--white);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+        .toc-item{display:flex;align-items:center;gap:.75rem;padding:.45rem .5rem;border-radius:8px;text-decoration:none;color:var(--text);font-size:.9rem;transition:all .15s}
+        .toc-item:hover{background:rgba(108,140,255,.06);color:var(--white)}
+        .toc-page{font-family:'Inter',monospace;font-size:.75rem;font-weight:800;color:var(--accent);background:rgba(108,140,255,.08);padding:.15rem .5rem;border-radius:6px;min-width:28px;text-align:center}
+
+        /* Wiki Grid (Dahiler & Bulmacalar) */
+        .wiki-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+        .wiki-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;text-decoration:none;color:var(--text);transition:all .25s;position:relative;overflow:hidden}
+        .wiki-card:hover{transform:translateY(-4px);box-shadow:var(--glow)}
+        .wiki-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .2s}
+        .wiki-card:hover::before{opacity:1}
+        .wiki-icon{font-size:2rem;margin-bottom:.75rem}
+        .wiki-card h3{color:var(--white);font-size:1.05rem;font-weight:700;margin-bottom:.35rem}
+        .wiki-card p{font-size:.85rem;color:var(--text2);margin-bottom:.5rem}
+        .wiki-link{font-size:.8rem;font-weight:700;color:var(--accent)}
+
+        /* Solutions Grid */
+        .sol-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
+        .sol-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:all .25s}
+        .sol-card:hover{transform:translateY(-3px);box-shadow:var(--glow)}
+        .sol-num{font-size:2rem;flex-shrink:0}
+        .sol-q{font-weight:700;color:var(--white);font-size:1.05rem;margin-bottom:.5rem}
+        .sol-step{font-size:.9rem;color:var(--text);margin-bottom:.5rem}
+        .sol-result a{color:var(--accent);font-weight:600;font-size:.85rem;text-decoration:none}
+        .sol-result a:hover{text-decoration:underline}
+
+        /* Credits */
+        .credits{position:relative;z-index:1;padding:4rem 1.5rem;border-top:1px solid var(--border)}
+        .credits-inner{max-width:900px;margin:0 auto;text-align:center}
+        .credits-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--white);margin-bottom:.5rem}
+        .credits-sub{color:var(--text2);margin-bottom:2rem}
+        .credits-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+        .credit-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center;transition:all .25s}
+        .credit-card:hover{box-shadow:var(--glow);transform:translateY(-3px)}
+        .credit-card .card-icon{font-size:2rem;margin-bottom:.5rem;display:block}
+        .credit-card .card-role{font-size:.75rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:.25rem}
+        .credit-card .card-name{font-weight:800;color:var(--white);font-size:1rem;margin-bottom:.25rem}
+        .credit-card .card-desc{font-size:.8rem;color:var(--text2)}
+
+        /* CTA Section */
+        .cta-section{position:relative;z-index:1;text-align:center;padding:5rem 1.5rem;background:linear-gradient(180deg,transparent,rgba(108,140,255,.04))}
+        .cta-section h2{font-family:'Playfair Display',serif;font-size:2.25rem;font-weight:900;color:var(--white);margin-bottom:.75rem}
+
+        /* Footer */
+        .site-footer{position:relative;z-index:1;text-align:center;padding:2rem;color:var(--text2);font-size:.85rem;border-top:1px solid var(--border)}
+
+        @media(max-width:768px){
+            .nav-links{display:none}
+            .hero h1{font-size:3rem}
+            .toc-grid,.wiki-grid,.sol-grid,.credits-grid{grid-template-columns:1fr}
+        }
+    </style>
+</head>
+<body>
+<div class="ambient"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+
+<nav class="nav">
+    <a href="#" class="nav-brand">📐 Matematik Pusulası</a>
+    <div class="nav-links">
+        <a href="#hero" class="active">Ana Sayfa</a>
+        <a href="#icindekiler">İçindekiler</a>
+        <a href="#dahiler">Dahiler</a>
+        <a href="#konular">Konular</a>
+        <a href="bulmacalar.html">Bulmacalar</a>
+        <a href="sorular.html">Sorular</a>
+        <a href="cevaplar.html">Çözümler</a>
+        <a href="kaynakca.html">Kaynakça</a>
+        <a href="magazine.html" class="nav-cta">📖 Dergi</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div>
+        <div class="hero-badge">📐 Mart 2026 · Sayı 01</div>
+        <h1>Matematik<br><span class="accent">Pusulası</span></h1>
+        <p class="sub">Tarihi keşfet · Dahileri tanı · Bulmacaları çöz · Geleceği oku</p>
+        <div class="hero-actions">
+            <a href="magazine.html" class="cta cta-primary">📖 Dergiyi Oku</a>
+            <a href="#icindekiler" class="cta cta-secondary">📋 İçindekiler</a>
+        </div>
+        <div class="hero-cards">
+            <a href="magazine.html#page-4" class="hero-card"><span>🏛️</span>Tarih</a>
+            <a href="magazine.html#page-10" class="hero-card"><span>🧠</span>Dahiler</a>
+            <a href="magazine.html#page-17" class="hero-card"><span>🌀</span>Doğa & Mat</a>
+            <a href="bulmacalar.html" class="hero-card"><span>🧩</span>Bulmaca</a>
+        </div>
+    </div>
+</section>
+
+<!-- İÇİNDEKİLER -->
+<section class="section" id="icindekiler">
+    <div class="container">
+        <div class="section-badge">📋 İçindekiler</div>
+        <h2>Dergide Neler Var?</h2>
+        <p class="section-desc">40 sayfalık dergimizde sizi bekleyen konular</p>
+        <div class="toc-grid">
+            <div class="toc-group">
+                <h3 class="toc-group-title">🏛️ Matematik Tarihi</h3>
+                <div>
+                    <a href="magazine.html#page-4" class="toc-item"><span class="toc-page">4-5</span>Matematiğin Tarihi Yolculuğu</a>
+                    <a href="magazine.html#page-6" class="toc-item"><span class="toc-page">6</span>Pi Sayısının Dünyası</a>
+                    <a href="magazine.html#page-7" class="toc-item"><span class="toc-page">7</span>Osmanlı'da Matematik</a>
+                    <a href="magazine.html#page-8" class="toc-item"><span class="toc-page">8</span>İslam Dünyasında Mat.</a>
+                    <a href="magazine.html#page-9" class="toc-item"><span class="toc-page">9</span>Euler'in Köprüleri</a>
+                </div>
+            </div>
+            <div class="toc-group">
+                <h3 class="toc-group-title">🧠 Matematik Dahileri</h3>
+                <div>
+                    <a href="magazine.html#page-10" class="toc-item"><span class="toc-page">10</span>Cahit Arf</a>
+                    <a href="magazine.html#page-11" class="toc-item"><span class="toc-page">11</span>El-Harezmi</a>
+                    <a href="magazine.html#page-12" class="toc-item"><span class="toc-page">12</span>Hypatia</a>
+                    <a href="magazine.html#page-13" class="toc-item"><span class="toc-page">13</span>Emmy Noether</a>
+                    <a href="magazine.html#page-14" class="toc-item"><span class="toc-page">14</span>Isaac Newton</a>
+                    <a href="magazine.html#page-15" class="toc-item"><span class="toc-page">15</span>Alan Turing</a>
+                    <a href="magazine.html#page-16" class="toc-item"><span class="toc-page">16</span>Ramanujan</a>
+                </div>
+            </div>
+            <div class="toc-group">
+                <h3 class="toc-group-title">🌀 Doğa & Matematik</h3>
+                <div>
+                    <a href="magazine.html#page-17" class="toc-item"><span class="toc-page">17</span>Altın Oran</a>
+                    <a href="magazine.html#page-18" class="toc-item"><span class="toc-page">18</span>Fibonacci Sayıları</a>
+                    <a href="magazine.html#page-19" class="toc-item"><span class="toc-page">19</span>Fraktallar</a>
+                    <a href="magazine.html#page-20" class="toc-item"><span class="toc-page">20</span>Evren & Matematik</a>
+                </div>
+            </div>
+            <div class="toc-group">
+                <h3 class="toc-group-title">🔮 Teknoloji & Matematik</h3>
+                <div>
+                    <a href="magazine.html#page-21" class="toc-item"><span class="toc-page">21</span>Yapay Zeka & Mat.</a>
+                    <a href="magazine.html#page-22" class="toc-item"><span class="toc-page">22</span>Teknoloji</a>
+                    <a href="magazine.html#page-23" class="toc-item"><span class="toc-page">23</span>Kriptografi</a>
+                    <a href="magazine.html#page-24" class="toc-item"><span class="toc-page">24</span>Oyun Teorisi</a>
+                </div>
+            </div>
+            <div class="toc-group">
+                <h3 class="toc-group-title">🌍 Günlük Hayat</h3>
+                <div>
+                    <a href="magazine.html#page-25" class="toc-item"><span class="toc-page">25</span>Günlük Hayat</a>
+                    <a href="magazine.html#page-26" class="toc-item"><span class="toc-page">26</span>Spor & Matematik</a>
+                    <a href="magazine.html#page-27" class="toc-item"><span class="toc-page">27</span>Müzik & Matematik</a>
+                    <a href="magazine.html#page-28" class="toc-item"><span class="toc-page">28</span>Sanat & Matematik</a>
+                    <a href="magazine.html#page-29" class="toc-item"><span class="toc-page">29</span>Eğlenceli Gerçekler</a>
+                    <a href="magazine.html#page-30" class="toc-item"><span class="toc-page">30</span>Mat. Sözlüğü</a>
+                </div>
+            </div>
+            <div class="toc-group">
+                <h3 class="toc-group-title">🧩 Bulmacalar & Diğer</h3>
+                <div>
+                    <a href="magazine.html#page-31" class="toc-item"><span class="toc-page">31</span>Paradokslar</a>
+                    <a href="magazine.html#page-32" class="toc-item"><span class="toc-page">32</span>Sudoku</a>
+                    <a href="magazine.html#page-33" class="toc-item"><span class="toc-page">33</span>Mantık Bulmacası</a>
+                    <a href="magazine.html#page-34" class="toc-item"><span class="toc-page">34</span>Sayı Piramidi</a>
+                    <a href="magazine.html#page-35" class="toc-item"><span class="toc-page">35</span>Kakuro & KenKen</a>
+                    <a href="magazine.html#page-36" class="toc-item"><span class="toc-page">36</span>Karışık Bulmaca</a>
+                    <a href="magazine.html#page-37" class="toc-item"><span class="toc-page">37</span>Kariyer Köşesi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DAHİLER -->
+<section class="section" id="dahiler">
+    <div class="container">
+        <div class="section-badge">🧠 Dahiler</div>
+        <h2>Matematik Dahileri</h2>
+        <p class="section-desc">Tarihe yön veren matematikçiler</p>
+        <div class="wiki-grid">
+            <a href="magazine.html#page-10" class="wiki-card"><div class="wiki-icon">🇹🇷</div><h3>Cahit Arf</h3><p>Türk matematikçi, Arf değişmezi</p><span class="wiki-link">Sayfa 10 →</span></a>
+            <a href="magazine.html#page-11" class="wiki-card"><div class="wiki-icon">🔢</div><h3>El-Harezmi</h3><p>Cebirin babası, algoritmanın kaynağı</p><span class="wiki-link">Sayfa 11 →</span></a>
+            <a href="magazine.html#page-12" class="wiki-card"><div class="wiki-icon">🏛️</div><h3>Hypatia</h3><p>Antik çağın kadın matematikçisi</p><span class="wiki-link">Sayfa 12 →</span></a>
+            <a href="magazine.html#page-13" class="wiki-card"><div class="wiki-icon">💫</div><h3>Emmy Noether</h3><p>Modern cebirin annesi</p><span class="wiki-link">Sayfa 13 →</span></a>
+            <a href="magazine.html#page-14" class="wiki-card"><div class="wiki-icon">🍎</div><h3>Isaac Newton</h3><p>Kalkülüsün mucidi</p><span class="wiki-link">Sayfa 14 →</span></a>
+            <a href="magazine.html#page-15" class="wiki-card"><div class="wiki-icon">💻</div><h3>Alan Turing</h3><p>Bilgisayar biliminin babası</p><span class="wiki-link">Sayfa 15 →</span></a>
+            <a href="magazine.html#page-16" class="wiki-card"><div class="wiki-icon">✨</div><h3>Ramanujan</h3><p>Kendini yetiştirmiş deha</p><span class="wiki-link">Sayfa 16 →</span></a>
+        </div>
+    </div>
+</section>
+
+<!-- KONULAR -->
+<section class="section" id="konular">
+    <div class="container">
+        <div class="section-badge">🔮 Keşfet</div>
+        <h2>Öne Çıkan Konular</h2>
+        <p class="section-desc">Matematiğin hayatın her alanındaki etkisi</p>
+        <div class="sol-grid">
+            <div class="sol-card"><div class="sol-num">🌀</div><div><div class="sol-q">Altın Oran & Fibonacci</div><div class="sol-step">Doğanın gizli kodu: 1, 1, 2, 3, 5, 8, 13...</div><div class="sol-result"><a href="magazine.html#page-17">Sayfa 17-18 →</a></div></div></div>
+            <div class="sol-card"><div class="sol-num">🔮</div><div><div class="sol-q">Yapay Zeka & Matematik</div><div class="sol-step">Matrislerden ChatGPT'ye uzanan yol</div><div class="sol-result"><a href="magazine.html#page-21">Sayfa 21 →</a></div></div></div>
+            <div class="sol-card"><div class="sol-num">🔐</div><div><div class="sol-q">Kriptografi</div><div class="sol-step">Şifreleme matematiği ve güvenlik</div><div class="sol-result"><a href="magazine.html#page-23">Sayfa 23 →</a></div></div></div>
+            <div class="sol-card"><div class="sol-num">🎵</div><div><div class="sol-q">Müzik & Matematik</div><div class="sol-step">Notaların arkasındaki sayılar</div><div class="sol-result"><a href="magazine.html#page-27">Sayfa 27 →</a></div></div></div>
+            <div class="sol-card"><div class="sol-num">🌌</div><div><div class="sol-q">Evrendeki Matematik</div><div class="sol-step">Galaksilerden atomlara, evrenin dili</div><div class="sol-result"><a href="magazine.html#page-20">Sayfa 20 →</a></div></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- BULMACALAR -->
+<section class="section" id="bulmacalar">
+    <div class="container">
+        <div class="section-badge">🧩 Bulmacalar</div>
+        <h2>Beynini Zorla!</h2>
+        <p class="section-desc">6 sayfa dolusu bulmaca, sudoku, paradoks ve zeka soruları</p>
+        <div class="wiki-grid">
+            <a href="bulmacalar.html" class="wiki-card"><div class="wiki-icon">🤯</div><h3>Paradokslar</h3><p>Zenon, Hilbert, Banach-Tarski...</p><span class="wiki-link">İnteraktif →</span></a>
+            <a href="bulmacalar.html" class="wiki-card"><div class="wiki-icon">🔢</div><h3>Sudoku</h3><p>Kolay'dan Uzman'a 4 seviye</p><span class="wiki-link">İnteraktif →</span></a>
+            <a href="bulmacalar.html" class="wiki-card"><div class="wiki-icon">🧠</div><h3>Mantık Bulmacası</h3><p>Mantığını konuştur</p><span class="wiki-link">İnteraktif →</span></a>
+            <a href="bulmacalar.html" class="wiki-card"><div class="wiki-icon">🔺</div><h3>Sayı Piramidi</h3><p>Piramidi doldur, kalıpları keşfet</p><span class="wiki-link">İnteraktif →</span></a>
+            <a href="bulmacalar.html" class="wiki-card"><div class="wiki-icon">➕</div><h3>Kakuro & KenKen</h3><p>İleri seviye bulmacalar</p><span class="wiki-link">İnteraktif →</span></a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Dergiyi Okumaya Hazır mısın?</h2>
+    <p class="section-desc" style="margin:0 auto 2rem;text-align:center">40 sayfalık dergimizi şimdi oku veya PDF olarak indir</p>
+    <a href="magazine.html" class="cta cta-primary">📖 Tüm Dergiyi Oku</a>
+</section>
+
+<!-- EKİP -->
+<section class="credits">
+    <div class="credits-inner">
+        <div class="section-badge">✦ Ekip</div>
+        <h2 class="credits-title">Pusulayı Hazırlayanlar</h2>
+        <p class="credits-sub">Bu sayıyı sizler için hazırlayan ekip</p>
+        <div class="credits-grid">
+            <div class="credit-card"><span class="card-icon">👑</span><div class="card-role">Lider</div><div class="card-name">Miraç Eymen Abanoz</div><div class="card-desc">Proje koordinasyonu</div></div>
+            <div class="credit-card"><span class="card-icon">🎨</span><div class="card-role">Dergi & Web Tasarım</div><div class="card-name">Bahadır Değirmenci</div><div class="card-desc">Görsel tasarım & geliştirme</div></div>
+            <div class="credit-card"><span class="card-icon">🔬</span><div class="card-role">Araştırma</div><div class="card-name">Arslan Yusuf Kadir</div><div class="card-desc">İçerik araştırma & yazım</div></div>
+            <div class="credit-card"><span class="card-icon">🤖</span><div class="card-role">Kişisel LLM</div><div class="card-name">gpt-oss-20b</div><div class="card-desc">Kendi personalitisi ile katkı</div></div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">📐 <strong>Matematik Pusulası</strong> — 9. Sınıf Özel Sayısı · Mart 2026<br><span style="font-size:.75rem;opacity:.6">Trabzon Meslek Lisesi (TMTAL) · Theworld1716@gmail.com</span></footer>
+
+<script>
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+        e.preventDefault();
+        const t=document.querySelector(a.getAttribute('href'));
+        if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+});
+// Navbar scroll
+window.addEventListener('scroll',()=>{
+    const n=document.querySelector('.nav');
+    n.style.background=window.scrollY>60?'rgba(5,10,24,.92)':'rgba(5,10,24,.75)';
+});
+</script>
+</body>
+</html>

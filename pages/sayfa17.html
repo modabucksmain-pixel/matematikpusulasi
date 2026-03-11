@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altın Oran — Matematik Pusulası</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;600;800&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #3a5a3a;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: #FAFAF5;
+            padding: 10mm 12mm 16mm;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            font-family: 'Crimson Pro', serif;
+            color: #2d3a2d;
+            overflow: hidden;
+        }
+
+        .gold-stripe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
+            z-index: 10;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #4A7C59;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .header span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9pt;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #4A7C59;
+        }
+
+        .header .right {
+            font-weight: 600;
+            color: #999;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32pt;
+            font-weight: 900;
+            text-align: center;
+            color: #2d3a2d;
+            margin-bottom: 2px;
+        }
+
+        .page-subtitle {
+            font-family: 'Caveat', cursive;
+            font-size: 16pt;
+            color: #8B6914;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .phi-display {
+            text-align: center;
+            padding: 12px;
+            margin: 6px 0;
+            background: #2d3a2d;
+            color: #F0EDE5;
+            border-radius: 8px;
+        }
+
+        .phi-display .symbol {
+            font-size: 36pt;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+        }
+
+        .phi-display .value {
+            font-size: 14pt;
+            font-family: 'Caveat', cursive;
+            margin-top: 2px;
+        }
+
+        .phi-display .name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 3px;
+            opacity: 0.7;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .col p {
+            font-size: 11pt;
+            text-align: justify;
+            line-height: 1.5;
+            margin-bottom: 0.4em;
+        }
+
+        .nature-card {
+            background: rgba(74, 124, 89, 0.08);
+            border: 1px solid rgba(74, 124, 89, 0.3);
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 6px;
+        }
+
+        .nature-card .title {
+            font-family: 'Caveat', cursive;
+            font-size: 13pt;
+            font-weight: 700;
+            color: #4A7C59;
+            margin-bottom: 2px;
+        }
+
+        .nature-card p {
+            font-size: 10pt;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .handwritten-note {
+            font-family: 'Caveat', cursive;
+            font-size: 13pt;
+            color: #4A7C59;
+            padding: 8px 12px;
+            margin: 6px 0;
+            border: 2px dashed rgba(74, 124, 89, 0.3);
+            border-radius: 6px;
+            line-height: 1.4;
+        }
+
+        .pull-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 12pt;
+            font-style: italic;
+            text-align: center;
+            color: #0A1931;
+            padding: 8px 14px;
+            margin: 6px 0;
+            border-left: 3px solid #C9A84C;
+            border-right: 3px solid #C9A84C;
+            line-height: 1.4;
+            background: rgba(201, 168, 76, 0.04);
+        }
+
+        .pull-quote .attribution {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            font-style: normal;
+            color: #888;
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        .page-footer {
+            position: absolute;
+            bottom: 8mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 11pt;
+            color: #0A1931;
+            font-weight: 700;
+            border: 2px solid #C9A84C;
+            padding: 3px 14px;
+            background: #fff;
+            z-index: 20;
+        }
+
+        .page-footer::before {
+            content: '◆';
+            font-size: 8px;
+            color: #C9A84C;
+            margin-right: 7px;
+        }
+
+        .page-footer::after {
+            content: '◆';
+            font-size: 8px;
+            color: #C9A84C;
+            margin-left: 7px;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background: none;
+                display: block;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="gold-stripe"></div>
+        <div class="header">
+            <span>🌿 Doğada Matematik</span>
+            <span class="right">Matematik Pusulası</span>
+        </div>
+
+        <h1>ALTIN ORAN</h1>
+        <div class="page-subtitle">Doğanın En Güzel Şifresi ✨</div>
+
+        <div class="phi-display">
+            <div class="symbol">φ</div>
+            <div class="value">1.6180339887...</div>
+            <div class="name">Phi — İlahi Oran</div>
+        </div>
+
+        <div class="columns">
+            <div class="col">
+                <p>Bir sayı düşünün: ne çok büyük ne çok küçük, ama her yerde karşınıza çıkıyor. Deniz kabuklarının
+                    spiralinde, ayçiçeğinin tohumlarında, galaksilerin kollarında, hatta yüzünüzün oranlarında. Bu sayı
+                    <strong>altın oran</strong> — matematikçilerin "φ" (phi) dediği gizemli oran.</p>
+                <p>Altın oran nedir? Bir doğruyu öyle ikiye bölersiniz ki, büyük parçanın küçük parçaya oranı, doğrunun
+                    büyük parçaya oranına eşit olur. Sonuç: φ ≈ 1.618</p>
+                <div class="nature-card">
+                    <div class="title">🐚 Deniz Kabukları</div>
+                    <p>Nautilus kabuğunun her odası, bir öncekine göre altın oranla büyür. Milyonlarca yıldır değişmeyen
+                        bu tasarım, saf matematik.</p>
+                </div>
+                <div class="nature-card">
+                    <div class="title">🌻 Ayçiçeği</div>
+                    <p>Ayçiçeğinin tohumları iki yönde spiraller oluşturur: 34 ve 55 spiral. Bu sayılar Fibonacci
+                        dizisindedir ve oranları φ'ye yakınsar!</p>
+                </div>
+                <div class="nature-card">
+                    <div class="title">🌀 Galaksiler</div>
+                    <p>Samanyolu gibi sarmal galaksilerin kolları logaritmik spiral çizer — altın oranın kozmik
+                        ölçekteki yansıması.</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="nature-card">
+                    <div class="title">🏛️ Mimari & Sanat</div>
+                    <p>Mısır piramitleri, Parthenon tapınağı ve Leonardo da Vinci'nin "Vitruvius Adamı" — hepsi altın
+                        oranı kullanır. Güzelliğin matematiksel formülü mü?</p>
+                </div>
+                <div class="nature-card">
+                    <div class="title">🧬 İnsan Vücudu</div>
+                    <p>Dirsekten parmak ucuna ve bilekten parmak ucuna olan mesafelerin oranı φ'ye yakındır. Göbeğiniz,
+                        boyunuzu altın oranla ikiye böler!</p>
+                </div>
+                <div class="nature-card">
+                    <div class="title">🎵 Müzik</div>
+                    <p>Stradivarius kemanlarının f-deliklerinin konumu altın orana uyar. Mozart ve Beethoven'ın bazı
+                        eserlerinde de bu oran bulundu.</p>
+                </div>
+                <div class="handwritten-note">
+                    🤔 "Evren rastgele mi yoksa matematiksel bir tasarım mı? Altın oran bu sorunun en güzel
+                    kanıtlarından biri olabilir..."
+                </div>
+                <div
+                    style="background:rgba(74,124,89,0.12);padding:8px 12px;border:2px solid #4A7C59;border-radius:6px;margin-top:5px;">
+                    <div
+                        style="font-family:'Montserrat',sans-serif;font-size:7pt;font-weight:800;color:#4A7C59;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;">
+                        💡 Biliyor Muydunuz?</div>
+                    <p style="font-size:10pt;line-height:1.4;color:#2d3a2d;margin:0;">Fibonacci dizisi (1, 1, 2, 3, 5,
+                        8, 13, 21...) sadece matematikte değil, borsa analizlerinde bile kullanılır. Birçok trader,
+                        destek ve direnç seviyelerini belirlemek için Fibonacci oranlarından yararlanır!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pull-quote">
+            "Geometri, doğanın mimarisini anlamamızın anahtarıdır."
+            <div class="attribution">— Johannes Kepler</div>
+        </div>
+
+        <div class="page-footer">17</div>
+    </div>
+</body>
+
+</html>
