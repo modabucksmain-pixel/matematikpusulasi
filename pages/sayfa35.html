@@ -1,438 +1,102 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kakuro & KenKen — Matematik Pusulası</title>
+    <title>Günün Olimpiyat Sorusu — Matematik Pusulası</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;600;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@400;600;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        body { background: #1a0a2e; display: flex; justify-content: center; padding: 40px 0; }
+        .page { width: 210mm; height: 297mm; background: linear-gradient(180deg, #1a0a2e 0%, #0d0520 100%); padding: 12mm 16mm 16mm; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.7); font-family: 'Montserrat', sans-serif; color: #eee; overflow: hidden; }
+        .bg-circles { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; }
+        .bg-circles::before { content: ''; position: absolute; top: 20%; right: -5%; width: 300px; height: 300px; border-radius: 50%; border: 1px solid rgba(156,39,176,0.1); }
+        .bg-circles::after { content: ''; position: absolute; bottom: 10%; left: -5%; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(156,39,176,0.08); }
+        .gold-stripe { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #9C27B0, #E040FB, #9C27B0); z-index: 10; }
+        .content { position: relative; z-index: 5; }
+        .header { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(156,39,176,0.3); padding-bottom: 6px; margin-bottom: 12px; }
+        .header span { font-size: 8pt; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #E040FB; }
+        .badge { text-align: center; margin-bottom: 8px; }
+        .badge span { background: rgba(156,39,176,0.2); border: 1px solid rgba(224,64,251,0.4); padding: 4px 16px; border-radius: 20px; font-size: 8pt; font-weight: 800; letter-spacing: 3px; color: #E040FB; text-transform: uppercase; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 26pt; font-weight: 900; text-align: center; color: #fff; margin-bottom: 3px; }
+        .page-subtitle { font-size: 9pt; text-align: center; color: rgba(255,255,255,0.4); letter-spacing: 2px; margin-bottom: 16px; }
 
-        body {
-            background: #1a1525;
-            display: flex;
-            justify-content: center;
-            padding: 40px 0;
-        }
+        .difficulty { display: flex; justify-content: center; gap: 20px; margin-bottom: 14px; }
+        .difficulty .item { text-align: center; }
+        .difficulty .label { font-size: 7pt; letter-spacing: 1px; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-bottom: 2px; }
+        .difficulty .value { font-family: 'Space Mono', monospace; font-size: 14pt; font-weight: 700; color: #E040FB; }
 
-        .page {
-            width: 210mm;
-            height: 297mm;
-            background: #FAFAF5;
-            padding: 10mm 12mm 16mm;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            font-family: 'Montserrat', sans-serif;
-            color: #0A1931;
-            overflow: hidden;
-        }
+        .problem-box { background: rgba(255,255,255,0.04); border: 2px solid rgba(224,64,251,0.25); border-radius: 12px; padding: 20px 24px; margin-bottom: 14px; }
+        .problem-box .section-label { font-size: 7pt; font-weight: 800; letter-spacing: 3px; color: #E040FB; text-transform: uppercase; margin-bottom: 8px; }
+        .problem-box p { font-size: 10.5pt; line-height: 1.7; color: #ddd; }
+        .problem-box .formula-area { background: rgba(156,39,176,0.08); border: 1px dashed rgba(224,64,251,0.3); padding: 14px; border-radius: 6px; margin: 12px 0; text-align: center; }
+        .problem-box .formula-area p { font-family: 'Space Mono', monospace; font-size: 11pt; color: #E040FB; line-height: 2; }
 
-        .gold-stripe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
-            z-index: 10;
-        }
+        .hint-section { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+        .hint { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 10px 12px; }
+        .hint .hint-label { font-size: 7pt; font-weight: 800; letter-spacing: 2px; color: #FFD740; text-transform: uppercase; margin-bottom: 4px; }
+        .hint p { font-size: 8.5pt; line-height: 1.5; color: #999; }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #0A1931;
-            padding-bottom: 7px;
-            margin-bottom: 8px;
-        }
+        .answer-area { background: rgba(0,0,0,0.3); border: 2px dashed rgba(224,64,251,0.2); border-radius: 8px; padding: 16px; text-align: center; }
+        .answer-area .lock { font-size: 28pt; margin-bottom: 4px; display: block; }
+        .answer-area p { font-size: 9pt; color: rgba(255,255,255,0.4); letter-spacing: 1px; }
+        .answer-area small { font-size: 7pt; color: rgba(255,255,255,0.25); display: block; margin-top: 4px; }
 
-        .header span {
-            font-size: 9pt;
-            font-weight: 800;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #0A1931;
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 28pt;
-            font-weight: 900;
-            text-align: center;
-            color: #0A1931;
-            margin-bottom: 2px;
-        }
-
-        .page-subtitle {
-            font-size: 9pt;
-            text-align: center;
-            color: #888;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-
-        .columns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-        }
-
-        .puzzle-section {
-            border: 1px solid #e0e0e0;
-            padding: 10px 12px;
-            margin-bottom: 7px;
-            border-radius: 6px;
-            background: #fff;
-        }
-
-        .puzzle-section .card-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 4px;
-        }
-
-        .puzzle-section .card-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 10.5pt;
-            font-weight: 900;
-            color: #0A1931;
-        }
-
-        .puzzle-section .difficulty {
-            font-size: 9pt;
-            color: #C9A84C;
-            font-weight: 700;
-        }
-
-        .puzzle-section p {
-            font-size: 8.5pt;
-            line-height: 1.35;
-            color: #555;
-            margin-bottom: 5px;
-        }
-
-        .kakuro-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 0;
-            border: 2px solid #0A1931;
-            width: fit-content;
-            margin: 5px auto;
-        }
-
-        .kakuro-cell {
-            width: 28px;
-            height: 28px;
-            border: 0.5px solid #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 8.5pt;
-            position: relative;
-        }
-
-        .kakuro-cell.black {
-            background: #0A1931;
-        }
-
-        .kakuro-cell.clue {
-            background: #0A1931;
-            position: relative;
-        }
-
-        .kakuro-cell.clue::before {
-            content: attr(data-down);
-            position: absolute;
-            bottom: 1px;
-            right: 2px;
-            font-size: 6pt;
-            color: #C9A84C;
-        }
-
-        .kakuro-cell.clue::after {
-            content: attr(data-right);
-            position: absolute;
-            top: 1px;
-            left: 2px;
-            font-size: 6pt;
-            color: #fff;
-        }
-
-        .kakuro-cell.empty {
-            background: #fafafa;
-        }
-
-        .kenken-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-            border: 2px solid #0A1931;
-            width: fit-content;
-            margin: 5px auto;
-        }
-
-        .kenken-cell {
-            width: 32px;
-            height: 32px;
-            border: 0.5px solid #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 11pt;
-            position: relative;
-            background: #fff;
-        }
-
-        .kenken-cell .op {
-            position: absolute;
-            top: 1px;
-            left: 2px;
-            font-size: 7pt;
-            font-weight: 700;
-            color: #C9A84C;
-        }
-
-        .rules-box {
-            border: 1px solid #0A1931;
-            padding: 8px 11px;
-            margin: 5px 0;
-            border-radius: 4px;
-        }
-
-        .rules-box h3 {
-            font-size: 7.5pt;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #C9A84C;
-            margin-bottom: 3px;
-        }
-
-        .rules-box p {
-            font-size: 8.5pt;
-            line-height: 1.4;
-            color: #555;
-        }
-
-        .challenge-bar {
-            background: #0A1931;
-            color: #fff;
-            padding: 8px 13px;
-            margin-top: 8px;
-            text-align: center;
-            font-size: 8.5pt;
-            letter-spacing: 0.5px;
-            border-radius: 6px;
-        }
-
-        .challenge-bar strong {
-            color: #C9A84C;
-        }
-
-        .page-footer {
-            position: absolute;
-            bottom: 8mm;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Playfair Display', serif;
-            font-size: 11pt;
-            color: #0A1931;
-            font-weight: 700;
-            border: 2px solid #C9A84C;
-            padding: 3px 14px;
-            background: #fff;
-            z-index: 20;
-        }
-
-        .page-footer::before {
-            content: '◆';
-            font-size: 8px;
-            color: #C9A84C;
-            margin-right: 7px;
-        }
-
-        .page-footer::after {
-            content: '◆';
-            font-size: 8px;
-            color: #C9A84C;
-            margin-left: 7px;
-        }
-
-        @media print {
-            @page {
-                size: A4;
-                margin: 0;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                background: none;
-                display: block;
-            }
-
-            .page {
-                margin: 0;
-                box-shadow: none;
-                page-break-after: always;
-            }
-        }
+        .page-footer { position: absolute; bottom: 8mm; left: 50%; transform: translateX(-50%); font-family: 'Playfair Display', serif; font-size: 11pt; color: #E040FB; font-weight: 700; }
+        @media print { @page { size: A4; margin: 0; } body { margin: 0; padding: 0; background: none; display: block; } .page { margin: 0; box-shadow: none; page-break-after: always; } }
     </style>
 </head>
-
 <body>
     <div class="page">
+        <div class="bg-circles"></div>
         <div class="gold-stripe"></div>
-        <div class="header"><span>🧩 Bulmacalar</span><span style="color:#C9A84C;font-weight:600;">Matematik
-                Pusulası</span></div>
-        <h1>KAKURO & KENKEN</h1>
-        <div class="page-subtitle">Sudoku'dan Sonra Sıra Bunlarda</div>
+        <div class="content">
+            <div class="header"><span>🧠 Zihin Yakan</span><span style="color:rgba(255,255,255,0.3);">Matematik Pusulası</span></div>
+            <div class="badge"><span>Sayı 01 · Özel Soru</span></div>
+            <h1>GÜNÜN OLİMPİYAT SORUSU</h1>
+            <div class="page-subtitle">Bunu Çözebilirsen Gerçek Bir Matematik Savaşçısısın ⚔️</div>
 
-        <div class="columns">
-            <div>
-                <div class="puzzle-section">
-                    <div class="card-header"><span class="card-title">Kakuro №1</span><span class="difficulty">★★☆
-                            Orta</span></div>
-                    <p>Sudoku + Bulmaca karışımı! Siyah hücrelerdeki ipuçları, o satır/sütundaki sayıların toplamını
-                        verir. 1-9 arası rakamlar kullanılır, tekrar yasak!</p>
-                    <div class="kakuro-grid">
-                        <div class="kakuro-cell black"></div>
-                        <div class="kakuro-cell clue" data-down="16" data-right=""></div>
-                        <div class="kakuro-cell clue" data-down="17" data-right=""></div>
-                        <div class="kakuro-cell black"></div>
-                        <div class="kakuro-cell black"></div>
-                        <div class="kakuro-cell clue" data-right="16" data-down=""></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell clue" data-down="12" data-right=""></div>
-                        <div class="kakuro-cell black"></div>
-                        <div class="kakuro-cell clue" data-right="17" data-down=""></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell clue" data-down="7" data-right=""></div>
-                        <div class="kakuro-cell black"></div>
-                        <div class="kakuro-cell clue" data-right="12" data-down=""></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell black"></div>
-                        <div class="kakuro-cell black"></div>
-                        <div class="kakuro-cell clue" data-right="7" data-down=""></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell empty"></div>
-                    </div>
+            <div class="difficulty">
+                <div class="item"><div class="label">Zorluk</div><div class="value">★★★★★</div></div>
+                <div class="item"><div class="label">Konu</div><div class="value">Geometri</div></div>
+                <div class="item"><div class="label">Süre</div><div class="value">45 dk</div></div>
+                <div class="item"><div class="label">Kaynak</div><div class="value">IMO 2019</div></div>
+            </div>
+
+            <div class="problem-box">
+                <div class="section-label">📝 Problem</div>
+                <p>ABC üçgeninde, A açısının açıortayı BC kenarını D noktasında keser. D noktasından AB ve AC kenarlarına çizilen dikmelerin ayakları sırasıyla E ve F olsun.</p>
+                <p style="margin-top:8px;">EF doğrusu ile BC doğrusu M noktasında kesişiyor. ABC üçgeninin çevrel çemberinin merkezi O olmak üzere:</p>
+
+                <div class="formula-area">
+                    <p>MD · MA = MB · MC</p>
+                    <p style="font-size:9pt; color:#999; margin-top:6px;">olduğunu kanıtlayınız.</p>
                 </div>
-                <div class="rules-box">
-                    <h3>Kakuro Kuralları</h3>
-                    <p>◆ İpucu sayıları → bitişik boş hücrelerin toplamı<br>◆ Her grupta 1-9 arası rakamlar, tekrar
-                        yok<br>◆ Yatay ve dikey ipuçları ayrı ayrı çalışır</p>
+
+                <div class="section-label" style="margin-top: 12px;">💡 Kavramlar</div>
+                <p style="font-size:9pt; color:#999;">Bu problemi çözmek için şu kavramlara hakim olmalısın: Açıortay Teoremi, Kuvvet Noktası (Power of a Point), Çevrel Çember Özellikleri, Harmonik Bölme.</p>
+            </div>
+
+            <div class="hint-section">
+                <div class="hint">
+                    <div class="hint-label">🔑 İpucu 1</div>
+                    <p>D, E, F, A noktaları bir çember üzerindedir. (Neden?) Bu çemberin özelliklerini düşünün.</p>
                 </div>
-                <div class="puzzle-section">
-                    <div class="card-header"><span class="card-title">Kakuro №2</span><span class="difficulty">★★★
-                            Zor</span></div>
-                    <div class="kakuro-grid">
-                        <div class="kakuro-cell black"></div>
-                        <div class="kakuro-cell clue" data-down="23" data-right=""></div>
-                        <div class="kakuro-cell clue" data-down="11" data-right=""></div>
-                        <div class="kakuro-cell black"></div>
-                        <div class="kakuro-cell black"></div>
-                        <div class="kakuro-cell clue" data-right="16" data-down=""></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell clue" data-down="9" data-right=""></div>
-                        <div class="kakuro-cell black"></div>
-                        <div class="kakuro-cell clue" data-right="24" data-down=""></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell clue" data-down="14" data-right=""></div>
-                        <div class="kakuro-cell black"></div>
-                        <div class="kakuro-cell clue" data-right="17" data-down=""></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell black"></div>
-                        <div class="kakuro-cell black"></div>
-                        <div class="kakuro-cell clue" data-right="9" data-down=""></div>
-                        <div class="kakuro-cell empty"></div>
-                        <div class="kakuro-cell empty"></div>
-                    </div>
+                <div class="hint">
+                    <div class="hint-label">🔑 İpucu 2</div>
+                    <p>M noktasının BC doğrusu üzerindeki konumunu Menelaus Teoremi ile ifade etmeyi deneyin.</p>
                 </div>
             </div>
-            <div>
-                <div class="puzzle-section">
-                    <div class="card-header"><span class="card-title">KenKen №1</span><span class="difficulty">★★☆
-                            Orta</span></div>
-                    <p>Her satır ve sütun 1-4 arası rakamları içermelidir. Kalın çerçeveli gruplardaki sayılar, verilen
-                        işlem sonucunu vermelidir!</p>
-                    <div class="kenken-grid">
-                        <div class="kenken-cell"><span class="op">6+</span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op">2÷</span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op">3−</span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op">12×</span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op">5+</span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op">1−</span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op">8×</span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                    </div>
-                </div>
-                <div class="rules-box">
-                    <h3>KenKen Kuralları</h3>
-                    <p>◆ n×n ızgarada 1–n arası rakamlar<br>◆ Her satır ve sütunda tekrar yok<br>◆ Kalın çerçeveli
-                        gruplardaki sayılar, verilen işlem sonucunu vermeli (+, −, ×, ÷)</p>
-                </div>
-                <div class="puzzle-section">
-                    <div class="card-header"><span class="card-title">KenKen №2</span><span class="difficulty">★★★
-                            Zor</span></div>
-                    <div class="kenken-grid">
-                        <div class="kenken-cell"><span class="op">2÷</span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op">7+</span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op">8+</span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op">2−</span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op">3−</span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op">6×</span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                        <div class="kenken-cell"><span class="op">3+</span></div>
-                        <div class="kenken-cell"><span class="op"></span></div>
-                    </div>
-                </div>
-                <div class="challenge-bar"><strong>MEYDAN OKUMA:</strong> Hepsini çözen bir fotoğraf çekip
-                    @baho61brb'ye gönder!</div>
+
+            <div class="answer-area">
+                <span class="lock">🔒</span>
+                <p>Cevap gelecek sayıda açıklanacak!</p>
+                <small>Veya web sitemizden kontrol et: matematikpusulasi.vercel.app</small>
             </div>
         </div>
         <div class="page-footer">35</div>
     </div>
 </body>
-
 </html>

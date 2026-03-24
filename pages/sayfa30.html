@@ -1,309 +1,120 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matematik Sözlüğü — Matematik Pusulası</title>
+    <title>Öğrenci Gözüyle Matematik — Matematik Pusulası</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;600;800&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;600;800&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        body { background: #E8EAF6; display: flex; justify-content: center; padding: 40px 0; }
+        .page { width: 210mm; height: 297mm; background: #fff; padding: 10mm 14mm 16mm; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.2); font-family: 'Montserrat', sans-serif; color: #333; overflow: hidden; }
+        .gold-stripe { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #3F51B5, #7986CB, #3F51B5); z-index: 10; }
+        .header { display: flex; justify-content: space-between; border-bottom: 2px solid #3F51B5; padding-bottom: 6px; margin-bottom: 8px; }
+        .header span { font-size: 9pt; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #3F51B5; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 24pt; font-weight: 900; text-align: center; color: #283593; margin-bottom: 2px; }
+        .page-subtitle { font-family: 'Caveat', cursive; font-size: 14pt; text-align: center; color: #F44336; margin-bottom: 10px; }
+        .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
-        body {
-            background: #6B5B95;
-            display: flex;
-            justify-content: center;
-            padding: 40px 0;
-        }
+        .confession { background: #FFF3E0; border: 2px solid #FF9800; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; position: relative; }
+        .confession::before { content: '💬'; position: absolute; top: -10px; left: 10px; font-size: 18pt; }
+        .confession .who { font-size: 7pt; font-weight: 800; letter-spacing: 1px; color: #E65100; text-transform: uppercase; margin-bottom: 3px; margin-top: 4px; }
+        .confession p { font-family: 'Caveat', cursive; font-size: 12pt; color: #333; line-height: 1.4; }
 
-        .page {
-            width: 210mm;
-            height: 297mm;
-            background: #FAFAF5;
-            padding: 10mm 12mm 16mm;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            font-family: 'Crimson Pro', serif;
-            color: #333;
-            overflow: hidden;
-        }
+        .caps-box { background: #263238; color: #fff; border-radius: 10px; padding: 12px; text-align: center; margin-bottom: 8px; }
+        .caps-box .top { font-size: 10pt; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        .caps-box .emoji { font-size: 36pt; display: block; margin: 4px 0; }
+        .caps-box .bottom { font-size: 10pt; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
 
-        .gold-stripe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
-            z-index: 10;
-        }
+        .hoca-card { background: #E8EAF6; border-left: 4px solid #3F51B5; padding: 10px 12px; border-radius: 0 8px 8px 0; margin-bottom: 8px; }
+        .hoca-card .label { font-size: 7pt; font-weight: 800; letter-spacing: 1px; color: #3F51B5; text-transform: uppercase; margin-bottom: 3px; }
+        .hoca-card p { font-family: 'Caveat', cursive; font-size: 12pt; color: #333; }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #6B5B95;
-            padding-bottom: 7px;
-            margin-bottom: 9px;
-        }
+        .stat-box { background: linear-gradient(135deg, #3F51B5, #1A237E); color: #fff; border-radius: 8px; padding: 10px 12px; text-align: center; margin-bottom: 8px; }
+        .stat-box .number { font-size: 28pt; font-weight: 900; color: #FFD740; }
+        .stat-box .label { font-size: 8pt; letter-spacing: 1px; opacity: 0.7; }
 
-        .header span {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 9pt;
-            font-weight: 800;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #6B5B95;
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 28pt;
-            font-weight: 900;
-            text-align: center;
-            color: #6B5B95;
-            margin-bottom: 2px;
-        }
-
-        .page-subtitle {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 9pt;
-            text-align: center;
-            color: #999;
-            letter-spacing: 2px;
-            margin-bottom: 9px;
-        }
-
-        .dict-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5px 14px;
-        }
-
-        .entry {
-            padding: 5px 9px;
-            border-bottom: 1px dotted #ddd;
-        }
-
-        .entry .term {
-            font-family: 'Playfair Display', serif;
-            font-size: 12pt;
-            font-weight: 900;
-            color: #6B5B95;
-        }
-
-        .entry .origin {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 7pt;
-            color: #999;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .entry .def {
-            font-size: 10pt;
-            line-height: 1.35;
-            margin-top: 1px;
-        }
-
-        .pull-quote {
-            font-family: 'Playfair Display', serif;
-            font-size: 11pt;
-            font-style: italic;
-            text-align: center;
-            color: #6B5B95;
-            padding: 8px 14px;
-            margin: 8px 0;
-            border-left: 3px solid #C9A84C;
-            border-right: 3px solid #C9A84C;
-            line-height: 1.4;
-            background: rgba(201, 168, 76, 0.04);
-        }
-
-        .page-footer {
-            position: absolute;
-            bottom: 8mm;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Playfair Display', serif;
-            font-size: 11pt;
-            color: #0A1931;
-            font-weight: 700;
-            border: 2px solid #C9A84C;
-            padding: 3px 14px;
-            background: #fff;
-            z-index: 20;
-        }
-
-        .page-footer::before {
-            content: '◆';
-            font-size: 8px;
-            color: #C9A84C;
-            margin-right: 7px;
-        }
-
-        .page-footer::after {
-            content: '◆';
-            font-size: 8px;
-            color: #C9A84C;
-            margin-left: 7px;
-        }
-
-        @media print {
-            @page {
-                size: A4;
-                margin: 0;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                background: none;
-                display: block;
-            }
-
-            .page {
-                margin: 0;
-                box-shadow: none;
-                page-break-after: always;
-            }
-        }
+        .page-footer { position: absolute; bottom: 8mm; left: 50%; transform: translateX(-50%); font-family: 'Playfair Display', serif; font-size: 11pt; color: #283593; font-weight: 700; border: 2px solid #3F51B5; padding: 3px 14px; background: #fff; z-index: 20; }
+        @media print { @page { size: A4; margin: 0; } body { margin: 0; padding: 0; background: none; display: block; } .page { margin: 0; box-shadow: none; page-break-after: always; } }
     </style>
 </head>
-
 <body>
     <div class="page">
         <div class="gold-stripe"></div>
-        <div class="header"><span>🎨 Kültür & Hayat</span><span style="color:#999;font-weight:600;">Matematik
-                Pusulası</span></div>
-        <h1>MATEMATİK SÖZLÜĞÜ</h1>
-        <div class="page-subtitle">A'dan Z'ye Temel Kavramlar</div>
+        <div class="header"><span>💬 Öğrenci Gözüyle</span><span style="color:#999;font-weight:600;">Matematik Pusulası</span></div>
+        <h1>ÖĞRENCİ GÖZÜYLE MATEMATİK</h1>
+        <div class="page-subtitle">İtiraflar, Capsler ve Hocaların Efsane Cümleleri 🎭</div>
 
-        <div class="dict-grid">
-            <div class="entry">
-                <div class="term">Aksiyom</div>
-                <div class="origin">Yunanca: axioma</div>
-                <div class="def">İspat gerektirmeden doğru kabul edilen temel önerme. Tüm matematik bu temeller üzerine
-                    inşa edilir.</div>
-            </div>
-            <div class="entry">
-                <div class="term">Algoritma</div>
-                <div class="origin">Arapça: el-Hârezmî adından</div>
-                <div class="def">Bir problemi çözmek için adım adım izlenen kurallar bütünü. Bilgisayarların kalbi.
+        <div class="cols">
+            <div>
+                <div class="confession">
+                    <div class="who">İtiraf #1 — Anonim, 9. Sınıf</div>
+                    <p>"Geometri sınavında açıortay yerine kenarortay çizdim. Hoca 'güzel çizim ama yanlış konu' dedi. 45 dakika boyunca yanlış soruyu çözmüşüm."</p>
+                </div>
+
+                <div class="caps-box">
+                    <div class="top">Sınavda "kolay olacak" dendiğinde</div>
+                    <div class="emoji">🤡</div>
+                    <div class="bottom">İlk soruyu okuyunca</div>
+                </div>
+
+                <div class="hoca-card">
+                    <div class="label">👨‍🏫 Hoca Efsane #1</div>
+                    <p>"Bu konu çok kolay, ilkokulda bile anlarsınız." (Sonra sınıfın yarısı kalır)</p>
+                </div>
+
+                <div class="confession">
+                    <div class="who">İtiraf #3 — Anonim, 10. Sınıf</div>
+                    <p>"Limit konusunu anladığımı sandım. Sonra sınavda 'limiti yoktur' cevabını her soruya yazdım. 3 tanesinde doğruymuş aslında."</p>
+                </div>
+
+                <div class="stat-box">
+                    <div class="number">%73</div>
+                    <div class="label">Öğrencilerin "anladım" deyip anlamama oranı</div>
+                </div>
+
+                <div class="hoca-card">
+                    <div class="label">👩‍🏫 Hoca Efsane #3</div>
+                    <p>"Tahtaya gel ve çöz." — Dünyanın en korkunç 5 kelimesi.</p>
                 </div>
             </div>
-            <div class="entry">
-                <div class="term">Asimptot</div>
-                <div class="origin">Yunanca: asymptotos</div>
-                <div class="def">Bir eğrinin sonsuza doğru yaklaştığı ama hiçbir zaman dokunamadığı doğru.</div>
-            </div>
-            <div class="entry">
-                <div class="term">Cebir</div>
-                <div class="origin">Arapça: el-cebr</div>
-                <div class="def">Bilinmeyen sayıları bulmak için harfler ve semboller kullanan matematik dalı. Adını
-                    El-Harezmi'nin kitabından alır.</div>
-            </div>
-            <div class="entry">
-                <div class="term">Çarpanlara Ayırma</div>
-                <div class="origin">Lat: factor</div>
-                <div class="def">Bir sayıyı çarpımı kendisine eşit olan daha küçük sayılara bölme işlemi. Kriptografinin
-                    temelidir.</div>
-            </div>
-            <div class="entry">
-                <div class="term">Fibonacci Dizisi</div>
-                <div class="origin">İtalyanca: Leonardo of Pisa</div>
-                <div class="def">Her sayı, önceki ikisinin toplamı olan dizi: 1, 1, 2, 3, 5, 8, 13, 21... Doğanın
-                    şifresi!</div>
-            </div>
-            <div class="entry">
-                <div class="term">Fonksiyon</div>
-                <div class="origin">Latince: functio</div>
-                <div class="def">Her girdiye (x) tek bir çıktı (y) eşleyen matematiksel ilişki. f(x) = 2x+1 gibi.</div>
-            </div>
-            <div class="entry">
-                <div class="term">Fraktal</div>
-                <div class="origin">Latince: fractus (kırık)</div>
-                <div class="def">Küçük parçaları, büyük yapısına benzeyen geometrik nesne. Kar taneleri, bulutlar ve
-                    sahil şeritleri fraktal yapılardır.</div>
-            </div>
-            <div class="entry">
-                <div class="term">Hipotez</div>
-                <div class="origin">Yunanca: hypothesis</div>
-                <div class="def">Doğru olduğu henüz kanıtlanamamış matematiksel iddia. Kanıtlanırsa "teorem" olur.</div>
-            </div>
-            <div class="entry">
-                <div class="term">İrrasyonel Sayı</div>
-                <div class="origin">Lat: irrationalis</div>
-                <div class="def">İki tam sayının oranı olarak yazılamayan sayı. π, √2, e hep irrasyoneldir — ondalık
-                    gösterimleri sonsuza kadar devam eder.</div>
-            </div>
-            <div class="entry">
-                <div class="term">Kalkülüs</div>
-                <div class="origin">Latince: calculus (çakıl taşı)</div>
-                <div class="def">Değişim ve hareketin matematiği. Türev (anlık hız) ve integral (alan hesabı) kalkülüsün
-                    iki temel aracıdır.</div>
-            </div>
-            <div class="entry">
-                <div class="term">Matris</div>
-                <div class="origin">Latince: matrix (ana rahmi)</div>
-                <div class="def">Sayıların satır ve sütunlar halinde düzenlendiği dikdörtgensel dizi. Yapay zekanın
-                    temel veri yapısıdır.</div>
-            </div>
-            <div class="entry">
-                <div class="term">Olasılık</div>
-                <div class="origin">Latince: probabilitas</div>
-                <div class="def">Bir olayın gerçekleşme ihtimalini ölçen 0 ile 1 arasındaki değer. 0 = imkânsız, 1 =
-                    kesin.</div>
-            </div>
-            <div class="entry">
-                <div class="term">Paradoks</div>
-                <div class="origin">Yunanca: paradoxon</div>
-                <div class="def">Mantıksal görünse de çelişkili sonuç veren ifade. Zenon'un Aşil ve kaplumbağa paradoksu
-                    gibi.</div>
-            </div>
-            <div class="entry">
-                <div class="term">Pi (π)</div>
-                <div class="origin">Yunanca: periphereia</div>
-                <div class="def">Çemberin çevresinin çapına oranı ≈ 3.14159... Sonsuz, tekrarlanmayan, transandantal bir
-                    sayıdır.</div>
-            </div>
-            <div class="entry">
-                <div class="term">Simetri</div>
-                <div class="origin">Yunanca: symmetria</div>
-                <div class="def">Bir nesnenin dönüşüm, yansıma veya öteleme altında değişmemesi. Fiziğin korunum
-                    yasalarının kaynağı.</div>
-            </div>
-            <div class="entry">
-                <div class="term">Teorem</div>
-                <div class="origin">Yunanca: theorema</div>
-                <div class="def">Aksiyomlardan yola çıkılarak mantıksal olarak kanıtlanmış matematiksel gerçek. Pisagor
-                    Teoremi en ünlüsüdür.</div>
-            </div>
-            <div class="entry">
-                <div class="term">Topoloji</div>
-                <div class="origin">Yunanca: topos + logos</div>
-                <div class="def">Şekillerin uzatılıp bükülebileceği ama kesilip yapıştırılamayacağı "lastik geometri."
-                    Bir fincana dönüşebilen simit!</div>
+            <div>
+                <div class="confession">
+                    <div class="who">İtiraf #2 — Anonim, 11. Sınıf</div>
+                    <p>"Türev sınavında f'(x) yerine f(x) yazdım. Hoca 'sen fonksiyonu türetmek yerine aynısını kopyalamışsın' dedi."</p>
+                </div>
+
+                <div class="caps-box" style="background: #1B5E20;">
+                    <div class="top">Arkadaşın "hiç çalışmadım" dediğinde</div>
+                    <div class="emoji">📚😤</div>
+                    <div class="bottom">Sonra 95 alınca</div>
+                </div>
+
+                <div class="hoca-card">
+                    <div class="label">👨‍🏫 Hoca Efsane #2</div>
+                    <p>"Bunu anlamayan var mı?" (Kimse el kaldırmaz, herkes anlamaz)</p>
+                </div>
+
+                <div class="confession">
+                    <div class="who">İtiraf #4 — Anonim, 9. Sınıf</div>
+                    <p>"Pi sayısını 3.14 biliyordum. Arkadaşım '3.14159265...' diye devam edince kendimi cahil hissettim. Şimdi 20 basamak biliyorum."</p>
+                </div>
+
+                <div class="stat-box" style="background: linear-gradient(135deg, #F44336, #B71C1C);">
+                    <div class="number">∞</div>
+                    <div class="label">"Hocam bu sınavda çıkacak mı?" sorusu sayısı</div>
+                </div>
+
+                <div class="caps-box" style="background: #4A148C;">
+                    <div class="top">Hesap makinesiz sınav</div>
+                    <div class="emoji">💀</div>
+                    <div class="bottom">Taş devrine hoş geldiniz</div>
+                </div>
             </div>
         </div>
-
-        <div class="pull-quote">
-            "Bir kavramı isimlendirmek, onu anlamaya giden ilk adımdır."
-        </div>
-
         <div class="page-footer">30</div>
     </div>
 </body>
-
 </html>

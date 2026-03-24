@@ -1,413 +1,107 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sayı Piramidi & Sihirli Kareler — Matematik Pusulası</title>
+    <title>Matematiksel Komplo Teorileri — Matematik Pusulası</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;600;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@400;600;800;900&family=Creepster&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        body { background: #1a1a1a; display: flex; justify-content: center; padding: 40px 0; }
+        .page { width: 210mm; height: 297mm; background: #111; padding: 10mm 14mm 16mm; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.7); font-family: 'Montserrat', sans-serif; color: #ddd; overflow: hidden; }
+        .bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(255,0,0,0.02) 30px, rgba(255,0,0,0.02) 60px); z-index: 0; }
+        .gold-stripe { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #F44336, #FF9800, #F44336); z-index: 10; }
+        .content { position: relative; z-index: 5; }
+        .header { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(244,67,54,0.3); padding-bottom: 6px; margin-bottom: 8px; }
+        .header span { font-size: 8pt; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #F44336; }
+        h1 { font-family: 'Creepster', cursive; font-size: 28pt; text-align: center; color: #F44336; margin-bottom: 2px; letter-spacing: 3px; }
+        .page-subtitle { font-size: 9pt; text-align: center; color: rgba(255,255,255,0.4); letter-spacing: 2px; margin-bottom: 12px; }
+        .warning { background: rgba(244,67,54,0.1); border: 1px solid rgba(244,67,54,0.3); border-radius: 6px; padding: 8px 12px; margin-bottom: 10px; text-align: center; }
+        .warning p { font-size: 8pt; color: #F44336; letter-spacing: 1px; font-weight: 600; }
 
-        body {
-            background: #1a1525;
-            display: flex;
-            justify-content: center;
-            padding: 40px 0;
-        }
+        .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .theory { background: rgba(255,255,255,0.04); border: 1px solid rgba(244,67,54,0.15); border-radius: 8px; padding: 12px; margin-bottom: 10px; }
+        .theory .tag { font-size: 7pt; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #FF9800; margin-bottom: 4px; }
+        .theory h3 { font-family: 'Playfair Display', serif; font-size: 11pt; color: #F44336; margin-bottom: 4px; }
+        .theory p { font-size: 8.5pt; line-height: 1.5; color: #999; }
+        .theory .verdict { margin-top: 6px; padding: 4px 8px; border-radius: 4px; font-size: 7pt; font-weight: 800; letter-spacing: 1px; display: inline-block; }
+        .verdict.busted { background: rgba(76,175,80,0.15); color: #4CAF50; }
+        .verdict.maybe { background: rgba(255,152,0,0.15); color: #FF9800; }
+        .verdict.mystery { background: rgba(244,67,54,0.15); color: #F44336; }
 
-        .page {
-            width: 210mm;
-            height: 297mm;
-            background: #FAFAF5;
-            padding: 10mm 12mm 16mm;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            font-family: 'Montserrat', sans-serif;
-            color: #0A1931;
-            overflow: hidden;
-        }
-
-        .gold-stripe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
-            z-index: 10;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #0A1931;
-            padding-bottom: 7px;
-            margin-bottom: 8px;
-        }
-
-        .header span {
-            font-size: 9pt;
-            font-weight: 800;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #0A1931;
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 24pt;
-            font-weight: 900;
-            text-align: center;
-            color: #0A1931;
-            margin-bottom: 2px;
-        }
-
-        .page-subtitle {
-            font-size: 9pt;
-            text-align: center;
-            color: #888;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-
-        .columns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-        }
-
-        .puzzle-card {
-            border: 1px solid #e0e0e0;
-            padding: 10px 12px;
-            margin-bottom: 7px;
-            border-radius: 6px;
-            background: #fff;
-        }
-
-        .puzzle-card .card-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 6px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 4px;
-        }
-
-        .puzzle-card .card-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 10.5pt;
-            font-weight: 900;
-            color: #0A1931;
-        }
-
-        .puzzle-card .difficulty {
-            font-size: 9pt;
-            color: #C9A84C;
-            font-weight: 700;
-        }
-
-        .puzzle-card p {
-            font-size: 9pt;
-            line-height: 1.35;
-            color: #555;
-            margin-bottom: 5px;
-        }
-
-        .pyramid {
-            text-align: center;
-            margin: 5px 0;
-        }
-
-        .pyramid-row {
-            display: flex;
-            justify-content: center;
-            gap: 3px;
-            margin: 2px 0;
-        }
-
-        .pyramid-cell {
-            width: 32px;
-            height: 26px;
-            border: 1.5px solid #0A1931;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 9.5pt;
-        }
-
-        .pyramid-cell.given {
-            background: #f5f5f5;
-            color: #0A1931;
-        }
-
-        .pyramid-cell.empty {
-            background: #fff;
-            border-style: dashed;
-            border-color: #ccc;
-        }
-
-        .magic-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-            border: 2px solid #0A1931;
-            width: fit-content;
-            margin: 5px auto;
-        }
-
-        .magic-cell {
-            width: 32px;
-            height: 32px;
-            border: 0.5px solid #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 12pt;
-        }
-
-        .magic-cell.given {
-            background: #f5f5f5;
-            color: #0A1931;
-        }
-
-        .magic-cell.empty {
-            background: #fff;
-        }
-
-        .sequence-box {
-            border: 1px solid #e0e0e0;
-            padding: 5px 8px;
-            margin: 3px 0;
-            text-align: center;
-            font-weight: 700;
-            font-size: 12pt;
-            letter-spacing: 2px;
-            color: #0A1931;
-            border-radius: 4px;
-            background: #fff;
-        }
-
-        .sequence-box .blank {
-            color: #C9A84C;
-            font-weight: 900;
-        }
-
-        .tip-bar {
-            background: #0A1931;
-            color: #fff;
-            padding: 8px 13px;
-            margin-top: 8px;
-            text-align: center;
-            font-size: 8.5pt;
-            letter-spacing: 0.5px;
-            border-radius: 6px;
-        }
-
-        .tip-bar strong {
-            color: #C9A84C;
-        }
-
-        .page-footer {
-            position: absolute;
-            bottom: 8mm;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Playfair Display', serif;
-            font-size: 11pt;
-            color: #0A1931;
-            font-weight: 700;
-            border: 2px solid #C9A84C;
-            padding: 3px 14px;
-            background: #fff;
-            z-index: 20;
-        }
-
-        .page-footer::before {
-            content: '◆';
-            font-size: 8px;
-            color: #C9A84C;
-            margin-right: 7px;
-        }
-
-        .page-footer::after {
-            content: '◆';
-            font-size: 8px;
-            color: #C9A84C;
-            margin-left: 7px;
-        }
-
-        @media print {
-            @page {
-                size: A4;
-                margin: 0;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                background: none;
-                display: block;
-            }
-
-            .page {
-                margin: 0;
-                box-shadow: none;
-                page-break-after: always;
-            }
-        }
+        .page-footer { position: absolute; bottom: 8mm; left: 50%; transform: translateX(-50%); font-family: 'Playfair Display', serif; font-size: 11pt; color: #F44336; font-weight: 700; }
+        @media print { @page { size: A4; margin: 0; } body { margin: 0; padding: 0; background: none; display: block; } .page { margin: 0; box-shadow: none; page-break-after: always; } }
     </style>
 </head>
-
 <body>
     <div class="page">
+        <div class="bg"></div>
         <div class="gold-stripe"></div>
-        <div class="header"><span>🧩 Bulmacalar</span><span style="color:#C9A84C;font-weight:600;">Matematik
-                Pusulası</span></div>
-        <h1>SAYI PİRAMİDİ & SİHİRLİ KARELER</h1>
-        <div class="page-subtitle">Her Kutuya Doğru Sayıyı Yerleştir</div>
+        <div class="content">
+            <div class="header"><span>👽 Komplo Dosyası</span><span style="color:rgba(255,255,255,0.3);">Matematik Pusulası</span></div>
+            <h1>MATEMATİKSEL KOMPLO TEORİLERİ</h1>
+            <div class="page-subtitle">Gerçek mi, Efsane mi, Paranoya mı? 🔍</div>
 
-        <div class="columns">
-            <div>
-                <div class="puzzle-card">
-                    <div class="card-header"><span class="card-title">Piramit №1</span><span class="difficulty">★☆☆
-                            Kolay</span></div>
-                    <p>Kural: Üstteki sayı, altındaki iki sayının toplamıdır.</p>
-                    <div class="pyramid">
-                        <div class="pyramid-row">
-                            <div class="pyramid-cell empty">&nbsp;</div>
-                        </div>
-                        <div class="pyramid-row">
-                            <div class="pyramid-cell empty">&nbsp;</div>
-                            <div class="pyramid-cell given">15</div>
-                        </div>
-                        <div class="pyramid-row">
-                            <div class="pyramid-cell given">8</div>
-                            <div class="pyramid-cell empty">&nbsp;</div>
-                            <div class="pyramid-cell given">6</div>
-                        </div>
-                        <div class="pyramid-row">
-                            <div class="pyramid-cell given">3</div>
-                            <div class="pyramid-cell given">5</div>
-                            <div class="pyramid-cell given">4</div>
-                            <div class="pyramid-cell given">2</div>
-                        </div>
+            <div class="warning">
+                <p>⚠️ DİKKAT: Bu sayfa eğlence amaçlıdır. Bilimsel doğruluk garantisi verilmez. Ama yine de garip... 👀</p>
+            </div>
+
+            <div class="cols">
+                <div>
+                    <div class="theory">
+                        <div class="tag">📐 Komplo #1</div>
+                        <h3>Giza Piramidi'nin Koordinatları = Işık Hızı?!</h3>
+                        <p>Büyük Piramit'in koordinatları: 29.9792458°K. Işık hızı: 299,792,458 m/s. Tesadüf mü? Antik Mısırlılar ışık hızını mı biliyordu?!</p>
+                        <p style="color:#666; margin-top:4px; font-size:7.5pt;"><strong>Gerçek:</strong> GPS koordinat sistemi 1960'larda icat edildi. Antik Mısırlılar "enlem" kavramını bilmiyordu. Ama yine de garip bir tesadüf...</p>
+                        <div class="verdict maybe">🤔 TESADÜF MÜ?</div>
+                    </div>
+
+                    <div class="theory">
+                        <div class="tag">🔢 Komplo #3</div>
+                        <h3>Pi Sayısında Gizli Mesajlar</h3>
+                        <p>Pi'nin trilyonlarca basamağını tarayan yazılımlar, içinde doğum tarihlerini, telefon numaralarını ve hatta Shakespeare'in eserlerini buluyor! Pi sonsuz olduğu için tüm bilgiyi içeriyor mu?</p>
+                        <p style="color:#666; margin-top:4px; font-size:7.5pt;"><strong>Gerçek:</strong> Eğer Pi "normal" bir sayıysa, evet tüm sonlu dizileri içerir. Ama Pi'nin normal olduğu kanıtlanamadı!</p>
+                        <div class="verdict mystery">❓ ÇÖZÜLEMEZ</div>
+                    </div>
+
+                    <div class="theory">
+                        <div class="tag">🎲 Komplo #5</div>
+                        <h3>Fibonacci ve Borsa Kehaneti</h3>
+                        <p>"Elliott Dalgaları" teorisine göre borsa Fibonacci sayılarına göre hareket eder. Wall Street traderları bu yöntemi milyarlarca dolar işlem için kullanıyor!</p>
+                        <p style="color:#666; margin-top:4px; font-size:7.5pt;"><strong>Gerçek:</strong> Bazı teknik analizlerde işe yarıyor gibi görünse de bilimsel kanıt zayıf.</p>
+                        <div class="verdict maybe">🤔 KISMEN DOĞRU</div>
                     </div>
                 </div>
-                <div class="puzzle-card">
-                    <div class="card-header"><span class="card-title">Piramit №2</span><span class="difficulty">★★☆
-                            Orta</span></div>
-                    <div class="pyramid">
-                        <div class="pyramid-row">
-                            <div class="pyramid-cell given">120</div>
-                        </div>
-                        <div class="pyramid-row">
-                            <div class="pyramid-cell empty">&nbsp;</div>
-                            <div class="pyramid-cell empty">&nbsp;</div>
-                        </div>
-                        <div class="pyramid-row">
-                            <div class="pyramid-cell given">20</div>
-                            <div class="pyramid-cell empty">&nbsp;</div>
-                            <div class="pyramid-cell given">25</div>
-                        </div>
-                        <div class="pyramid-row">
-                            <div class="pyramid-cell empty">&nbsp;</div>
-                            <div class="pyramid-cell given">12</div>
-                            <div class="pyramid-cell empty">&nbsp;</div>
-                            <div class="pyramid-cell given">10</div>
-                        </div>
+                <div>
+                    <div class="theory">
+                        <div class="tag">🏛️ Komplo #2</div>
+                        <h3>Euler Aslında Hırsız mı?</h3>
+                        <p>Bazı tarihçiler, Euler'in Basel probleminin çözümünü Goldbach'tan çaldığını iddia eder. Euler'e atfedilen bazı formüller de Bernoulli ailesinden gelebilir.</p>
+                        <p style="color:#666; margin-top:4px; font-size:7.5pt;"><strong>Gerçek:</strong> Euler kendi başına bir deha. Ama o dönemde fikir alışverişi yaygındı, sınırlar belirsizdi.</p>
+                        <div class="verdict busted">✅ ÇÜRÜTÜLDÜ</div>
                     </div>
-                </div>
-                <div class="puzzle-card">
-                    <div class="card-header"><span class="card-title">Sayı Dizileri</span><span
-                            class="difficulty">★★☆</span></div>
-                    <p>Sıradaki sayıyı bulun:</p>
-                    <div class="sequence-box">2, 6, 18, 54, <span class="blank">?</span></div>
-                    <div class="sequence-box">1, 4, 9, 16, 25, <span class="blank">?</span></div>
-                    <div class="sequence-box">1, 1, 2, 3, 5, 8, <span class="blank">?</span></div>
-                    <div class="sequence-box">2, 3, 5, 7, 11, <span class="blank">?</span></div>
+
+                    <div class="theory">
+                        <div class="tag">🌀 Komplo #4</div>
+                        <h3>Simülasyon Hipotezi & Matematik</h3>
+                        <p>Eğer evren bir bilgisayar simülasyonuysa, matematiğin "keşfedilen" değil "kodlanan" bir şey olduğunu gösterir! Nick Bostrom: "Simülasyonda yaşama olasılığımız %50'den fazla"</p>
+                        <p style="color:#666; margin-top:4px; font-size:7.5pt;"><strong>Gerçek:</strong> Felsefi olarak çürütülemez. Ama test de edilemez. Elon Musk bile "Gerçeklikte yaşama şansımız milyonda bir" diyor.</p>
+                        <div class="verdict mystery">❓ KANITSIZ</div>
+                    </div>
+
+                    <div class="theory">
+                        <div class="tag">👾 Komplo #6</div>
+                        <h3>42 = Evrenin Cevabı?</h3>
+                        <p>Douglas Adams'ın "Otostopçunun Galaksi Rehberi"nde süper bilgisayar Deep Thought, "Hayatın, evrenin ve her şeyin cevabı"nın 42 olduğunu söyler. 42 gerçekten özel mi?</p>
+                        <p style="color:#666; margin-top:4px; font-size:7.5pt;"><strong>Gerçek:</strong> 42 = 2×3×7, pro sayıların ilk üçünün çarpımı. İlk 6 tek asalın toplamı. Rastgele değil belki?</p>
+                        <div class="verdict maybe">🤔 İLGİNÇ</div>
+                    </div>
                 </div>
             </div>
-            <div>
-                <div class="puzzle-card">
-                    <div class="card-header"><span class="card-title">Sihirli Kare №1</span><span class="difficulty">★☆☆
-                            Kolay</span></div>
-                    <p>Her satır, sütun ve çaprazın toplamı <strong>15</strong> olmalı.</p>
-                    <div class="magic-grid">
-                        <div class="magic-cell given">2</div>
-                        <div class="magic-cell empty">&nbsp;</div>
-                        <div class="magic-cell given">6</div>
-                        <div class="magic-cell empty">&nbsp;</div>
-                        <div class="magic-cell given">5</div>
-                        <div class="magic-cell empty">&nbsp;</div>
-                        <div class="magic-cell given">4</div>
-                        <div class="magic-cell empty">&nbsp;</div>
-                        <div class="magic-cell given">8</div>
-                    </div>
-                </div>
-                <div class="puzzle-card">
-                    <div class="card-header"><span class="card-title">Sihirli Kare №2</span><span class="difficulty">★★☆
-                            Orta</span></div>
-                    <p>Her satır, sütun ve çapraz toplamı <strong>15</strong> olmalı.</p>
-                    <div class="magic-grid">
-                        <div class="magic-cell empty">&nbsp;</div>
-                        <div class="magic-cell given">1</div>
-                        <div class="magic-cell empty">&nbsp;</div>
-                        <div class="magic-cell given">3</div>
-                        <div class="magic-cell empty">&nbsp;</div>
-                        <div class="magic-cell given">7</div>
-                        <div class="magic-cell empty">&nbsp;</div>
-                        <div class="magic-cell given">9</div>
-                        <div class="magic-cell empty">&nbsp;</div>
-                    </div>
-                </div>
-                <div class="puzzle-card">
-                    <div class="card-header"><span class="card-title">Piramit №3</span><span class="difficulty">★★★
-                            Zor</span></div>
-                    <div class="pyramid">
-                        <div class="pyramid-row">
-                            <div class="pyramid-cell empty">&nbsp;</div>
-                        </div>
-                        <div class="pyramid-row">
-                            <div class="pyramid-cell empty">&nbsp;</div>
-                            <div class="pyramid-cell empty">&nbsp;</div>
-                        </div>
-                        <div class="pyramid-row">
-                            <div class="pyramid-cell empty">&nbsp;</div>
-                            <div class="pyramid-cell given">13</div>
-                            <div class="pyramid-cell empty">&nbsp;</div>
-                        </div>
-                        <div class="pyramid-row">
-                            <div class="pyramid-cell given">1</div>
-                            <div class="pyramid-cell empty">&nbsp;</div>
-                            <div class="pyramid-cell given">6</div>
-                            <div class="pyramid-cell given">3</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tip-bar"><strong>İPUCU:</strong> Her zaman kesin bilinen sayılardan başla ve mantık
-                    yürüterek ilerle!</div>
-            </div>
-        </div>
-        <div style="background:#E8F5E9;border:2px solid #2E7D32;padding:8px 12px;border-radius:6px;margin-top:7px;">
-            <div style="font-size:8.5pt;font-weight:800;color:#2E7D32;margin-bottom:2px;">🧩 Dene Bakalım!</div>
-            <p style="font-size:9pt;line-height:1.4;margin:0;color:#333;">Kendi mantık bulmacası tasarlayın! 3 ipucu ve
-                1 soru ile arkadaşlarınızı şaşırtın. İpuçları çelişmemeli ve tek bir doğru cevap olmalı.</p>
         </div>
         <div class="page-footer">34</div>
     </div>
 </body>
-
 </html>
