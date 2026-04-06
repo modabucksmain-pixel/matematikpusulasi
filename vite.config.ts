@@ -11,6 +11,7 @@ export default defineConfig({
                 sorular: resolve(__dirname, 'sorular.html'),
                 cevaplar: resolve(__dirname, 'cevaplar.html'),
                 kaynakca: resolve(__dirname, 'kaynakca.html'),
+                hakkinda: resolve(__dirname, 'hakkinda.html'),
             },
         },
     },

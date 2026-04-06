@@ -1,38 +1,17 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matematik Pusulası — Dergi Görüntüleyici</title>
-    <meta name="description"
-        content="Matematik Pusulası dergisi - 40 sayfalık tam dergi görüntüleyici. Ctrl+P ile PDF olarak indirin.">
+    <title>Dergi Okuyucu — Matematik Pusulası</title>
+    <meta name="description" content="Matematik Pusulası dergisini sayfala ve oku.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <!-- Top Bar -->
-    <header class="mag-topbar">
-        <a href="index.html" class="mag-back" title="Ana Sayfaya Dön">← Ana Sayfa</a>
-        <span class="mag-title">📐 Matematik Pusulası</span>
-        <div class="top-bar-actions">
-            <button id="viewModeBtn" class="action-btn" title="Görünümü Değiştir (Tek/Çift)">📖</button>
-            <button id="printBtn" class="print-btn">
-                <span class="icon">🖨️</span> PDF İndir
-            </button>
-        </div>
-    </header>
-
-    <!-- Navigation Sidebar -->
-    <nav class="mag-sidebar" id="nav" aria-label="Sayfa navigasyonu"></nav>
-
-    <!-- Main Content Area -->
-    <main class="mag-content" id="content"></main>
-
+    <div id="nav"></div>
+    <div id="content"></div>
     <script type="module" src="/src/magazine.ts"></script>
 </body>
-
 </html>

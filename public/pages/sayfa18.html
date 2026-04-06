@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraktallar & Evrenin Matematiği — Matematik Pusulası</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@400;600;800&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        body { background: #0A1931; display: flex; justify-content: center; padding: 40px 0; }
+        .page { width: 210mm; height: 297mm; background: linear-gradient(180deg, #0A1931 0%, #1a2d50 100%); padding: 10mm 14mm 16mm; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); font-family: 'Montserrat', sans-serif; color: #ddd; overflow: hidden; }
+        .gold-stripe { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C); z-index: 10; }
+        .header { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(201,168,76,0.3); padding-bottom: 6px; margin-bottom: 10px; }
+        .header span { font-size: 8pt; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #C9A84C; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 24pt; font-weight: 900; text-align: center; color: #fff; margin-bottom: 3px; }
+        .page-subtitle { font-size: 9pt; text-align: center; color: rgba(255,255,255,0.5); letter-spacing: 2px; margin-bottom: 14px; }
+        .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .card { background: rgba(255,255,255,0.06); border: 1px solid rgba(201,168,76,0.2); border-radius: 8px; padding: 12px; margin-bottom: 10px; }
+        .card h3 { font-family: 'Playfair Display', serif; font-size: 12pt; color: #C9A84C; margin-bottom: 5px; }
+        .card p { font-size: 9pt; line-height: 1.5; color: #bbb; }
+        .card .emoji { font-size: 22pt; margin-bottom: 4px; display: block; }
+        .formula { font-family: 'Playfair Display', serif; font-style: italic; font-size: 13pt; text-align: center; color: #C9A84C; padding: 10px; margin: 8px 0; border: 1px dashed rgba(201,168,76,0.3); border-radius: 6px; }
+        .image-placeholder { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin: 12px 0; border: 2px solid rgba(76,175,80,0.2); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+        .handwritten { font-family: 'Caveat', cursive; font-size: 13pt; color: #81C784; text-align: center; margin: 8px 0; }
+        .page-footer { position: absolute; bottom: 8mm; left: 50%; transform: translateX(-50%); font-family: 'Playfair Display', serif; font-size: 11pt; color: #C9A84C; font-weight: 700; }
+        @media print { @page { size: A4; margin: 0; } body { margin: 0; padding: 0; background: none; display: block; } .page { margin: 0; box-shadow: none; page-break-after: always; } }
+    </style>
+    <link rel="stylesheet" href="magazine-common.css">
+</head>
+<body>
+    <div class="page">
+        <div class="gold-stripe"></div>
+        <div class="header"><span>🌌 Doğa & Evren</span><span style="color:rgba(255,255,255,0.4);">Matematik Pusulası</span></div>
+        <h1>FRAKTALLAR & EVRENİN MATEMATİĞİ</h1>
+        <div class="page-subtitle">Kar Tanesinden Kara Deliklere — Sonsuz Desen ❄️🌌</div>
+
+        <div class="cols">
+            <div>
+                <img src="/img/golden_ratio.png" class="image-placeholder" alt="Fraktal Görsel">
+                <div class="card">
+                    <span class="emoji">❄️</span>
+                    <h3>Kar Tanesi — Koch Eğrisi</h3>
+                    <p>Bir üçgenin her kenarına daha küçük üçgenler ekleyin. Bunu sonsuz kez yaptığınızda Koch Kar Tanesi oluşur. Çevresi sonsuza giderken, alanı sonlu kalır — fraktal geometrinin paradoksu!</p>
+                </div>
+                <div class="card">
+                    <span class="emoji">🥦</span>
+                    <h3>Romanesco Brokoli</h3>
+                    <p>Bu brokolinin her küçük parçası, bütününe birebir benzer. Doğa, kendine benzerliği (self-similarity) yüz milyonlarca yıl önce keşfetti.</p>
+                </div>
+                <div class="handwritten">✍️ "Bulutlar küre değildir, dağlar koni değildir, sahil şeritleri düz değildir." — B. Mandelbrot</div>
+            </div>
+            <div>
+                <div class="card">
+                    <span class="emoji">🪐</span>
+                    <h3>Kepler Yasaları</h3>
+                    <p>Gezegenler güneş etrafında elips yörüngede döner. Yörünge periyodunun karesi, uzaklığın küpüne oranlanır: <strong>T² ∝ r³</strong>. Bu tek formül tüm güneş sistemini açıklar.</p>
+                </div>
+                <div class="card">
+                    <span class="emoji">⚫</span>
+                    <h3>Kara Delik — Schwarzschild</h3>
+                    <p>Bir yıldız ne kadar küçülürse kara deliğe dönüşür. Kritik yarıçap: <strong>r = 2GM/c²</strong>. Güneş'in kara delik olması için sadece 3 km çapa sıkışması gerekirdi!</p>
+                </div>
+                <div class="formula">E = mc² &nbsp;·&nbsp; F = G·m₁·m₂/r²</div>
+                <div class="card">
+                    <span class="emoji">🌀</span>
+                    <h3>Samanyolu'nun Spiral Kolları</h3>
+                    <p>Galaksimiz bile Altın Spiral yapısına uyar. Mikro dünyadan makro evrene aynı matematiksel şifre: logaritmik sarmal.</p>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">18</div>
+    </div>
+</body>
+</html>

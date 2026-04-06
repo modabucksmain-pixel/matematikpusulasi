@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milenyum Problemleri — Matematik Pusulası</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@400;600;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        body { background: #0d0d0d; display: flex; justify-content: center; padding: 40px 0; }
+        .page { width: 210mm; height: 297mm; background: #0d0d0d; padding: 10mm 14mm 16mm; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.7); font-family: 'Montserrat', sans-serif; color: #eee; overflow: hidden; }
+        .bg-glow { position: absolute; top: 50%; left: 50%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%); transform: translate(-50%, -50%); z-index: 0; }
+        .gold-stripe { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C); z-index: 10; }
+        .content { position: relative; z-index: 5; }
+        .header { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(201,168,76,0.3); padding-bottom: 6px; margin-bottom: 10px; }
+        .header span { font-size: 8pt; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #C9A84C; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 22pt; font-weight: 900; text-align: center; background: linear-gradient(135deg, #C9A84C, #FFD700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 2px; }
+        .page-subtitle { font-size: 9pt; text-align: center; color: rgba(255,255,255,0.4); letter-spacing: 2px; margin-bottom: 6px; }
+        .prize-banner { text-align: center; background: linear-gradient(90deg, transparent, rgba(201,168,76,0.15), transparent); padding: 8px; margin-bottom: 12px; border-radius: 4px; }
+        .prize-banner span { font-family: 'Space Mono', monospace; font-size: 20pt; font-weight: 700; color: #FFD700; letter-spacing: 3px; }
+        .prize-banner small { display: block; font-size: 8pt; color: rgba(255,255,255,0.4); letter-spacing: 2px; margin-top: 2px; }
+
+        .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .problem { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.15); border-radius: 8px; padding: 10px 12px; position: relative; }
+        .problem.solved { border-color: rgba(76,175,80,0.4); }
+        .problem .status { position: absolute; top: 8px; right: 10px; font-size: 7pt; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; }
+        .problem .status.open { background: rgba(244,67,54,0.2); color: #F44336; }
+        .problem .status.done { background: rgba(76,175,80,0.2); color: #4CAF50; }
+        .problem h3 { font-family: 'Playfair Display', serif; font-size: 10.5pt; color: #C9A84C; margin-bottom: 4px; padding-right: 50px; }
+        .problem p { font-size: 8.5pt; line-height: 1.45; color: #999; }
+        .problem .formula { font-family: 'Space Mono', monospace; font-size: 8pt; color: #C9A84C; margin-top: 4px; padding: 4px 6px; background: rgba(201,168,76,0.08); border-radius: 3px; display: inline-block; }
+        .problem .year { font-size: 7pt; color: #555; margin-top: 3px; }
+
+        .bottom-note { text-align: center; margin-top: 10px; padding: 10px; border-top: 1px solid rgba(201,168,76,0.2); }
+        .bottom-note p { font-size: 9pt; color: rgba(255,255,255,0.5); line-height: 1.5; }
+        .bottom-note strong { color: #C9A84C; }
+
+        .page-footer { position: absolute; bottom: 8mm; left: 50%; transform: translateX(-50%); font-family: 'Playfair Display', serif; font-size: 11pt; color: #C9A84C; font-weight: 700; }
+        @media print { @page { size: A4; margin: 0; } body { margin: 0; padding: 0; background: none; display: block; } .page { margin: 0; box-shadow: none; page-break-after: always; } }
+    </style>
+    <link rel="stylesheet" href="magazine-common.css">
+</head>
+<body>
+    <div class="page">
+        <div class="bg-glow"></div>
+        <div class="gold-stripe"></div>
+        <div class="content">
+            <div class="header"><span>🏆 Çözülemeyen Devler</span><span style="color:rgba(255,255,255,0.3);">Matematik Pusulası</span></div>
+            <h1>MİLENYUM PROBLEMLERİ</h1>
+            <div class="page-subtitle">Çözen 1.000.000 $ Kazanır — Cesaretin Var mı?</div>
+
+            <div class="prize-banner">
+                <span>💰 $1.000.000</span>
+                <small>Clay Matematik Enstitüsü · Her problem için ayrı ödül · 2000'den beri</small>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem">
+                    <div class="status open">AÇIK</div>
+                    <h3>1. P vs NP Problemi</h3>
+                    <p>Hızlı doğrulanabilen her çözüm, hızlı bulunabilir mi? Tüm bilgisayar biliminin en temel sorusu.</p>
+                    <div class="formula">P = NP ?</div>
+                    <div class="year">Açıklanma: 2000 · Ödül: $1M</div>
+                </div>
+                <div class="problem">
+                    <div class="status open">AÇIK</div>
+                    <h3>2. Riemann Hipotezi</h3>
+                    <p>Asal sayıların dağılımının anahtarı. Zeta fonksiyonunun sıfırlarının yarısı gerçek parçanın 1/2 olduğu doğru üzerinde mi?</p>
+                    <div class="formula">ζ(s) = Σ 1/nˢ</div>
+                    <div class="year">Açıklanma: 1859 · Hâlâ çözülemedi!</div>
+                </div>
+                <div class="problem">
+                    <div class="status open">AÇIK</div>
+                    <h3>3. Yang-Mills Kütle Açığı</h3>
+                    <p>Kuantum fiziğin temelindeki Yang-Mills denklemlerinin matematiksel olarak var olduğunu ve kütle açığını kanıtlayın.</p>
+                    <div class="formula">F = dA + A∧A</div>
+                    <div class="year">Parçacık fiziğinin temeli</div>
+                </div>
+                <div class="problem">
+                    <div class="status open">AÇIK</div>
+                    <h3>4. Navier-Stokes Denklemi</h3>
+                    <p>Sıvıların akışını tanımlayan bu denklemlerin pürüzsüz çözümlerinin her zaman var olduğunu kanıtlayın.</p>
+                    <div class="formula">ρ(∂v/∂t + v·∇v) = −∇p + μ∇²v</div>
+                    <div class="year">Hava durumu, okyanus akıntıları...</div>
+                </div>
+                <div class="problem solved">
+                    <div class="status done">ÇÖZÜLDÜ ✓</div>
+                    <h3>5. Poincaré Sanısı</h3>
+                    <p>3 boyutlu uzayda her basit bağlantılı kapalı manifold, 3-küreye homeomorftur. Grigori Perelman 2003'te çözdü!</p>
+                    <div class="formula">π₁(M) = 0 → M ≅ S³</div>
+                    <div class="year">Perelman ödülü REDDETTİ! 🤯</div>
+                </div>
+                <div class="problem">
+                    <div class="status open">AÇIK</div>
+                    <h3>6. Hodge Sanısı</h3>
+                    <p>Cebirsel geometride kohomoloji sınıflarının cebirsel döngülerin doğrusal birleşimi olup olmadığını sorar.</p>
+                    <div class="formula">H^{p,p}(X) ∩ H^{2p}(X,ℚ)</div>
+                    <div class="year">Soyut ama çığır açıcı</div>
+                </div>
+                <div class="problem">
+                    <div class="status open">AÇIK</div>
+                    <h3>7. Birch & Swinnerton-Dyer</h3>
+                    <p>Eliptik eğrilerin rasyonel çözümlerinin yapısı ile L-fonksiyonunun sıfırdaki davranışı arasındaki ilişki.</p>
+                    <div class="formula">L(E, 1) = 0 ↔ rank(E) > 0</div>
+                    <div class="year">Sayılar teorisinin en derin sorusu</div>
+                </div>
+                <div class="problem" style="border-color: rgba(255,215,0,0.3); background: rgba(255,215,0,0.05);">
+                    <h3 style="color:#FFD700;">🧠 Sıradaki Sen misin?</h3>
+                    <p style="color:#bbb;">Bu 7 problemden 6'sı hâlâ çözülmedi. Belki bir gün sen de bu listeye adını yazdırırsın. Tek gereken: merak, azim ve çok fazla matematik!</p>
+                    <div class="year" style="color:#FFD700;">Clay Matematik Enstitüsü seni bekliyor...</div>
+                </div>
+            </div>
+
+            <div class="bottom-note">
+                <p>2000 yılında açıklanan bu 7 problem, insanlığın <strong>en zor matematik soruları</strong> olarak kabul edilir. Sadece Poincaré Sanısı çözülebildi — ve çözen kişi (Perelman) 1 milyon dolarlık ödülü reddetti!</p>
+            </div>
+        </div>
+        <div class="page-footer">20</div>
+    </div>
+</body>
+</html>

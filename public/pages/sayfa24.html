@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oyun Teorisi — Matematik Pusulası</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Montserrat:wght@400;600;800&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #0a0e18;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: #0d1117;
+            padding: 10mm 12mm 16mm;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            font-family: 'Space Grotesk', sans-serif;
+            color: #e0e0e0;
+            overflow: hidden;
+        }
+
+        .gold-stripe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
+            z-index: 10;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.3);
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+        }
+
+        .header span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9pt;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #00FF88;
+        }
+
+        h1 {
+            font-size: 30pt;
+            font-weight: 700;
+            text-align: center;
+            color: #fff;
+        }
+
+        .page-subtitle {
+            font-size: 10pt;
+            color: #00FF88;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .col p {
+            font-size: 10.5pt;
+            line-height: 1.5;
+            margin-bottom: 0.4em;
+            color: #ccc;
+        }
+
+        .matrix-box {
+            background: #1E1E2E;
+            border: 1px solid #333;
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 6px;
+        }
+
+        .matrix-box .title {
+            font-size: 9pt;
+            font-weight: 700;
+            color: #00FF88;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+        }
+
+        .matrix-table th {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00FF88;
+            padding: 4px;
+            text-align: center;
+            font-size: 8pt;
+        }
+
+        .matrix-table td {
+            padding: 4px;
+            text-align: center;
+            border: 1px solid #333;
+            color: #ccc;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            padding: 9px 11px;
+            margin: 5px 0;
+            border-radius: 8px;
+        }
+
+        .game-card h3 {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #00FF88;
+            margin-bottom: 3px;
+        }
+
+        .game-card p {
+            font-size: 9.5pt;
+            line-height: 1.4;
+            color: #999;
+            margin: 0;
+        }
+
+        .nash-box {
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            padding: 10px 12px;
+            margin: 6px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .nash-box .name {
+            font-size: 13pt;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .nash-box p {
+            font-size: 9pt;
+            color: #aaa;
+            margin-top: 3px;
+        }
+
+        .pull-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 11pt;
+            font-style: italic;
+            text-align: center;
+            color: #C9A84C;
+            padding: 7px 14px;
+            margin: 6px 0;
+            border-left: 3px solid #C9A84C;
+            border-right: 3px solid #C9A84C;
+            line-height: 1.4;
+        }
+
+        .pull-quote .attribution {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            font-style: normal;
+            color: #888;
+            margin-top: 3px;
+            letter-spacing: 1px;
+        }
+
+        .page-footer {
+            position: absolute;
+            bottom: 8mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 11pt;
+            color: #0A1931;
+            font-weight: 700;
+            border: 2px solid #C9A84C;
+            padding: 3px 14px;
+            background: #fff;
+            z-index: 20;
+        }
+
+        .page-footer::before {
+            content: '◆';
+            font-size: 8px;
+            color: #C9A84C;
+            margin-right: 7px;
+        }
+
+        .page-footer::after {
+            content: '◆';
+            font-size: 8px;
+            color: #C9A84C;
+            margin-left: 7px;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background: none;
+                display: block;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="magazine-common.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="gold-stripe"></div>
+        <div class="header"><span>🔐 Modern Matematik</span><span style="color:#555;">Matematik Pusulası</span></div>
+        <h1>OYUN TEORİSİ</h1>
+        <div class="page-subtitle">Stratejik Karar Vermenin Matematiği</div>
+<div class="columns">
+            <div class="col">
+                <p>
+Oyun teorisi, birden fazla karar vericinin etkileşimini inceleyen matematik dalıdır. John von Neumann
+                    1928'de temeli attı, John Nash ise "denge" kavramını geliştirdi. Ekonomiden savaş stratejisine,
+                    evrimden yapay zekaya kadar her yerde kullanılır.</p>
+                <div class="matrix-box">
+                    <div class="title">🔒 MAHKÛM İKİLEMİ</div>
+                    <table class="matrix-table">
+                        <tr>
+                            <th></th>
+                            <th>B Susar</th>
+                            <th>B İtiraf</th>
+                        </tr>
+                        <tr>
+                            <td style="color:#00FF88;">A Susar</td>
+                            <td>1, 1 yıl</td>
+                            <td>10, 0 yıl</td>
+                        </tr>
+                        <tr>
+                            <td style="color:#00FF88;">A İtiraf</td>
+                            <td>0, 10 yıl</td>
+                            <td>5, 5 yıl</td>
+                        </tr>
+                    </table>
+                </div>
+                <p>İki suçlu yakalanır. Her biri bağımsız olarak itiraf edebilir veya susabilir. Bireysel olarak en
+                    mantıklı seçim itiraf etmektir — ama ikisi de itiraf ederse, ikisi de susmasından daha kötü sonuç
+                    alır!</p>
+                <div class="game-card">
+                    <h3>🪨 Taş-Kağıt-Makas</h3>
+                    <p>Her seçeneğin olasılığı 1/3 olan "sıfır toplamlı" bir oyundur. Rakibiniz rastgele oynarsa hiçbir
+                        strateji avantaj sağlamaz. Ama insanlar rastgele oynamaz — burada örüntü tanıma devreye girer!
+                    </p>
+                </div>
+            </div>
+            <div class="col">
+<div class="nash-box">
+                    <div class="name">John Nash (1928–2015)</div>
+                    <p>Nash Dengesi: Hiçbir oyuncunun, diğerleri stratejisini değiştirmediği sürece kendi stratejisini
+                        değiştirerek kazanç sağlayamadığı durum. 1994 Nobel Ekonomi Ödülü.</p>
+                </div>
+                <div class="game-card">
+                    <h3>🐔 Tavuk Oyunu (Chicken Game)</h3>
+                    <p>İki araba karşılıklı hızla gider. İlk dönen "tavuk" olur ama hayatta kalır. İkisi de dönmezse
+                        kaza — felâket! Nükleer caydırıcılık stratejisi tam olarak bu oyundur.</p>
+                </div>
+                <div class="game-card">
+                    <h3>📊 Müzayede Teorisi</h3>
+                    <p>2020 Nobel Ekonomi Ödülü! Milgrom ve Wilson, müzayede tasarımını matematikselleştirdi. 5G frekans
+                        ihaleleri, Google reklam teklif sistemi — hepsi oyun teorisi uygulamasıdır.</p>
+                </div>
+                <div class="game-card">
+                    <h3>🧬 Evrimsel Oyun Teorisi</h3>
+                    <p>Hayvanlar neden işbirliği yapar? "Kısasa kısas" (tit-for-tat) stratejisi: ilk turda işbirliği
+                        yap, sonra karşı tarafın yaptığını tekrarla. Doğada en başarılı strateji!</p>
+                </div>
+                <div class="game-card">
+                    <h3>🎮 Günlük Hayatta</h3>
+                    <p>Trafik akışı, firma rekabeti, silahsızlanma antlaşmaları, iklim değişikliğiyle mücadele — hepsi
+                        oyun teorisi problemidir. Bireysel çıkar ile toplumsal çıkar çatışır!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pull-quote">
+            "Her rekabet, aslında bir oyun teorisi problemidir."
+            <div class="attribution">— John Nash</div>
+        </div>
+
+        <div class="page-footer">24</div>
+    </div>
+</body>
+
+</html>

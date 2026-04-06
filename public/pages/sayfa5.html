@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematik Tarihi 2 — Matematik Pusulası</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            background: #1a1408;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: #FAF8F0;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            font-family: 'Cormorant Garamond', serif;
+            color: #2a1f0e;
+            padding: 18mm 15mm 22mm;
+            overflow: hidden;
+        }
+
+        .top-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
+        }
+
+        .section-label {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #C9A84C;
+            margin-bottom: 6px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26pt;
+            font-weight: 900;
+            text-align: center;
+            color: #2a1f0e;
+            margin-bottom: 2px;
+        }
+
+        .page-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11pt;
+            font-style: italic;
+            color: #8B7355;
+            text-align: center;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .title-rule {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+            margin: 0 auto 12px;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #C9A84C, rgba(201, 168, 76, 0.2));
+        }
+
+        .era {
+            position: relative;
+            margin-bottom: 12px;
+            padding-left: 16px;
+        }
+
+        .era::before {
+            content: '';
+            position: absolute;
+            left: -19px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #C9A84C;
+            border: 2px solid #8B7355;
+            box-shadow: 0 0 6px rgba(201, 168, 76, 0.4);
+        }
+
+        .era-date {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7.5pt;
+            font-weight: 700;
+            color: #C9A84C;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .era-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 11pt;
+            font-weight: 900;
+            color: #2a1f0e;
+            margin: 2px 0;
+        }
+
+        .era-desc {
+            font-size: 9.5pt;
+            line-height: 1.45;
+            color: #4a3a25;
+        }
+
+        .info-box {
+            background: rgba(201, 168, 76, 0.08);
+            border: 1px solid rgba(201, 168, 76, 0.35);
+            padding: 9px 12px;
+            margin: 8px 0;
+        }
+
+        .info-box .label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            font-weight: 800;
+            color: #C9A84C;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 3px;
+        }
+
+        .info-box p {
+            font-size: 9.5pt;
+            line-height: 1.45;
+            margin: 0;
+        }
+
+        .quote-vintage {
+            text-align: center;
+            padding: 10px 14px;
+            margin: 8px 0;
+            border-top: 1px solid rgba(201, 168, 76, 0.4);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.4);
+        }
+
+        .quote-vintage p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 12pt;
+            font-style: italic;
+            color: #C9A84C;
+            margin: 0;
+        }
+
+        .quote-vintage .attr {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7pt;
+            font-weight: 700;
+            color: #8B7355;
+            margin-top: 4px;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .try-box {
+            background: #2a1f0e;
+            color: #F5ECD7;
+            padding: 10px 14px;
+            margin-top: 6px;
+            border-radius: 4px;
+        }
+
+        .try-box .label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 7.5pt;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+            color: #C9A84C;
+        }
+
+        .try-box p {
+            font-size: 9.5pt;
+            line-height: 1.45;
+            margin: 0;
+            color: #d4c5a0;
+        }
+
+        .page-footer {
+            position: absolute;
+            bottom: 12mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 9pt;
+            color: #C9A84C;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-dot {
+            width: 4px;
+            height: 4px;
+            background: #C9A84C;
+            border-radius: 50%;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background: none;
+                display: block;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="magazine-common.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="top-accent"></div>
+        <div class="section-label">Matematik Tarihi</div>
+
+        <h1>ZAMAN TÜNELİ</h1>
+        <div class="page-subtitle">Sanayi Devrimi'nden Dijital Çağ'a — Bölüm 2</div>
+        <div class="title-rule"></div>
+
+        <div class="columns">
+            <div class="timeline">
+                <div class="era">
+                    <div class="era-date">1800'lerin Sonu</div>
+                    <div class="era-title">📐 Hilbert & 23 Problem</div>
+                    <div class="era-desc">1900 yılında David Hilbert, matematiğin çözmesi gereken 23 problem açıkladı.
+                        Bu liste, 20. yüzyıl matematiğinin rotasını belirledi. Bazıları hâlâ çözülemedi — belki de
+                        çözecek olan sensin!</div>
+                </div>
+                <div class="era">
+                    <div class="era-date">1930'lar</div>
+                    <div class="era-title">💀 Emmy Noether — Sessiz Devrim</div>
+                    <div class="era-desc">Einstein'ın "tarihin en önemli kadın matematikçisi" dediği Noether, soyut
+                        cebiri temelden değiştirdi. Erkeklerin derslere bile sokulmadığı bir dönemde, matematiğin
+                        kurallarını yeniden yazdı.</div>
+                </div>
+                <div class="era">
+                    <div class="era-date">1936</div>
+                    <div class="era-title">💻 Turing Makinesi</div>
+                    <div class="era-desc">Alan Turing, henüz bilgisayar yokken "hesaplamanın sınırlarını" tanımladı. II.
+                        Dünya Savaşı'nda Enigma şifresini kırarak milyonlarca hayat kurtardı. Bugün kullandığın her
+                        bilgisayar, onun fikirlerine dayanır.</div>
+                </div>
+                <div class="era">
+                    <div class="era-date">1960'lar</div>
+                    <div class="era-title">🚀 Uzay Çağı Matematiği</div>
+                    <div class="era-desc">NASA'nın "insan bilgisayarları" — Katherine Johnson ve arkadaşları — roket
+                        yörüngelerini elle hesapladı. Apollo 11'in Ay'a güvenle inmesini sağlayan kadınlardı.</div>
+                </div>
+            </div>
+
+            <div class="timeline">
+<div class="era">
+                    <div class="era-date">1970–90'lar</div>
+                    <div class="era-title">🔐 Kriptografi Devrimi</div>
+                    <div class="era-desc">RSA şifreleme sistemi icat edildi: iki asal sayının çarpımı kolaydır ama
+                        tersine çevirmek neredeyse imkânsızdır. İnternet bankacılığı ve güvenli iletişim böyle doğdu.
+                        Matematik hayat kurtarıyor!</div>
+                </div>
+                <div class="era">
+                    <div class="era-date">1995</div>
+                    <div class="era-title">🏆 Fermat'nın Son Teoremi Çözüldü!</div>
+                    <div class="era-desc">Andrew Wiles, 358 yıl boyunca kimsenin çözemediği problemi çözdü. Fermat
+                        "Harika bir kanıtım var ama buraya sığmıyor" demişti. Wiles'ın kanıtı 129 sayfa sürdü!</div>
+                </div>
+                <div class="era">
+                    <div class="era-date">2010'lar–Bugün</div>
+                    <div class="era-title">🤖 Yapay Zeka Çağı</div>
+                    <div class="era-desc">Derin öğrenme, matris çarpımları ve olasılık teorisini kullanarak dünyayı
+                        değiştiriyor. ChatGPT, self-driving arabalar, yüz tanıma — hepsi matematiksel modeller. Gelecek,
+                        matematikçilerin!</div>
+                </div>
+
+                <div class="quote-vintage">
+                    <p>"Eğer bir gün uzaylılarla iletişim kurarsak, konuşacağımız dil matematik olacaktır."</p>
+                    <span class="attr">— Carl Sagan</span>
+                </div>
+
+                <div class="info-box">
+                    <div class="label">🎯 Mini Bilgi</div>
+                    <p>Tarih boyunca en çok matematiksel eser üreten kişi Leonhard Euler'dir. Yaklaşık <strong>886
+                            makale ve kitap</strong> yazmıştır — kör olduktan sonra bile yazmaya devam etmiştir!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="try-box">
+            <div class="label">🧮 Dene Bakalım!</div>
+            <p>Romalılar gibi düşün! XLVII + XXIII işlemini Roma rakamlarıyla yap. Sonucu hem Roma rakamıyla hem normal
+                sayıyla yaz. (İpucu: X=10, L=50, V=5, I=1)</p>
+        </div>
+
+        <div class="page-footer">
+            <span class="footer-dot"></span>
+            <span>5</span>
+            <span class="footer-dot"></span>
+        </div>
+    </div>
+</body>
+
+</html>

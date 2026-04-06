@@ -1,5 +1,7 @@
-// Magazine Viewer - Matematik Pusulası
-// Handles sidebar navigation, page loading, view modes, and print
+// Magazine Viewer - Matematik Pusulası (Redesigned v2)
+// Handles sidebar navigation, page loading, progress tracking and print
+
+import './magazine-viewer.css';
 
 const TOTAL_PAGES = 40;
 
@@ -18,56 +20,41 @@ const PAGE_TITLES: Record<number, string> = {
     37: 'Kariyer Köşesi', 38: 'Gelecek Sayı', 39: 'Sonsöz', 40: 'Arka Kapak'
 };
 
-// --- Styles ---
-const style = document.createElement('style');
-style.textContent = `
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #525659; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; color: #fff; display: flex; flex-direction: column; overflow-x: hidden; }
+// SVG Icons
+const ICONS = {
+    arrow: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>',
+    print: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>',
+    compass: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>',
+};
 
-    .mag-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: #1e293b; display: flex; align-items: center; justify-content: space-between; padding: 0 1rem; height: 48px; box-shadow: 0 2px 10px rgba(0,0,0,.3); }
-    .mag-back { color: #94a3b8; text-decoration: none; font-size: .85rem; font-weight: 600; }
-    .mag-back:hover { color: #fff; }
-    .mag-title { font-weight: 700; font-size: 1rem; }
-    .top-bar-actions { display: flex; gap: .5rem; }
-    .action-btn, .print-btn { background: #334155; border: none; color: #fff; border-radius: 6px; padding: .35rem .75rem; cursor: pointer; font-size: .85rem; font-weight: 600; transition: background .2s; }
-    .action-btn:hover, .print-btn:hover { background: #d97706; }
-
-    .mag-sidebar { position: fixed; left: 0; top: 48px; bottom: 0; width: 60px; background: #1e293b; overflow-y: auto; display: flex; flex-direction: column; align-items: center; padding: 10px 0; z-index: 100; }
-    .mag-sidebar::-webkit-scrollbar { width: 5px; }
-    .mag-sidebar::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
-    .nav-btn { display: block; width: 40px; height: 40px; line-height: 40px; text-align: center; background: #334155; color: #fff; margin-bottom: 5px; text-decoration: none; border-radius: 6px; font-size: 12px; font-weight: bold; transition: all .2s; cursor: pointer; }
-    .nav-btn:hover { background: #d97706; transform: scale(1.05); }
-    .nav-btn.active { background: #d97706; box-shadow: 0 0 0 2px rgba(217,119,6,.3); }
-
-    .mag-content { margin-left: 70px; margin-top: 58px; padding: 30px 20px; display: flex; flex-direction: column; align-items: center; width: calc(100% - 70px); }
-
-    .page-wrapper { position: relative; margin-bottom: 40px; scroll-margin-top: 60px; }
-    .page-label { color: #fff; font-size: 13px; font-weight: 500; opacity: .7; margin-bottom: 6px; }
-
-    iframe { width: 210mm; height: 297mm; border: none; box-shadow: 0 10px 30px rgba(0,0,0,.5); background: #fff; display: block; }
-
-    @media screen and (max-width: 768px) {
-        .mag-sidebar { width: 50px; }
-        .nav-btn { width: 35px; height: 35px; line-height: 35px; font-size: 11px; }
-        .mag-content { margin-left: 60px; width: calc(100% - 60px); }
-        iframe { width: 100%; height: auto; aspect-ratio: 210/297; }
-    }
-
-    @media print {
-        .mag-topbar, .mag-sidebar, .page-label { display: none !important; }
-        .mag-content { margin: 0; padding: 0; width: 100%; }
-        .page-wrapper { margin: 0; page-break-after: always; break-after: page; }
-        .page-wrapper:last-child { page-break-after: auto; }
-        iframe { box-shadow: none; width: 210mm; height: 297mm; margin: 0; page-break-inside: avoid; }
-        @page { size: A4 portrait; margin: 0; }
-        * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    }
+// --- Build Top Bar ---
+const topbar = document.createElement('div');
+topbar.className = 'mag-topbar';
+topbar.innerHTML = `
+    <a href="/" class="mag-back" aria-label="Ana sayfaya dön">${ICONS.arrow} Ana Sayfa</a>
+    <span class="mag-title">${ICONS.compass} Matematik Pusulası</span>
+    <div class="top-bar-actions">
+        <button class="action-btn" id="printBtn" aria-label="Dergiyi yazdır">${ICONS.print} Yazdır</button>
+    </div>
 `;
-document.head.appendChild(style);
+document.body.prepend(topbar);
 
-// --- Build Pages ---
-const nav = document.getElementById('nav')!;
-const content = document.getElementById('content')!;
+// --- Progress Bar ---
+const progressWrap = document.createElement('div');
+progressWrap.className = 'reading-progress';
+progressWrap.innerHTML = '<div class="reading-progress-bar" id="progressBar"></div>';
+document.body.appendChild(progressWrap);
+
+// --- Build Sidebar ---
+const sidebar = document.createElement('div');
+sidebar.className = 'mag-sidebar';
+sidebar.setAttribute('role', 'navigation');
+sidebar.setAttribute('aria-label', 'Sayfa navigasyonu');
+document.getElementById('nav')!.replaceWith(sidebar);
+
+// --- Build Content Area ---
+const contentEl = document.getElementById('content')!;
+contentEl.className = 'mag-content';
 
 for (let i = 1; i <= TOTAL_PAGES; i++) {
     // Sidebar button
@@ -76,7 +63,8 @@ for (let i = 1; i <= TOTAL_PAGES; i++) {
     btn.textContent = String(i);
     btn.title = `Sayfa ${i}: ${PAGE_TITLES[i] || ''}`;
     btn.href = `#page-${i}`;
-    nav.appendChild(btn);
+    btn.setAttribute('aria-label', `Sayfa ${i}: ${PAGE_TITLES[i] || ''}`);
+    sidebar.appendChild(btn);
 
     // Page wrapper
     const wrapper = document.createElement('div');
@@ -85,26 +73,33 @@ for (let i = 1; i <= TOTAL_PAGES; i++) {
 
     const label = document.createElement('div');
     label.className = 'page-label';
-    label.textContent = `Sayfa ${i} — ${PAGE_TITLES[i] || ''}`;
+    label.innerHTML = `<span class="pg-num">${i}</span> ${PAGE_TITLES[i] || ''}`;
     wrapper.appendChild(label);
 
     const iframe = document.createElement('iframe');
     iframe.src = `pages/sayfa${i}.html`;
     iframe.loading = i <= 5 ? 'eager' : 'lazy';
-    iframe.title = `Sayfa ${i}`;
+    iframe.title = `Sayfa ${i}: ${PAGE_TITLES[i] || ''}`;
     wrapper.appendChild(iframe);
 
-    content.appendChild(wrapper);
+    contentEl.appendChild(wrapper);
 }
 
 // --- Active page Observer ---
+let currentPage = 1;
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const id = entry.target.id;
+            const pageNum = parseInt(id.replace('page-', ''));
+            currentPage = pageNum;
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             const activeBtn = document.querySelector(`a[href="#${id}"]`);
-            if (activeBtn) activeBtn.classList.add('active');
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+                // Scroll sidebar to show active button
+                activeBtn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
         }
     });
 }, { threshold: 0.3 });
@@ -121,6 +116,40 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
             if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
+});
+
+// --- Reading Progress ---
+const progressBar = document.getElementById('progressBar') as HTMLElement;
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = `${Math.min(progress, 100)}%`;
+}, { passive: true });
+
+// --- Keyboard Navigation ---
+const kbdHint = document.createElement('div');
+kbdHint.className = 'kbd-hint';
+kbdHint.innerHTML = '<kbd>←</kbd> <kbd>→</kbd> ile sayfa geçişi';
+document.body.appendChild(kbdHint);
+
+// Show hint briefly on load
+setTimeout(() => { kbdHint.classList.add('visible'); }, 1500);
+setTimeout(() => { kbdHint.classList.remove('visible'); }, 5000);
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        const next = Math.min(currentPage + 1, TOTAL_PAGES);
+        const target = document.querySelector(`#page-${next}`);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const prev = Math.max(currentPage - 1, 1);
+        const target = document.querySelector(`#page-${prev}`);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 });
 
 // --- Print ---

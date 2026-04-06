@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -72,19 +72,32 @@
         @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
         .site-footer{text-align:center;padding:2rem;color:var(--text2);font-size:.85rem;border-top:1px solid var(--border);margin-top:3rem}
+    
+        .mobile-menu{display:none;background:none;border:none;color:var(--white,#eef2ff);cursor:pointer;padding:.5rem}
+        @media(max-width:768px){
+            .mobile-menu{display:block}
+            .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:rgba(5,10,24,.95);backdrop-filter:blur(20px);flex-direction:column;padding:1rem;border-bottom:1px solid rgba(100,140,255,.1)}
+            .nav-links.open{display:flex}
+        }
+        @media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+        *:focus-visible{outline:2px solid #6c8cff;outline-offset:2px}
     </style>
 </head>
 <body>
 <div class="ambient"><div class="orb o1"></div><div class="orb o2"></div></div>
 
 <nav class="nav">
-    <a href="index.html" class="nav-brand">📐 Matematik Pusulası</a>
+    <a href="/" class="nav-brand">📐 Matematik Pusulası</a>
+    <button class="mobile-menu" id="menuBtn" aria-label="Menü">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
     <div class="nav-links">
-        <a href="index.html">Ana Sayfa</a>
+        <a href="/">Ana Sayfa</a>
         <a href="bulmacalar.html">Bulmacalar</a>
         <a href="sorular.html" class="active">Sorular</a>
-        <a href="cevaplar.html">Cevaplar</a>
+        <a href="cevaplar.html">Çözümler</a>
         <a href="kaynakca.html">Kaynakça</a>
+        <a href="hakkinda.html">Hakkında</a>
         <a href="magazine.html" class="nav-cta">📖 Dergi</a>
     </div>
 </nav>

@@ -1,0 +1,111 @@
+/* ============================================
+   MAGAZINE COMMON STYLES
+   Shared across all 40 magazine pages
+   ============================================ */
+
+/* --- Reset --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+/* --- Design Tokens --- */
+:root {
+    --navy: #0A1931;
+    --gold: #C9A84C;
+    --gold-light: #E8D48B;
+    --cream: #FAFAF5;
+    --dark: #1a1a1a;
+    --text: #2a2a2a;
+    --text-muted: #666;
+    --text-light: #999;
+    --border-light: #ddd;
+}
+
+/* --- Page Base --- */
+.page {
+    width: 210mm;
+    height: 297mm;
+    position: relative;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+/* --- Shared Page Footer --- */
+.page-footer {
+    position: absolute;
+    bottom: 8mm;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 11pt;
+    color: var(--navy);
+    font-weight: 700;
+    border: 2px solid var(--gold);
+    padding: 3px 14px;
+    background: #fff;
+    z-index: 20;
+}
+
+.page-footer::before {
+    content: '◆';
+    font-size: 8px;
+    color: var(--gold);
+    margin-right: 7px;
+}
+
+.page-footer::after {
+    content: '◆';
+    font-size: 8px;
+    color: var(--gold);
+    margin-left: 7px;
+}
+
+/* --- Gold Top Stripe --- */
+.gold-stripe,
+.top-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    z-index: 10;
+}
+
+/* --- Content Images --- */
+.content-img {
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* --- Print --- */
+@media print {
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: none;
+        display: block;
+    }
+
+    .page {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+    }
+}

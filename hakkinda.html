@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkında — Matematik Pusulası</title>
+    <meta name="description" content="Matematik Pusulası dergisi hakkında bilgi, ekip ve iletişim.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg:#050a18;--surface:#0a1128;--card:#0f1a35;--border:rgba(100,140,255,.1);--border-hover:rgba(100,140,255,.25);--accent:#6c8cff;--accent2:#a78bfa;--gold:#f0c040;--text:#b8c8e8;--text2:#6a7ea0;--white:#eef2ff;--radius:18px;--glow:0 0 40px rgba(108,140,255,.12)}
+        html{scroll-behavior:smooth}
+        body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;line-height:1.65}
+        ::selection{background:rgba(108,140,255,.3);color:#fff}
+        .ambient{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+        .orb{position:absolute;border-radius:50%;filter:blur(140px);opacity:.15}
+        .o1{width:600px;height:600px;background:var(--accent);top:-15%;left:-8%;animation:f 25s ease-in-out infinite alternate}
+        .o2{width:500px;height:500px;background:var(--accent2);bottom:-10%;right:-8%;animation:f 22s ease-in-out infinite alternate-reverse}
+        @keyframes f{0%{transform:translate(0,0)}50%{transform:translate(40px,-50px)}100%{transform:translate(-30px,40px)}}
+        .grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(108,140,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(108,140,255,.03) 1px,transparent 1px);background-size:60px 60px}
+
+        .nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(5,10,24,.6);backdrop-filter:blur(24px) saturate(1.4);border-bottom:1px solid var(--border)}
+        .nav-brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--white);font-weight:800;font-size:1.1rem}
+        .nav-brand .logo{width:32px;height:32px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:900;color:#fff}
+        .nav-links{display:flex;gap:.15rem;align-items:center}
+        .nav-links a{color:var(--text2);text-decoration:none;font-size:.82rem;font-weight:600;padding:.5rem .85rem;border-radius:10px;transition:all .2s}
+        .nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(108,140,255,.08)}
+        .nav-cta{background:linear-gradient(135deg,var(--accent),var(--accent2))!important;color:#fff!important;font-weight:700!important}
+
+        .page-hero{position:relative;z-index:1;padding:140px 1.5rem 60px;text-align:center}
+        .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,3.5rem);font-weight:900;color:var(--white);margin-bottom:.5rem}
+        .page-hero p{color:var(--text2);font-size:1.1rem;max-width:30rem;margin:0 auto}
+
+        .content{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 1.5rem 4rem}
+
+        .info-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem}
+        .info-card h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--white);margin-bottom:1rem}
+        .info-card p{margin-bottom:.8rem;line-height:1.8}
+        .info-card strong{color:var(--white)}
+
+        .timeline{position:relative;padding-left:2rem;margin:1.5rem 0}
+        .timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--accent),var(--accent2))}
+        .t-item{position:relative;margin-bottom:1.5rem;padding-left:1.5rem}
+        .t-item::before{content:'';position:absolute;left:-2rem;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 10px rgba(108,140,255,.4)}
+        .t-item h3{color:var(--white);font-size:1rem;font-weight:700;margin-bottom:.2rem}
+        .t-item p{font-size:.9rem;color:var(--text2)}
+
+        .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;margin-top:1.5rem}
+        .team-card{background:rgba(108,140,255,.04);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;text-align:center;transition:all .3s}
+        .team-card:hover{border-color:var(--border-hover);box-shadow:var(--glow);transform:translateY(-3px)}
+        .team-avatar{font-size:2rem;margin-bottom:.5rem}
+        .team-role{font-size:.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.2rem}
+        .team-name{font-weight:800;color:var(--white);font-size:1rem}
+        .team-desc{font-size:.8rem;color:var(--text2);margin-top:.2rem}
+
+        .contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;margin-top:1.5rem}
+        .contact-item{background:rgba(108,140,255,.04);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;align-items:center;gap:1rem}
+        .contact-icon{font-size:1.5rem;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(108,140,255,.08);border-radius:12px}
+        .contact-item h4{color:var(--white);font-size:.85rem;font-weight:700}
+        .contact-item p{font-size:.8rem;color:var(--text2)}
+
+        .site-footer{position:relative;z-index:1;text-align:center;padding:3rem 1.5rem 2rem;border-top:1px solid var(--border);color:var(--text2);font-size:.85rem}
+        @media(max-width:768px){.nav-links{display:none}.team-grid,.contact-grid{grid-template-columns:1fr}}
+    
+        .mobile-menu{display:none;background:none;border:none;color:var(--white,#eef2ff);cursor:pointer;padding:.5rem}
+        @media(max-width:768px){
+            .mobile-menu{display:block}
+            .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:rgba(5,10,24,.95);backdrop-filter:blur(20px);flex-direction:column;padding:1rem;border-bottom:1px solid rgba(100,140,255,.1)}
+            .nav-links.open{display:flex}
+        }
+        @media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+        *:focus-visible{outline:2px solid #6c8cff;outline-offset:2px}
+    </style>
+</head>
+<body>
+<div class="ambient"><div class="orb o1"></div><div class="orb o2"></div></div>
+<div class="grid-bg"></div>
+
+<nav class="nav">
+    <a href="/" class="nav-brand"><div class="logo">π</div>Matematik Pusulası</a>
+    <button class="mobile-menu" id="menuBtn" aria-label="Menü">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="nav-links">
+        <a href="/">Ana Sayfa</a>
+        <a href="bulmacalar.html">Bulmacalar</a>
+        <a href="sorular.html">Sorular</a>
+        <a href="cevaplar.html">Çözümler</a>
+        <a href="kaynakca.html">Kaynakça</a>
+        <a href="hakkinda.html" class="active">Hakkında</a>
+        <a href="magazine.html" class="nav-cta">📖 Dergi</a>
+    </div>
+</nav>
+
+<section class="page-hero">
+    <h1>Hakkında</h1>
+    <p>Matematik Pusulası dergisi, nasıl doğdu ve kim hazırladı?</p>
+</section>
+
+<div class="content">
+    <div class="info-card">
+        <h2>📐 Matematik Pusulası Nedir?</h2>
+        <p><strong>Matematik Pusulası</strong>, 9. sınıf öğrencileri başta olmak üzere matematiğe meraklı herkes için hazırlanmış, 40 sayfalık dijital bir dergidir. Dergide matematik tarihi, ünlü matematikçilerin hayat hikâyeleri, doğada ve teknolojide matematik, bulmacalar ve çok daha fazlası yer almaktadır.</p>
+        <p>Amacımız matematiği sıkıcı formüllerden çıkarıp, onun aslında ne kadar büyüleyici, eğlenceli ve hayatımızın her alanında var olduğunu göstermektir.</p>
+        <p>Dergi, <strong>Trabzon Mesleki ve Teknik Anadolu Lisesi (TMTAL)</strong> matematik projesi kapsamında hazırlanmıştır.</p>
+    </div>
+
+    <div class="info-card">
+        <h2>📅 Proje Süreci</h2>
+        <div class="timeline">
+            <div class="t-item">
+                <h3>Araştırma & Planlama</h3>
+                <p>Konu seçimi, kaynak araştırması ve dergi yapısının belirlenmesi</p>
+            </div>
+            <div class="t-item">
+                <h3>İçerik Üretimi</h3>
+                <p>40 sayfa içerik: tarih, biyografi, doğa, teknoloji, bulmacalar</p>
+            </div>
+            <div class="t-item">
+                <h3>Görsel Tasarım</h3>
+                <p>Her bölüm için benzersiz görsel kimlik (gazete, vintage, çizgi roman, tech)</p>
+            </div>
+            <div class="t-item">
+                <h3>Web Sitesi</h3>
+                <p>Derginin dijital olarak sunulması, interaktif bulmacalar ve çözümler</p>
+            </div>
+            <div class="t-item">
+                <h3>Yayın — Mart 2026</h3>
+                <p>Derginin ilk sayısı yayına hazır!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-card">
+        <h2>👥 Ekip</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar">👑</div>
+                <div class="team-role">Proje Lideri</div>
+                <div class="team-name">Miraç Eymen Abanoz</div>
+                <div class="team-desc">Koordinasyon & yönetim</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">🎨</div>
+                <div class="team-role">Tasarım & Geliştirme</div>
+                <div class="team-name">Bahadır Değirmenci</div>
+                <div class="team-desc">Dergi & web tasarımı</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">🔬</div>
+                <div class="team-role">Araştırma & İçerik</div>
+                <div class="team-name">Arslan Yusuf Kadir</div>
+                <div class="team-desc">İçerik araştırma & yazım</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">🤖</div>
+                <div class="team-role">Kişisel LLM</div>
+                <div class="team-name">gpt-oss-20b</div>
+                <div class="team-desc">AI destekli içerik katkısı</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-card">
+        <h2>📬 İletişim</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <div><h4>E-posta</h4><p>Theworld1716@gmail.com</p></div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">🏫</div>
+                <div><h4>Okul</h4><p>Trabzon MTAL</p></div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📅</div>
+                <div><h4>Sayı</h4><p>Mart 2026 · Sayı 01</p></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">📐 <strong>Matematik Pusulası</strong> — 9. Sınıf Özel Sayısı · Mart 2026</footer>
+
+<script>
+// Mobile menu toggle
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.querySelector('.nav-links');
+if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        const isOpen = navLinks.classList.contains('open');
+        menuBtn.innerHTML = isOpen
+            ? '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+            : '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            menuBtn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+        });
+    });
+}
+</script>
+</body>
+</html>

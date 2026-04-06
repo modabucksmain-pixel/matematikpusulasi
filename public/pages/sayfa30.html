@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğrenci Gözüyle Matematik — Matematik Pusulası</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;600;800&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        body { background: #E8EAF6; display: flex; justify-content: center; padding: 40px 0; }
+        .page { width: 210mm; height: 297mm; background: #fff; padding: 10mm 14mm 16mm; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.2); font-family: 'Montserrat', sans-serif; color: #333; overflow: hidden; }
+        .gold-stripe { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #3F51B5, #7986CB, #3F51B5); z-index: 10; }
+        .header { display: flex; justify-content: space-between; border-bottom: 2px solid #3F51B5; padding-bottom: 6px; margin-bottom: 8px; }
+        .header span { font-size: 9pt; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #3F51B5; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 24pt; font-weight: 900; text-align: center; color: #283593; margin-bottom: 2px; }
+        .page-subtitle { font-family: 'Caveat', cursive; font-size: 14pt; text-align: center; color: #F44336; margin-bottom: 10px; }
+        .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+        .confession { background: #FFF3E0; border: 2px solid #FF9800; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; position: relative; }
+        .confession::before { content: '💬'; position: absolute; top: -10px; left: 10px; font-size: 18pt; }
+        .confession .who { font-size: 7pt; font-weight: 800; letter-spacing: 1px; color: #E65100; text-transform: uppercase; margin-bottom: 3px; margin-top: 4px; }
+        .confession p { font-family: 'Caveat', cursive; font-size: 12pt; color: #333; line-height: 1.4; }
+
+        .caps-box { background: #263238; color: #fff; border-radius: 10px; padding: 12px; text-align: center; margin-bottom: 8px; }
+        .caps-box .top { font-size: 10pt; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        .caps-box .emoji { font-size: 36pt; display: block; margin: 4px 0; }
+        .caps-box .bottom { font-size: 10pt; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+
+        .hoca-card { background: #E8EAF6; border-left: 4px solid #3F51B5; padding: 10px 12px; border-radius: 0 8px 8px 0; margin-bottom: 8px; }
+        .hoca-card .label { font-size: 7pt; font-weight: 800; letter-spacing: 1px; color: #3F51B5; text-transform: uppercase; margin-bottom: 3px; }
+        .hoca-card p { font-family: 'Caveat', cursive; font-size: 12pt; color: #333; }
+
+        .stat-box { background: linear-gradient(135deg, #3F51B5, #1A237E); color: #fff; border-radius: 8px; padding: 10px 12px; text-align: center; margin-bottom: 8px; }
+        .stat-box .number { font-size: 28pt; font-weight: 900; color: #FFD740; }
+        .stat-box .label { font-size: 8pt; letter-spacing: 1px; opacity: 0.7; }
+
+        .page-footer { position: absolute; bottom: 8mm; left: 50%; transform: translateX(-50%); font-family: 'Playfair Display', serif; font-size: 11pt; color: #283593; font-weight: 700; border: 2px solid #3F51B5; padding: 3px 14px; background: #fff; z-index: 20; }
+        @media print { @page { size: A4; margin: 0; } body { margin: 0; padding: 0; background: none; display: block; } .page { margin: 0; box-shadow: none; page-break-after: always; } }
+    </style>
+    <link rel="stylesheet" href="magazine-common.css">
+</head>
+<body>
+    <div class="page">
+        <div class="gold-stripe"></div>
+        <div class="header"><span>💬 Öğrenci Gözüyle</span><span style="color:#999;font-weight:600;">Matematik Pusulası</span></div>
+        <h1>ÖĞRENCİ GÖZÜYLE MATEMATİK</h1>
+        <div class="page-subtitle">İtiraflar, Capsler ve Hocaların Efsane Cümleleri 🎭</div>
+
+        <div class="cols">
+            <div>
+                <div class="confession">
+                    <div class="who">İtiraf #1 — Anonim, 9. Sınıf</div>
+                    <p>"Geometri sınavında açıortay yerine kenarortay çizdim. Hoca 'güzel çizim ama yanlış konu' dedi. 45 dakika boyunca yanlış soruyu çözmüşüm."</p>
+                </div>
+
+                <div class="caps-box">
+                    <div class="top">Sınavda "kolay olacak" dendiğinde</div>
+                    <div class="emoji">🤡</div>
+                    <div class="bottom">İlk soruyu okuyunca</div>
+                </div>
+
+                <div class="hoca-card">
+                    <div class="label">👨‍🏫 Hoca Efsane #1</div>
+                    <p>"Bu konu çok kolay, ilkokulda bile anlarsınız." (Sonra sınıfın yarısı kalır)</p>
+                </div>
+
+                <div class="confession">
+                    <div class="who">İtiraf #3 — Anonim, 10. Sınıf</div>
+                    <p>"Limit konusunu anladığımı sandım. Sonra sınavda 'limiti yoktur' cevabını her soruya yazdım. 3 tanesinde doğruymuş aslında."</p>
+                </div>
+
+                <div class="stat-box">
+                    <div class="number">%73</div>
+                    <div class="label">Öğrencilerin "anladım" deyip anlamama oranı</div>
+                </div>
+
+                <div class="hoca-card">
+                    <div class="label">👩‍🏫 Hoca Efsane #3</div>
+                    <p>"Tahtaya gel ve çöz." — Dünyanın en korkunç 5 kelimesi.</p>
+                </div>
+            </div>
+            <div>
+                <div class="confession">
+                    <div class="who">İtiraf #2 — Anonim, 11. Sınıf</div>
+                    <p>"Türev sınavında f'(x) yerine f(x) yazdım. Hoca 'sen fonksiyonu türetmek yerine aynısını kopyalamışsın' dedi."</p>
+                </div>
+
+                <div class="caps-box" style="background: #1B5E20;">
+                    <div class="top">Arkadaşın "hiç çalışmadım" dediğinde</div>
+                    <div class="emoji">📚😤</div>
+                    <div class="bottom">Sonra 95 alınca</div>
+                </div>
+
+                <div class="hoca-card">
+                    <div class="label">👨‍🏫 Hoca Efsane #2</div>
+                    <p>"Bunu anlamayan var mı?" (Kimse el kaldırmaz, herkes anlamaz)</p>
+                </div>
+
+                <div class="confession">
+                    <div class="who">İtiraf #4 — Anonim, 9. Sınıf</div>
+                    <p>"Pi sayısını 3.14 biliyordum. Arkadaşım '3.14159265...' diye devam edince kendimi cahil hissettim. Şimdi 20 basamak biliyorum."</p>
+                </div>
+
+                <div class="stat-box" style="background: linear-gradient(135deg, #F44336, #B71C1C);">
+                    <div class="number">∞</div>
+                    <div class="label">"Hocam bu sınavda çıkacak mı?" sorusu sayısı</div>
+                </div>
+
+                <div class="caps-box" style="background: #4A148C;">
+                    <div class="top">Hesap makinesiz sınav</div>
+                    <div class="emoji">💀</div>
+                    <div class="bottom">Taş devrine hoş geldiniz</div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">30</div>
+    </div>
+</body>
+</html>

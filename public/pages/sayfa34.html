@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematiksel Komplo Teorileri — Matematik Pusulası</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@400;600;800;900&family=Creepster&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        body { background: #1a1a1a; display: flex; justify-content: center; padding: 40px 0; }
+        .page { width: 210mm; height: 297mm; background: #111; padding: 10mm 14mm 16mm; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.7); font-family: 'Montserrat', sans-serif; color: #ddd; overflow: hidden; }
+        .bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(255,0,0,0.02) 30px, rgba(255,0,0,0.02) 60px); z-index: 0; }
+        .gold-stripe { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #F44336, #FF9800, #F44336); z-index: 10; }
+        .content { position: relative; z-index: 5; }
+        .header { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(244,67,54,0.3); padding-bottom: 6px; margin-bottom: 8px; }
+        .header span { font-size: 8pt; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #F44336; }
+        h1 { font-family: 'Creepster', cursive; font-size: 28pt; text-align: center; color: #F44336; margin-bottom: 2px; letter-spacing: 3px; }
+        .page-subtitle { font-size: 9pt; text-align: center; color: rgba(255,255,255,0.4); letter-spacing: 2px; margin-bottom: 12px; }
+        .warning { background: rgba(244,67,54,0.1); border: 1px solid rgba(244,67,54,0.3); border-radius: 6px; padding: 8px 12px; margin-bottom: 10px; text-align: center; }
+        .warning p { font-size: 8pt; color: #F44336; letter-spacing: 1px; font-weight: 600; }
+
+        .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .theory { background: rgba(255,255,255,0.04); border: 1px solid rgba(244,67,54,0.15); border-radius: 8px; padding: 12px; margin-bottom: 10px; }
+        .theory .tag { font-size: 7pt; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #FF9800; margin-bottom: 4px; }
+        .theory h3 { font-family: 'Playfair Display', serif; font-size: 11pt; color: #F44336; margin-bottom: 4px; }
+        .theory p { font-size: 8.5pt; line-height: 1.5; color: #999; }
+        .theory .verdict { margin-top: 6px; padding: 4px 8px; border-radius: 4px; font-size: 7pt; font-weight: 800; letter-spacing: 1px; display: inline-block; }
+        .verdict.busted { background: rgba(76,175,80,0.15); color: #4CAF50; }
+        .verdict.maybe { background: rgba(255,152,0,0.15); color: #FF9800; }
+        .verdict.mystery { background: rgba(244,67,54,0.15); color: #F44336; }
+
+        .page-footer { position: absolute; bottom: 8mm; left: 50%; transform: translateX(-50%); font-family: 'Playfair Display', serif; font-size: 11pt; color: #F44336; font-weight: 700; }
+        @media print { @page { size: A4; margin: 0; } body { margin: 0; padding: 0; background: none; display: block; } .page { margin: 0; box-shadow: none; page-break-after: always; } }
+    </style>
+    <link rel="stylesheet" href="magazine-common.css">
+</head>
+<body>
+    <div class="page">
+        <div class="bg"></div>
+        <div class="gold-stripe"></div>
+        <div class="content">
+            <div class="header"><span>👽 Komplo Dosyası</span><span style="color:rgba(255,255,255,0.3);">Matematik Pusulası</span></div>
+            <h1>MATEMATİKSEL KOMPLO TEORİLERİ</h1>
+            <div class="page-subtitle">Gerçek mi, Efsane mi, Paranoya mı? 🔍</div>
+
+            <div class="warning">
+                <p>⚠️ DİKKAT: Bu sayfa eğlence amaçlıdır. Bilimsel doğruluk garantisi verilmez. Ama yine de garip... 👀</p>
+            </div>
+
+            <div class="cols">
+                <div>
+                    <div class="theory">
+                        <div class="tag">📐 Komplo #1</div>
+                        <h3>Giza Piramidi'nin Koordinatları = Işık Hızı?!</h3>
+                        <p>Büyük Piramit'in koordinatları: 29.9792458°K. Işık hızı: 299,792,458 m/s. Tesadüf mü? Antik Mısırlılar ışık hızını mı biliyordu?!</p>
+                        <p style="color:#666; margin-top:4px; font-size:7.5pt;"><strong>Gerçek:</strong> GPS koordinat sistemi 1960'larda icat edildi. Antik Mısırlılar "enlem" kavramını bilmiyordu. Ama yine de garip bir tesadüf...</p>
+                        <div class="verdict maybe">🤔 TESADÜF MÜ?</div>
+                    </div>
+
+                    <div class="theory">
+                        <div class="tag">🔢 Komplo #3</div>
+                        <h3>Pi Sayısında Gizli Mesajlar</h3>
+                        <p>Pi'nin trilyonlarca basamağını tarayan yazılımlar, içinde doğum tarihlerini, telefon numaralarını ve hatta Shakespeare'in eserlerini buluyor! Pi sonsuz olduğu için tüm bilgiyi içeriyor mu?</p>
+                        <p style="color:#666; margin-top:4px; font-size:7.5pt;"><strong>Gerçek:</strong> Eğer Pi "normal" bir sayıysa, evet tüm sonlu dizileri içerir. Ama Pi'nin normal olduğu kanıtlanamadı!</p>
+                        <div class="verdict mystery">❓ ÇÖZÜLEMEZ</div>
+                    </div>
+
+                    <div class="theory">
+                        <div class="tag">🎲 Komplo #5</div>
+                        <h3>Fibonacci ve Borsa Kehaneti</h3>
+                        <p>"Elliott Dalgaları" teorisine göre borsa Fibonacci sayılarına göre hareket eder. Wall Street traderları bu yöntemi milyarlarca dolar işlem için kullanıyor!</p>
+                        <p style="color:#666; margin-top:4px; font-size:7.5pt;"><strong>Gerçek:</strong> Bazı teknik analizlerde işe yarıyor gibi görünse de bilimsel kanıt zayıf.</p>
+                        <div class="verdict maybe">🤔 KISMEN DOĞRU</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="theory">
+                        <div class="tag">🏛️ Komplo #2</div>
+                        <h3>Euler Aslında Hırsız mı?</h3>
+                        <p>Bazı tarihçiler, Euler'in Basel probleminin çözümünü Goldbach'tan çaldığını iddia eder. Euler'e atfedilen bazı formüller de Bernoulli ailesinden gelebilir.</p>
+                        <p style="color:#666; margin-top:4px; font-size:7.5pt;"><strong>Gerçek:</strong> Euler kendi başına bir deha. Ama o dönemde fikir alışverişi yaygındı, sınırlar belirsizdi.</p>
+                        <div class="verdict busted">✅ ÇÜRÜTÜLDÜ</div>
+                    </div>
+
+                    <div class="theory">
+                        <div class="tag">🌀 Komplo #4</div>
+                        <h3>Simülasyon Hipotezi & Matematik</h3>
+                        <p>Eğer evren bir bilgisayar simülasyonuysa, matematiğin "keşfedilen" değil "kodlanan" bir şey olduğunu gösterir! Nick Bostrom: "Simülasyonda yaşama olasılığımız %50'den fazla"</p>
+                        <p style="color:#666; margin-top:4px; font-size:7.5pt;"><strong>Gerçek:</strong> Felsefi olarak çürütülemez. Ama test de edilemez. Elon Musk bile "Gerçeklikte yaşama şansımız milyonda bir" diyor.</p>
+                        <div class="verdict mystery">❓ KANITSIZ</div>
+                    </div>
+
+                    <div class="theory">
+                        <div class="tag">👾 Komplo #6</div>
+                        <h3>42 = Evrenin Cevabı?</h3>
+                        <p>Douglas Adams'ın "Otostopçunun Galaksi Rehberi"nde süper bilgisayar Deep Thought, "Hayatın, evrenin ve her şeyin cevabı"nın 42 olduğunu söyler. 42 gerçekten özel mi?</p>
+                        <p style="color:#666; margin-top:4px; font-size:7.5pt;"><strong>Gerçek:</strong> 42 = 2×3×7, pro sayıların ilk üçünün çarpımı. İlk 6 tek asalın toplamı. Rastgele değil belki?</p>
+                        <div class="verdict maybe">🤔 İLGİNÇ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">34</div>
+    </div>
+</body>
+</html>
