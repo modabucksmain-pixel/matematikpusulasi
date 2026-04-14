@@ -1,0 +1,128 @@
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN TOKENS — Matematik Pusulası (Warm Academic)
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Warm Neutrals ── */
+  --cream:       #FAF7F2;
+  --ivory:       #F3EDE4;
+  --sand:        #E8DFD1;
+  --sand-dark:   #D4C9B8;
+  --walnut:      #8B7355;
+  --espresso:    #3D2B1F;
+  --ink:         #1C1410;
+
+  /* ── Primary Accent: Terracotta ── */
+  --terracotta-50:  #FDF0ED;
+  --terracotta-100: #FADDD6;
+  --terracotta-200: #F4B4A3;
+  --terracotta-400: #D47A63;
+  --terracotta:     #C4654A;
+  --terracotta-600: #A8503A;
+  --terracotta-800: #6E3125;
+
+  /* ── Secondary Accent: Indigo ── */
+  --indigo-50:  #EDF1F6;
+  --indigo-100: #D4DEE9;
+  --indigo-200: #A8BCD4;
+  --indigo-400: #5A7EA3;
+  --indigo:     #3D5A80;
+  --indigo-600: #2F4662;
+  --indigo-800: #1E2D40;
+
+  /* ── Utility Colors ── */
+  --sage:    #6B8F71;
+  --sage-50: #F0F5F0;
+  --amber:   #E5A100;
+  --amber-50:#FFF8E6;
+  --rose:    #C0535E;
+  --rose-50: #FCF0F1;
+
+  /* ── Semantic Surfaces ── */
+  --bg:               var(--cream);
+  --surface:          var(--ivory);
+  --surface-elevated: #FFFFFF;
+  --border:           var(--sand);
+  --border-hover:     var(--sand-dark);
+  --text:             var(--ink);
+  --text-secondary:   var(--walnut);
+  --text-muted:       #A89880;
+  --heading:          var(--espresso);
+
+  /* ── Typography ── */
+  --font-display:  'Fraunces', 'Georgia', serif;
+  --font-body:     'Outfit', 'Segoe UI', system-ui, sans-serif;
+  --font-mono:     'IBM Plex Mono', 'Consolas', monospace;
+
+  --text-xs:   clamp(0.7rem, 0.65rem + 0.25vw, 0.8rem);
+  --text-sm:   clamp(0.8rem, 0.75rem + 0.25vw, 0.875rem);
+  --text-base: clamp(0.938rem, 0.88rem + 0.3vw, 1.05rem);
+  --text-lg:   clamp(1.05rem, 0.95rem + 0.5vw, 1.2rem);
+  --text-xl:   clamp(1.2rem, 1.05rem + 0.75vw, 1.5rem);
+  --text-2xl:  clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
+  --text-3xl:  clamp(1.8rem, 1.5rem + 1.5vw, 2.5rem);
+  --text-4xl:  clamp(2.2rem, 1.8rem + 2vw, 3.2rem);
+  --text-5xl:  clamp(2.8rem, 2.2rem + 3vw, 4.2rem);
+
+  --weight-normal:   400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-black:    900;
+
+  --leading-tight:   1.15;
+  --leading-snug:    1.35;
+  --leading-normal:  1.65;
+  --leading-relaxed: 1.8;
+
+  /* ── Spacing Scale ── */
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-5:  1.25rem;
+  --sp-6:  1.5rem;
+  --sp-8:  2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+  --sp-24: 6rem;
+  --sp-32: 8rem;
+
+  /* ── Borders ── */
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-xs:  0 1px 2px rgba(28, 20, 16, 0.04);
+  --shadow-sm:  0 2px 4px rgba(28, 20, 16, 0.06);
+  --shadow-md:  0 4px 12px rgba(28, 20, 16, 0.08);
+  --shadow-lg:  0 8px 24px rgba(28, 20, 16, 0.1);
+  --shadow-xl:  0 16px 40px rgba(28, 20, 16, 0.12);
+  --shadow-hover: 0 8px 30px rgba(28, 20, 16, 0.14);
+
+  /* ── Transitions ── */
+  --ease:       cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:   cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast:  150ms;
+  --duration-base:  250ms;
+  --duration-slow:  400ms;
+
+  /* ── Z-Index Scale ── */
+  --z-base:      1;
+  --z-dropdown:  10;
+  --z-sticky:    20;
+  --z-overlay:   30;
+  --z-modal:     40;
+  --z-toast:     50;
+
+  /* ── Layout ── */
+  --max-width:   1200px;
+  --nav-height:  72px;
+}
