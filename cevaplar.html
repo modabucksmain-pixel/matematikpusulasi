@@ -37,6 +37,19 @@
         .sol-title { font-weight:var(--weight-bold); color:var(--blue-400); font-size:var(--text-sm); margin-bottom:var(--sp-1); }
         .sol-text { font-size:var(--text-sm); color:var(--text); }
         .sol-text strong { color:var(--heading); }
+        /* Solution grid cells */
+        .sg, .sf {
+            width:36px; height:36px; display:flex; align-items:center; justify-content:center;
+            font-size:var(--text-sm); font-weight:var(--weight-bold); font-family:var(--font-mono);
+            border:.5px solid var(--border);
+        }
+        .sg { background:var(--nebula); color:var(--blue-400); } /* given (ipucu) */
+        .sf { background:var(--surface-elevated); color:var(--heading); } /* solved (çözüm) */
+        .sg:nth-child(3n), .sf:nth-child(3n) { border-right:2px solid var(--blue); }
+        .sg:nth-child(9n), .sf:nth-child(9n) { border-right:.5px solid var(--border); }
+        .sg:nth-child(n+19):nth-child(-n+27), .sf:nth-child(n+19):nth-child(-n+27),
+        .sg:nth-child(n+46):nth-child(-n+54), .sf:nth-child(n+46):nth-child(-n+54) { border-bottom:2px solid var(--blue); }
+        @media(max-width:600px) { .sg, .sf { width:28px; height:28px; font-size:var(--text-xs); } }
     </style>
 </head>
 <body>
@@ -49,7 +62,32 @@
 <section class="page-hero"><div class="container"><span class="section-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Cevap Anahtarı</span><h1>Bulmaca <em>Çözümleri</em></h1><p>Derginin 31-36. sayfalarındaki tüm bulmacaların adım adım çözümleri.</p></div></section>
 
 <section class="section" style="padding-top:0"><div class="container" style="max-width:900px">
-    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Sayfa 32 — Sudoku Çözümleri</span><span class="icon">+</span></button><div class="acc-body"><div class="acc-inner"><div class="sol"><div class="sol-title">Sudoku №1 (Kolay):</div><div class="sol-text">Klasik 9×9 Sudoku — her satır, sütun ve 3×3 kutucukta 1-9. <strong>Eleme yöntemiyle başlayın.</strong></div></div><div class="sol"><div class="sol-title">Sudoku №2 (Orta):</div><div class="sol-text">Daha az ipucu. <strong>İkili eleme tekniği</strong> kullanın.</div></div><div class="sol"><div class="sol-title">Sudoku №3 (Zor):</div><div class="sol-text"><strong>Çapraz kesişim tekniği</strong> gerektirir.</div></div><div class="sol"><div class="sol-title">Sudoku №4 (Uzman):</div><div class="sol-text"><strong>X-Wing ve Swordfish teknikleri</strong> gerekebilir.</div></div></div></div></div>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Sayfa 32 — Sudoku Çözümleri</span><span class="icon">+</span></button><div class="acc-body"><div class="acc-inner">
+        <div class="sol"><div class="sol-title">Sudoku №1 (Kolay) — Tamamlanmış Çözüm:</div>
+        <div style="display:flex;justify-content:center;margin:var(--sp-4) 0"><div style="display:grid;grid-template-columns:repeat(9,1fr);border:2px solid var(--blue);border-radius:var(--radius-sm);overflow:hidden;width:fit-content" aria-label="Sudoku 1 Çözüm">
+            <span class="sg">4</span><span class="sf">3</span><span class="sg">5</span><span class="sf">1</span><span class="sg">2</span><span class="sf">7</span><span class="sg">6</span><span class="sf">8</span><span class="sf">9</span>
+            <span class="sg">9</span><span class="sf">6</span><span class="sf">8</span><span class="sg">3</span><span class="sf">4</span><span class="sg">5</span><span class="sf">2</span><span class="sf">7</span><span class="sg">1</span>
+            <span class="sf">2</span><span class="sf">7</span><span class="sg">1</span><span class="sg">8</span><span class="sf">9</span><span class="sg">6</span><span class="sg">4</span><span class="sf">3</span><span class="sf">5</span>
+            <span class="sf">1</span><span class="sf">2</span><span class="sg">3</span><span class="sg">4</span><span class="sf">5</span><span class="sg">8</span><span class="sf">7</span><span class="sg">9</span><span class="sg">6</span>
+            <span class="sf">5</span><span class="sg">4</span><span class="sf">6</span><span class="sf">2</span><span class="sf">7</span><span class="sf">9</span><span class="sg">3</span><span class="sg">1</span><span class="sf">8</span>
+            <span class="sf">7</span><span class="sg">8</span><span class="sg">9</span><span class="sf">6</span><span class="sg">1</span><span class="sf">3</span><span class="sg">5</span><span class="sf">2</span><span class="sf">4</span>
+            <span class="sf">3</span><span class="sg">1</span><span class="sg">2</span><span class="sf">5</span><span class="sg">8</span><span class="sf">4</span><span class="sg">9</span><span class="sf">6</span><span class="sg">7</span>
+            <span class="sg">6</span><span class="sf">5</span><span class="sf">7</span><span class="sg">9</span><span class="sf">3</span><span class="sg">1</span><span class="sf">8</span><span class="sg">4</span><span class="sf">2</span>
+            <span class="sf">8</span><span class="sg">9</span><span class="sf">4</span><span class="sg">7</span><span class="sf">6</span><span class="sg">2</span><span class="sg">1</span><span class="sf">5</span><span class="sf">3</span>
+        </div></div></div>
+        <div class="sol"><div class="sol-title">Sudoku №2 (Orta) — Tamamlanmış Çözüm:</div>
+        <div style="display:flex;justify-content:center;margin:var(--sp-4) 0"><div style="display:grid;grid-template-columns:repeat(9,1fr);border:2px solid var(--blue);border-radius:var(--radius-sm);overflow:hidden;width:fit-content" aria-label="Sudoku 2 Çözüm">
+            <span class="sg">2</span><span class="sf">1</span><span class="sf">4</span><span class="sf">6</span><span class="sg">8</span><span class="sf">9</span><span class="sg">3</span><span class="sf">5</span><span class="sf">7</span>
+            <span class="sf">5</span><span class="sg">6</span><span class="sf">9</span><span class="sf">2</span><span class="sg">7</span><span class="sf">3</span><span class="sf">1</span><span class="sg">8</span><span class="sg">4</span>
+            <span class="sf">7</span><span class="sg">3</span><span class="sf">8</span><span class="sg">5</span><span class="sf">1</span><span class="sf">4</span><span class="sg">2</span><span class="sf">6</span><span class="sg">9</span>
+            <span class="sf">1</span><span class="sf">2</span><span class="sg">3</span><span class="sf">4</span><span class="sg">5</span><span class="sf">6</span><span class="sg">7</span><span class="sf">9</span><span class="sf">8</span>
+            <span class="sf">4</span><span class="sf">5</span><span class="sf">7</span><span class="sf">1</span><span class="sf">9</span><span class="sf">8</span><span class="sf">6</span><span class="sf">2</span><span class="sf">3</span>
+            <span class="sf">8</span><span class="sg">9</span><span class="sf">6</span><span class="sg">3</span><span class="sg">2</span><span class="sf">7</span><span class="sg">4</span><span class="sf">1</span><span class="sf">5</span>
+            <span class="sf">3</span><span class="sg">4</span><span class="sf">1</span><span class="sg">8</span><span class="sf">6</span><span class="sf">5</span><span class="sg">9</span><span class="sf">7</span><span class="sf">2</span>
+            <span class="sf">6</span><span class="sg">7</span><span class="sg">5</span><span class="sg">9</span><span class="sf">3</span><span class="sf">2</span><span class="sg">8</span><span class="sf">4</span><span class="sf">1</span>
+            <span class="sf">9</span><span class="sf">8</span><span class="sg">2</span><span class="sf">7</span><span class="sf">4</span><span class="sf">1</span><span class="sg">5</span><span class="sf">3</span><span class="sf">6</span>
+        </div></div></div>
+    </div></div></div>
 
     <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Sayfa 33 — Mantık Bulmacaları</span><span class="icon">+</span></button><div class="acc-body"><div class="acc-inner"><div class="sol"><div class="sol-title">① Yalancılar Adası:</div><div class="sol-text">"Diğer kabileden biri olsanız, doğru yol hangisi derdiniz?" — sonra <strong>TAM TERSİNE</strong> gidin.</div></div><div class="sol"><div class="sol-title">② Pasta Problemi:</div><div class="sol-text"><strong>7 parça.</strong> 3 düz kesim, birbirini keserek en fazla 7 bölge oluşturur.</div></div><div class="sol"><div class="sol-title">③ 9 Top Problemi:</div><div class="sol-text">3'erli gruplara ayır → ilk tartıda ağır grubu bul → <strong>eşitse 3. top ağır!</strong></div></div><div class="sol"><div class="sol-title">④ Monty Hall:</div><div class="sol-text"><strong>Evet, kapı değiştirmeli!</strong> Kazanma olasılığı 2/3 vs 1/3.</div></div><div class="sol"><div class="sol-title">⑤ Sıradaki Sayı:</div><div class="sol-text"><strong>312211.</strong> "Oku ve söyle" dizisi.</div></div><div class="sol"><div class="sol-title">⑥ Einstein'ın Bulmacası:</div><div class="sol-text"><strong>Alman balığı besler.</strong></div></div></div></div></div>
 
