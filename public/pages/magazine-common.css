@@ -107,7 +107,7 @@ body {
 
 .img-frame img {
     width: 100%;
-    height: 180px;
+    height: 200px;
     display: block;
     object-fit: cover;
     border-radius: 6px;
@@ -167,14 +167,24 @@ body {
     z-index: 2;
 }
 
+/* --- Hero (full-width feature images) --- */
+.img-frame.hero img {
+    height: 280px;
+}
+
 /* --- Tall Landscape (for bigger hero images) --- */
 .img-frame.tall img {
-    height: 200px;
+    height: 240px;
 }
 
 /* --- Short Landscape (for compact headers) --- */
 .img-frame.short img {
-    height: 140px;
+    height: 160px;
+}
+
+/* --- Compact (minimal height for dense pages) --- */
+.img-frame.compact img {
+    height: 120px;
 }
 
 /* --- Portrait Frame (for mathematician bios) --- */
