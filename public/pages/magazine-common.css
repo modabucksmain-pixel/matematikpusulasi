@@ -302,6 +302,66 @@ body {
     border-color: #1565C0;
 }
 
+/* --- Float/Wrap Utilities --- */
+.img-wrap-right {
+    float: right;
+    margin: 4px 0 12px 18px;
+    max-width: 45%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    border: 1px solid rgba(201,168,76,0.2);
+}
+
+.img-wrap-right img,
+.img-wrap-left img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.img-wrap-left {
+    float: left;
+    margin: 4px 18px 12px 0;
+    max-width: 45%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    border: 1px solid rgba(201,168,76,0.2);
+}
+
+/* --- Inset Frame (narrower, centered, pull-quote style) --- */
+.img-frame.inset {
+    max-width: 70%;
+    margin: 10px auto;
+}
+
+.img-frame.inset img {
+    height: 200px;
+}
+
+/* --- Background Hero Watermark --- */
+.img-bg-hero {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 180px;
+    z-index: 0;
+    opacity: 0.15;
+    object-fit: cover;
+    width: 100%;
+    pointer-events: none;
+}
+
+/* --- Landscape Natural (preserves AR) --- */
+.img-frame.landscape-natural img {
+    height: auto;
+    max-height: 200px;
+}
+
 /* --- Print --- */
 @media print {
     @page {

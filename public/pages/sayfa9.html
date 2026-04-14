@@ -210,29 +210,25 @@
 </head>
 
 <body>
-    <div class="page">
+    <div class="page" style="position:relative; overflow:hidden;">
         <div class="top-accent"></div>
         <div class="section-label">Matematik Tarihi</div>
 
         <h1>EULER'İN KÖPRÜLERİ & GRAF TEORİSİ</h1>
-        <div class="page-subtitle">Bir Yürüyüş Problemi Nasıl Yeni Bir Matematik Dalı Yarattı?</div>
-        <div class="title-rule"></div>
-
-        <div class="img-frame hero">
-            <img src="/img/euler_bridges.png" alt="Euler Köprüleri — Graf Teorisinin Doğuşu">
-            <div class="img-caption">
-                <span class="caption-text">Königsberg'in 7 köprüsü — Graf teorisinin başlangıcı, 1736</span>
-                <span class="caption-credit">◆ İllüstrasyon</span>
-            </div>
+        <div style="position:absolute; top:30px; left:0; width:100%; height:350px; opacity:0.10; z-index:0; pointer-events:none;">
+            <img src="/img/konigsberg_map.png" alt="" style="width:100%; height:100%; object-fit:cover;" aria-hidden="true">
         </div>
+        <div class="page-subtitle" style="position:relative; z-index:1;">Bir Yürüyüş Problemi Nasıl Yeni Bir Matematik Dalı Yarattı?</div>
+        <div class="title-rule" style="position:relative; z-index:1;"></div>
+
         <div class="columns">
             <div class="col">
 <p>1736, Königsberg (bugünkü Kaliningrad). Pregel Nehri üzerinde 7 köprü, 4 kara parçasını birbirine
                     bağlar. Halk bir soru sorar: <strong>"Her köprüyü tam bir kez geçerek başa dönebilir
                         miyiz?"</strong></p>
 
-                <div class="img-frame short">
-                    <img src="/img/euler_bridges_graph.png" alt="Euler Graf Teorisi — Königsberg Köprüleri ve Düğüm-Kenar Diyagramı">
+                <div style="float:right; margin:4px 0 10px 14px; width:55%; border-radius:2px; overflow:hidden; box-shadow: 0 0 18px rgba(21,101,192,0.3); border:2px solid #1565C0;">
+                    <img src="/img/euler_bridges_graph.png" alt="Euler Graf Teorisi — Königsberg Köprüleri ve Düğüm-Kenar Diyagramı" style="width:100%; height:auto; max-height:180px; object-fit:cover; display:block;">
                 </div>
 
                 <p>Leonhard Euler, sorunu haritalarla değil, soyut bir yapıyla çözdü. Kara parçalarını
@@ -253,6 +249,10 @@
                 <div class="info-card" style="margin-bottom:5px;">
                     <h3>🔵 Euler Yolu Kuralı</h3>
                     <p>Tek dereceli düğüm sayısı <strong>0 veya 2</strong> ise «Euler yolu» vardır. Königsberg'de 4 düğümün hepsi tek dereceli → <strong>imkânsız!</strong></p>
+                </div>
+
+                <div style="width:100%; height:65px; overflow:hidden; border-radius:3px; margin:6px 0; border:1px solid #a89060; box-shadow: 0 2px 8px rgba(0,0,0,0.12);">
+                    <img src="/img/konigsberg_map.png" alt="Königsberg Haritası — 7 Köprü" style="width:100%; height:100%; object-fit:cover; filter:sepia(0.2);">
                 </div>
 
                 <div class="app-box">
