@@ -7,111 +7,69 @@
     <meta name="description" content="Matematik Pusulası dergisinde kullanılan kaynakça ve referanslar.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fira+Code:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="design-tokens.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="footer.css">
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        :root{
-            --bg:#050a18;--surface:#0c1225;--card:#111a32;--border:rgba(99,140,255,.12);
-            --accent:#6c8cff;--accent2:#a78bfa;--gold:#f0c040;
-            --text:#c8d6f0;--text2:#7b8db5;--white:#eef2ff;
-            --glow:0 0 30px rgba(108,140,255,.15);--radius:16px;
+        .search-wrap { text-align:center; margin-bottom:var(--sp-10); }
+        .search-input {
+            width:100%; max-width:480px; background:var(--surface-elevated); border:1px solid var(--border);
+            border-radius:var(--radius-full); padding:var(--sp-3) var(--sp-6);
+            color:var(--heading); font-size:var(--text-base); outline:none;
+            transition:border-color var(--duration-base) var(--ease), box-shadow var(--duration-base) var(--ease);
+            font-family:var(--font-body);
         }
-        html{scroll-behavior:smooth}
-        body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+        .search-input::placeholder { color:var(--text-muted); }
+        .search-input:focus { border-color:var(--blue-400); box-shadow:0 0 0 3px var(--blue-100), var(--blue-glow); }
 
-        .ambient{position:fixed;inset:0;pointer-events:none;z-index:0}
-        .ambient .orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.25;animation:drift 20s ease-in-out infinite alternate}
-        .orb.o1{width:500px;height:500px;background:#6c8cff;top:-10%;left:-5%}
-        .orb.o2{width:400px;height:400px;background:#a78bfa;bottom:0;right:-5%;animation-delay:-7s}
-        @keyframes drift{0%{transform:translate(0,0)}50%{transform:translate(30px,-40px)}100%{transform:translate(-20px,30px)}}
+        .src-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:var(--sp-6); }
+        @media(max-width:500px) { .src-grid{grid-template-columns:1fr} }
 
-        .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,10,24,.7);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-        .nav-brand{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:900;color:var(--white);text-decoration:none}
-        .nav-links{display:flex;gap:.25rem}
-        .nav-links a{color:var(--text2);text-decoration:none;font-size:.875rem;font-weight:600;padding:.5rem 1rem;border-radius:10px;transition:all .2s}
-        .nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(108,140,255,.1)}
-        .nav-cta{background:linear-gradient(135deg,var(--accent),var(--accent2))!important;color:#fff!important;font-weight:700!important}
-
-        .page{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:100px 1.5rem 4rem}
-
-        .hero{text-align:center;margin-bottom:2.5rem}
-        .hero-badge{display:inline-block;padding:.35rem 1rem;border-radius:99px;font-size:.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);border:1px solid var(--border);background:rgba(108,140,255,.06);margin-bottom:1rem}
-        .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,3.5rem);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:.75rem}
-        .hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-        .hero p{max-width:36rem;margin:0 auto;color:var(--text2);font-size:1rem}
-
-        /* Search */
-        .search-wrap{text-align:center;margin-bottom:2.5rem}
-        .search-input{width:100%;max-width:480px;background:var(--surface);border:1px solid var(--border);border-radius:99px;padding:.75rem 1.5rem;color:var(--white);font-size:.95rem;outline:none;transition:border-color .2s;font-family:inherit}
-        .search-input::placeholder{color:var(--text2)}
-        .search-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(108,140,255,.1)}
-
-        /* Source Grid */
-        .src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:1.25rem}
-        @media(max-width:500px){.src-grid{grid-template-columns:1fr}}
-
-        .src-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:all .25s;position:relative;overflow:hidden}
-        .src-card:hover{transform:translateY(-3px);box-shadow:var(--glow)}
-        .src-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .2s}
-        .src-card:hover::before{opacity:1}
-
-        .src-head{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
-        .src-icon{font-size:1.5rem}
-        .src-title{font-size:1.1rem;font-weight:700;color:var(--white)}
-
-        .src-list{list-style:none;display:flex;flex-direction:column;gap:.6rem}
-        .src-list li{font-size:.875rem;color:var(--text);padding-left:1rem;position:relative}
-        .src-list li::before{content:'◆';position:absolute;left:0;color:var(--accent);font-size:.5rem;top:.35rem}
-        .src-list .author{font-weight:600;color:var(--gold)}
-        .src-list em{color:var(--text2);font-style:italic}
-
-        .site-footer{text-align:center;padding:2rem;color:var(--text2);font-size:.85rem;border-top:1px solid var(--border);margin-top:3rem}
-    
-        .mobile-menu{display:none;background:none;border:none;color:var(--white,#eef2ff);cursor:pointer;padding:.5rem}
-        @media(max-width:768px){
-            .mobile-menu{display:block}
-            .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:rgba(5,10,24,.95);backdrop-filter:blur(20px);flex-direction:column;padding:1rem;border-bottom:1px solid rgba(100,140,255,.1)}
-            .nav-links.open{display:flex}
+        .src-card {
+            background:var(--surface-elevated); border:1px solid var(--border);
+            border-radius:var(--radius-lg); padding:var(--sp-6);
+            transition:all var(--duration-base) var(--ease); position:relative; overflow:hidden;
         }
-        @media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
-        *:focus-visible{outline:2px solid #6c8cff;outline-offset:2px}
+        .src-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); border-color:var(--border-hover); }
+        .src-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--gradient-primary); opacity:0; transition:opacity .2s; }
+        .src-card:hover::before { opacity:1; }
+
+        .src-head { display:flex; align-items:center; gap:var(--sp-3); margin-bottom:var(--sp-4); }
+        .src-icon {
+            width:36px; height:36px; display:flex; align-items:center; justify-content:center;
+            border-radius:var(--radius-sm); flex-shrink:0;
+        }
+        .src-icon svg { width:20px; height:20px; }
+        .src-title { font-family:var(--font-display); font-size:var(--text-lg); font-weight:var(--weight-bold); color:var(--heading); }
+
+        .src-list { list-style:none; display:flex; flex-direction:column; gap:var(--sp-3); }
+        .src-list li { font-size:var(--text-sm); color:var(--text); padding-left:var(--sp-4); position:relative; line-height:var(--leading-relaxed); }
+        .src-list li::before { content:''; position:absolute; left:0; top:0.55rem; width:6px; height:6px; border-radius:50%; background:var(--blue-400); }
+        .src-list .author { font-weight:var(--weight-semibold); color:var(--amber); }
+        .src-list em { color:var(--text-secondary); font-style:italic; }
     </style>
 </head>
 <body>
-<div class="ambient"><div class="orb o1"></div><div class="orb o2"></div></div>
+<div class="ambient"><div class="ambient__orb ambient__orb--blue"></div><div class="ambient__orb ambient__orb--violet"></div></div>
+<div class="grid-bg"></div>
+<a href="#main" class="skip-link">Ana içeriğe geç</a>
+<nav class="nav" id="nav" role="navigation" aria-label="Ana navigasyon"><div class="nav__inner"><a href="/" class="nav__brand"><div class="nav__logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="12" x2="18" y2="6"/></svg></div><span class="nav__wordmark">Matematik Pusulası</span></a><button class="nav__toggle" id="navToggle" aria-label="Menüyü aç/kapat" aria-expanded="false"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button><div class="nav__links" id="navLinks"><a href="/" class="nav__link">Ana Sayfa</a><a href="bulmacalar.html" class="nav__link">Bulmacalar</a><a href="sorular.html" class="nav__link">Sorular</a><a href="cevaplar.html" class="nav__link">Çözümler</a><a href="kaynakca.html" class="nav__link nav__link--active">Kaynakça</a><a href="hakkinda.html" class="nav__link">Hakkında</a><a href="magazine.html" class="nav__link nav__cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Dergiyi Oku</a></div></div></nav>
 
-<nav class="nav">
-    <a href="/" class="nav-brand">📐 Matematik Pusulası</a>
-    <button class="mobile-menu" id="menuBtn" aria-label="Menü">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-    <div class="nav-links">
-        <a href="/">Ana Sayfa</a>
-        <a href="bulmacalar.html">Bulmacalar</a>
-        <a href="sorular.html">Sorular</a>
-        <a href="cevaplar.html">Çözümler</a>
-        <a href="kaynakca.html" class="active">Kaynakça</a>
-        <a href="hakkinda.html">Hakkında</a>
-        <a href="magazine.html" class="nav-cta">📖 Dergi</a>
-    </div>
-</nav>
+<main id="main">
+<section class="page-hero"><div class="container"><span class="section-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Referanslar</span><h1>Dergi <em>Kaynakçası</em></h1><p>Dergimizde yer alan araştırma yazılarının tam referans ve kaynak listesi.</p></div></section>
 
-<main class="page">
-    <section class="hero">
-        <div class="hero-badge">📚 Referanslar</div>
-        <h1>Dergi <em>Kaynakçası</em></h1>
-        <p>Dergimizde yer alan araştırma yazılarının tam referans ve kaynak listesi.</p>
-    </section>
-
+<section class="section" style="padding-top:0"><div class="container">
     <div class="search-wrap">
-        <input type="text" class="search-input" id="searchBox" placeholder="Kaynak veya yazar ara..." oninput="filterSources()">
+        <input type="text" class="search-input" id="searchBox" placeholder="Kaynak veya yazar ara..." oninput="filterSources()" aria-label="Kaynak ara">
     </div>
 
     <div class="src-grid" id="srcGrid">
         <div class="src-card">
-            <div class="src-head"><span class="src-icon">🏛️</span><span class="src-title">Matematik Tarihi (s.4-9)</span></div>
+            <div class="src-head"><div class="src-icon" style="background:var(--blue-50);color:var(--blue-400);border:1px solid var(--blue-100)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><span class="src-title">Matematik Tarihi (s.4-9)</span></div>
             <ul class="src-list">
-                <li><span class="author">Boyer, C.B. & Merzbach, U.C.</span> <em>— A History of Mathematics</em>, Wiley, 2011</li>
+                <li><span class="author">Boyer, C.B. &amp; Merzbach, U.C.</span> <em>— A History of Mathematics</em>, Wiley, 2011</li>
                 <li><span class="author">Katz, V.J.</span> <em>— A History of Mathematics: An Introduction</em>, Pearson, 2008</li>
                 <li><span class="author">TÜBİTAK</span> <em>— Bilim ve Teknik Dergisi Arşivi</em></li>
                 <li><span class="author">MacTutor</span> <em>— History of Mathematics Archive</em></li>
@@ -119,7 +77,7 @@
         </div>
 
         <div class="src-card">
-            <div class="src-head"><span class="src-icon">🧠</span><span class="src-title">Matematikçiler (s.10-16)</span></div>
+            <div class="src-head"><div class="src-icon" style="background:var(--violet-50);color:var(--violet-400);border:1px solid var(--violet-100)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"/><line x1="9" y1="21" x2="15" y2="21"/></svg></div><span class="src-title">Matematikçiler (s.10-16)</span></div>
             <ul class="src-list">
                 <li><span class="author">Kanigel, R.</span> <em>— The Man Who Knew Infinity (Ramanujan)</em>, 1991</li>
                 <li><span class="author">Hodges, A.</span> <em>— Alan Turing: The Enigma</em>, 2014</li>
@@ -132,7 +90,7 @@
         </div>
 
         <div class="src-card">
-            <div class="src-head"><span class="src-icon">🌀</span><span class="src-title">Doğa & Matematik (s.17-20)</span></div>
+            <div class="src-head"><div class="src-icon" style="background:var(--green-50);color:var(--green-400);border:1px solid var(--green-100)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1.5 2 2.1 4.9A7 7 0 0 1 11 20z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div><span class="src-title">Doğa &amp; Matematik (s.17-20)</span></div>
             <ul class="src-list">
                 <li><span class="author">Livio, M.</span> <em>— The Golden Ratio</em>, Broadway Books, 2003</li>
                 <li><span class="author">Stewart, I.</span> <em>— Nature's Numbers</em>, Basic Books, 2008</li>
@@ -142,17 +100,17 @@
         </div>
 
         <div class="src-card">
-            <div class="src-head"><span class="src-icon">🔮</span><span class="src-title">Teknoloji & Yapay Zeka (s.21-24)</span></div>
+            <div class="src-head"><div class="src-icon" style="background:var(--violet-50);color:var(--violet-400);border:1px solid var(--violet-100)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/></svg></div><span class="src-title">Teknoloji &amp; Yapay Zeka (s.21-24)</span></div>
             <ul class="src-list">
                 <li><span class="author">Singh, S.</span> <em>— The Code Book</em>, Anchor, 2000</li>
-                <li><span class="author">Russell, S. & Norvig, P.</span> <em>— Artificial Intelligence: A Modern Approach</em></li>
+                <li><span class="author">Russell, S. &amp; Norvig, P.</span> <em>— Artificial Intelligence: A Modern Approach</em></li>
                 <li><span class="author">Von Neumann, J.</span> <em>— Theory of Games and Economic Behavior</em></li>
                 <li><span class="author">OpenAI</span> <em>— Research Publications</em></li>
             </ul>
         </div>
 
         <div class="src-card">
-            <div class="src-head"><span class="src-icon">🌍</span><span class="src-title">Günlük Hayat & Kariyer (s.25-30)</span></div>
+            <div class="src-head"><div class="src-icon" style="background:var(--amber-50);color:var(--amber);border:1px solid var(--amber-100)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><span class="src-title">Günlük Hayat &amp; Kariyer (s.25-30)</span></div>
             <ul class="src-list">
                 <li><span class="author">Devlin, K.</span> <em>— The Math Gene</em>, Basic Books, 2001</li>
                 <li><span class="author">Nahin, P.J.</span> <em>— When Least Is Best</em>, Princeton, 2007</li>
@@ -163,7 +121,7 @@
         </div>
 
         <div class="src-card">
-            <div class="src-head"><span class="src-icon">🧩</span><span class="src-title">Bulmacalar (s.32-36)</span></div>
+            <div class="src-head"><div class="src-icon" style="background:var(--blue-50);color:var(--blue-400);border:1px solid var(--blue-100)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.5 12H22"/><path d="M2 12h1.5"/><path d="M12 2v1.5"/><path d="M12 20.5V22"/><circle cx="12" cy="12" r="4"/></svg></div><span class="src-title">Bulmacalar (s.32-36)</span></div>
             <ul class="src-list">
                 <li><span class="author">Rosenhouse, J.</span> <em>— The Monty Hall Problem</em>, Oxford, 2009</li>
                 <li><span class="author">Tanton, J.</span> <em>— Solve This: Math Activities</em>, MAA, 2001</li>
@@ -173,9 +131,10 @@
             </ul>
         </div>
     </div>
+</div></section>
 </main>
 
-<footer class="site-footer">📐 Matematik Pusulası — 9. Sınıf Özel Sayısı · Mart 2026</footer>
+<footer class="footer"><div class="footer__inner"><div class="footer__bottom"><p class="footer__copy">© 2026 Matematik Pusulası</p><p class="footer__school">Trabzon MTAL · Mart 2026</p></div></div></footer>
 
 <script>
 function filterSources(){
@@ -184,27 +143,9 @@ function filterSources(){
         card.style.display=card.textContent.toLowerCase().includes(term)?'block':'none';
     });
 }
-</script>
 
-<script>
-// Mobile menu toggle
-const menuBtn = document.getElementById('menuBtn');
-const navLinks = document.querySelector('.nav-links');
-if (menuBtn && navLinks) {
-    menuBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('open');
-        const isOpen = navLinks.classList.contains('open');
-        menuBtn.innerHTML = isOpen
-            ? '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
-            : '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
-    });
-    navLinks.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-            navLinks.classList.remove('open');
-            menuBtn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
-        });
-    });
-}
+const nav=document.getElementById('nav');window.addEventListener('scroll',()=>{nav.classList.toggle('nav--scrolled',window.scrollY>60);},{passive:true});
+const navToggle=document.getElementById('navToggle'),navLinks=document.getElementById('navLinks');navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('nav__links--open');navToggle.setAttribute('aria-expanded',o?'true':'false');});navLinks.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{navLinks.classList.remove('nav__links--open');navToggle.setAttribute('aria-expanded','false');});});
 </script>
 </body>
 </html>

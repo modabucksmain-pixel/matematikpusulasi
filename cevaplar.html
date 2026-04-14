@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Çözümler & Cevap Anahtarı — Matematik Pusulası</title>
+    <title>Çözümler &amp; Cevap Anahtarı — Matematik Pusulası</title>
     <meta name="description" content="Matematik Pusulası dergisindeki tüm bulmacaların adım adım çözümleri ve cevap anahtarı.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fira+Code:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="design-tokens.css">
     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="footer.css">
     <style>
         .acc { background:var(--surface-elevated); border:1px solid var(--border); border-radius:var(--radius-lg); margin-bottom:var(--sp-4); overflow:hidden; transition:box-shadow var(--duration-base) var(--ease); }
-        .acc:hover { box-shadow:var(--shadow-md); }
+        .acc:hover { box-shadow:var(--shadow-md); border-color:var(--border-hover); }
         .acc-btn {
             width:100%; text-align:left; padding:var(--sp-5) var(--sp-6);
             background:transparent; color:var(--heading);
@@ -22,23 +22,26 @@
             cursor:pointer; display:flex; justify-content:space-between; align-items:center;
             border:none; transition:background var(--duration-fast) var(--ease);
         }
-        .acc-btn:hover { background:var(--ivory); }
+        .acc-btn:hover { background:var(--blue-50); }
         .acc-btn .icon {
             width:28px; height:28px; border-radius:var(--radius-sm);
-            background:var(--terracotta-50); color:var(--terracotta);
+            background:var(--blue-50); color:var(--blue-400);
             display:flex; align-items:center; justify-content:center;
             font-size:var(--text-lg); transition:all .3s var(--ease); flex-shrink:0;
+            border:1px solid var(--blue-100);
         }
-        .acc-btn.open .icon { transform:rotate(45deg); background:var(--terracotta); color:#fff; }
+        .acc-btn.open .icon { transform:rotate(45deg); background:var(--gradient-primary); color:#fff; border-color:var(--blue); }
         .acc-body { max-height:0; overflow:hidden; transition:max-height .35s ease-out; }
         .acc-inner { padding:0 var(--sp-6) var(--sp-6); border-top:1px solid var(--border); }
-        .sol { margin-top:var(--sp-4); padding-left:var(--sp-4); border-left:2px solid var(--indigo-200); margin-bottom:var(--sp-4); }
-        .sol-title { font-weight:var(--weight-bold); color:var(--terracotta); font-size:var(--text-sm); margin-bottom:var(--sp-1); }
+        .sol { margin-top:var(--sp-4); padding-left:var(--sp-4); border-left:2px solid var(--violet-400); margin-bottom:var(--sp-4); }
+        .sol-title { font-weight:var(--weight-bold); color:var(--blue-400); font-size:var(--text-sm); margin-bottom:var(--sp-1); }
         .sol-text { font-size:var(--text-sm); color:var(--text); }
         .sol-text strong { color:var(--heading); }
     </style>
 </head>
 <body>
+<div class="ambient"><div class="ambient__orb ambient__orb--blue"></div><div class="ambient__orb ambient__orb--violet"></div></div>
+<div class="grid-bg"></div>
 <a href="#main" class="skip-link">Ana içeriğe geç</a>
 <nav class="nav" id="nav" role="navigation" aria-label="Ana navigasyon"><div class="nav__inner"><a href="/" class="nav__brand"><div class="nav__logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="12" x2="18" y2="6"/></svg></div><span class="nav__wordmark">Matematik Pusulası</span></a><button class="nav__toggle" id="navToggle" aria-label="Menüyü aç/kapat" aria-expanded="false"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button><div class="nav__links" id="navLinks"><a href="/" class="nav__link">Ana Sayfa</a><a href="bulmacalar.html" class="nav__link">Bulmacalar</a><a href="sorular.html" class="nav__link">Sorular</a><a href="cevaplar.html" class="nav__link nav__link--active">Çözümler</a><a href="kaynakca.html" class="nav__link">Kaynakça</a><a href="hakkinda.html" class="nav__link">Hakkında</a><a href="magazine.html" class="nav__link nav__cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Dergiyi Oku</a></div></div></nav>
 
@@ -50,9 +53,9 @@
 
     <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Sayfa 33 — Mantık Bulmacaları</span><span class="icon">+</span></button><div class="acc-body"><div class="acc-inner"><div class="sol"><div class="sol-title">① Yalancılar Adası:</div><div class="sol-text">"Diğer kabileden biri olsanız, doğru yol hangisi derdiniz?" — sonra <strong>TAM TERSİNE</strong> gidin.</div></div><div class="sol"><div class="sol-title">② Pasta Problemi:</div><div class="sol-text"><strong>7 parça.</strong> 3 düz kesim, birbirini keserek en fazla 7 bölge oluşturur.</div></div><div class="sol"><div class="sol-title">③ 9 Top Problemi:</div><div class="sol-text">3'erli gruplara ayır → ilk tartıda ağır grubu bul → <strong>eşitse 3. top ağır!</strong></div></div><div class="sol"><div class="sol-title">④ Monty Hall:</div><div class="sol-text"><strong>Evet, kapı değiştirmeli!</strong> Kazanma olasılığı 2/3 vs 1/3.</div></div><div class="sol"><div class="sol-title">⑤ Sıradaki Sayı:</div><div class="sol-text"><strong>312211.</strong> "Oku ve söyle" dizisi.</div></div><div class="sol"><div class="sol-title">⑥ Einstein'ın Bulmacası:</div><div class="sol-text"><strong>Alman balığı besler.</strong></div></div></div></div></div>
 
-    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Sayfa 34 — Sayı Piramidi & Sihirli Kareler</span><span class="icon">+</span></button><div class="acc-body"><div class="acc-inner"><div class="sol"><div class="sol-title">Piramit №1:</div><div class="sol-text">Alt sıra: 3, 5, 4, 2 → Üst: 8, 9, 6 → 17, 15 → <strong>32</strong></div></div><div class="sol"><div class="sol-title">Piramit №2:</div><div class="sol-text">Tepeden: 120 → 55, 65 → 20, 35, 25 → 8, 12, 15, 10</div></div><div class="sol"><div class="sol-title">Piramit №3:</div><div class="sol-text">Alt sıra: 1, 7, 6, 3 → 8, 13, 9 → 21, 22 → <strong>43</strong></div></div><div class="sol"><div class="sol-title">Sihirli Kare №1:</div><div class="sol-text">2-7-6 / 9-5-1 / 4-3-8 (Toplam: <strong>15</strong>)</div></div><div class="sol"><div class="sol-title">Sihirli Kare №2:</div><div class="sol-text">8-1-6 / 3-5-7 / 4-9-2 (Toplam: <strong>15</strong>)</div></div><div class="sol"><div class="sol-title">Sayı Dizileri:</div><div class="sol-text">162 (×3) · 36 (kareler) · 13 (Fibonacci) · 13 (asal sayılar) · 13 (Tribonacci)</div></div></div></div></div>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Sayfa 34 — Sayı Piramidi &amp; Sihirli Kareler</span><span class="icon">+</span></button><div class="acc-body"><div class="acc-inner"><div class="sol"><div class="sol-title">Piramit №1:</div><div class="sol-text">Alt sıra: 3, 5, 4, 2 → Üst: 8, 9, 6 → 17, 15 → <strong>32</strong></div></div><div class="sol"><div class="sol-title">Piramit №2:</div><div class="sol-text">Tepeden: 120 → 55, 65 → 20, 35, 25 → 8, 12, 15, 10</div></div><div class="sol"><div class="sol-title">Piramit №3:</div><div class="sol-text">Alt sıra: 1, 7, 6, 3 → 8, 13, 9 → 21, 22 → <strong>43</strong></div></div><div class="sol"><div class="sol-title">Sihirli Kare №1:</div><div class="sol-text">2-7-6 / 9-5-1 / 4-3-8 (Toplam: <strong>15</strong>)</div></div><div class="sol"><div class="sol-title">Sihirli Kare №2:</div><div class="sol-text">8-1-6 / 3-5-7 / 4-9-2 (Toplam: <strong>15</strong>)</div></div><div class="sol"><div class="sol-title">Sayı Dizileri:</div><div class="sol-text">162 (×3) · 36 (kareler) · 13 (Fibonacci) · 13 (asal sayılar) · 13 (Tribonacci)</div></div></div></div></div>
 
-    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Sayfa 35 — Kakuro & KenKen</span><span class="icon">+</span></button><div class="acc-body"><div class="acc-inner"><div class="sol"><div class="sol-title">Kakuro İpucu:</div><div class="sol-text">Toplam 16 = 9+7 veya 8+7+1. Her grupta rakam tekrar edemez!</div></div><div class="sol"><div class="sol-title">KenKen №1 (4×4):</div><div class="sol-text">Satır ve sütunlarda 1-4 → Grupların işlem sonuçlarını kontrol et.</div></div><div class="sol"><div class="sol-title">KenKen №2 (4×4):</div><div class="sol-text">Bölme ve çıkarma gruplarından başla — olası sayılar daha az!</div></div></div></div></div>
+    <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Sayfa 35 — Kakuro &amp; KenKen</span><span class="icon">+</span></button><div class="acc-body"><div class="acc-inner"><div class="sol"><div class="sol-title">Kakuro İpucu:</div><div class="sol-text">Toplam 16 = 9+7 veya 8+7+1. Her grupta rakam tekrar edemez!</div></div><div class="sol"><div class="sol-title">KenKen №1 (4×4):</div><div class="sol-text">Satır ve sütunlarda 1-4 → Grupların işlem sonuçlarını kontrol et.</div></div><div class="sol"><div class="sol-title">KenKen №2 (4×4):</div><div class="sol-text">Bölme ve çıkarma gruplarından başla — olası sayılar daha az!</div></div></div></div></div>
 
     <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>Sayfa 36 — Karışık Bulmacalar</span><span class="icon">+</span></button><div class="acc-body"><div class="acc-inner"><div class="sol"><div class="sol-title">① Yaş Problemi:</div><div class="sol-text"><strong>10 yaş.</strong> Ayşe = x, Baba = 5x → x = 10</div></div><div class="sol"><div class="sol-title">② Saat Problemi:</div><div class="sol-text"><strong>15:00.</strong> 20×3 dk = 60 dk geri</div></div><div class="sol"><div class="sol-title">③ Havuz Problemi:</div><div class="sol-text"><strong>4 saat.</strong> 1/6 + 1/12 = 1/4</div></div><div class="sol"><div class="sol-title">④ Sayı Bulmaca:</div><div class="sol-text"><strong>5.</strong> 3x + 7 = 5x − 3 → x = 5</div></div><div class="sol"><div class="sol-title">⑤ Geometri:</div><div class="sol-text"><strong>10 cm.</strong> Köşegen = a√2</div></div><div class="sol"><div class="sol-title">⑥ Olasılık:</div><div class="sol-text"><strong>1/6.</strong> 36 sonuçtan 6'sı</div></div><div class="sol"><div class="sol-title">⑦ Kombinatorik:</div><div class="sol-text"><strong>72.</strong> 120 − 48 = 72</div></div><div class="sol"><div class="sol-title">⑧ Kodlama:</div><div class="sol-text">MATEMATİK = <strong>93</strong></div></div><div class="sol"><div class="sol-title">Bonus:</div><div class="sol-text">0-1000 arası "3" rakamı <strong>300 kez</strong></div></div></div></div></div>
 

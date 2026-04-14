@@ -1,58 +1,77 @@
 /* ═══════════════════════════════════════════════════════════════
-   DESIGN TOKENS — Matematik Pusulası (Warm Academic)
+   DESIGN TOKENS — Matematik Pusulası · Cosmic Mathematics
+   Deep space dark theme with electric neon accents
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  /* ── Warm Neutrals ── */
-  --cream:       #FAF7F2;
-  --ivory:       #F3EDE4;
-  --sand:        #E8DFD1;
-  --sand-dark:   #D4C9B8;
-  --walnut:      #8B7355;
-  --espresso:    #3D2B1F;
-  --ink:         #1C1410;
+  /* ── Deep Space Neutrals ── */
+  --void:         #060911;
+  --space:        #0A0E1A;
+  --cosmos:       #111827;
+  --nebula:       #1A2235;
+  --dust:         #243049;
+  --asteroid:     #374866;
+  --comet:        #4B5E80;
+  --starlight:    #8B9DC3;
 
-  /* ── Primary Accent: Terracotta ── */
-  --terracotta-50:  #FDF0ED;
-  --terracotta-100: #FADDD6;
-  --terracotta-200: #F4B4A3;
-  --terracotta-400: #D47A63;
-  --terracotta:     #C4654A;
-  --terracotta-600: #A8503A;
-  --terracotta-800: #6E3125;
+  /* ── Primary Accent: Electric Blue ── */
+  --blue-50:   rgba(96, 165, 250, 0.06);
+  --blue-100:  rgba(96, 165, 250, 0.12);
+  --blue-200:  rgba(96, 165, 250, 0.20);
+  --blue-300:  #7DD3FC;
+  --blue-400:  #60A5FA;
+  --blue:      #3B82F6;
+  --blue-600:  #2563EB;
+  --blue-700:  #1D4ED8;
+  --blue-glow: 0 0 20px rgba(59, 130, 246, 0.25);
 
-  /* ── Secondary Accent: Indigo ── */
-  --indigo-50:  #EDF1F6;
-  --indigo-100: #D4DEE9;
-  --indigo-200: #A8BCD4;
-  --indigo-400: #5A7EA3;
-  --indigo:     #3D5A80;
-  --indigo-600: #2F4662;
-  --indigo-800: #1E2D40;
+  /* ── Secondary Accent: Cosmic Violet ── */
+  --violet-50:   rgba(167, 139, 250, 0.06);
+  --violet-100:  rgba(167, 139, 250, 0.12);
+  --violet-200:  rgba(167, 139, 250, 0.20);
+  --violet-300:  #C4B5FD;
+  --violet-400:  #A78BFA;
+  --violet:      #8B5CF6;
+  --violet-600:  #7C3AED;
+  --violet-glow: 0 0 20px rgba(139, 92, 246, 0.25);
+
+  /* ── Tertiary: Matrix Green ── */
+  --green-50:  rgba(52, 211, 153, 0.06);
+  --green-100: rgba(52, 211, 153, 0.12);
+  --green-400: #34D399;
+  --green:     #10B981;
+  --green-600: #059669;
 
   /* ── Utility Colors ── */
-  --sage:    #6B8F71;
-  --sage-50: #F0F5F0;
-  --amber:   #E5A100;
-  --amber-50:#FFF8E6;
-  --rose:    #C0535E;
-  --rose-50: #FCF0F1;
+  --amber-50:  rgba(251, 191, 36, 0.06);
+  --amber-100: rgba(251, 191, 36, 0.12);
+  --amber:     #FBBF24;
+  --amber-600: #D97706;
+  --rose-50:   rgba(251, 113, 133, 0.06);
+  --rose-100:  rgba(251, 113, 133, 0.12);
+  --rose:      #FB7185;
+  --rose-600:  #E11D48;
+  --cyan:      #22D3EE;
+  --cyan-50:   rgba(34, 211, 238, 0.06);
 
   /* ── Semantic Surfaces ── */
-  --bg:               var(--cream);
-  --surface:          var(--ivory);
-  --surface-elevated: #FFFFFF;
-  --border:           var(--sand);
-  --border-hover:     var(--sand-dark);
-  --text:             var(--ink);
-  --text-secondary:   var(--walnut);
-  --text-muted:       #A89880;
-  --heading:          var(--espresso);
+  --bg:               var(--space);
+  --surface:          var(--cosmos);
+  --surface-elevated: var(--nebula);
+  --surface-hover:    #1F2B42;
+  --border:           rgba(99, 179, 237, 0.10);
+  --border-hover:     rgba(99, 179, 237, 0.22);
+  --border-active:    rgba(96, 165, 250, 0.40);
+  --text:             #C8D6F0;
+  --text-secondary:   var(--starlight);
+  --text-muted:       var(--comet);
+  --heading:          #F1F5F9;
+  --white:            #F8FAFC;
 
   /* ── Typography ── */
-  --font-display:  'Fraunces', 'Georgia', serif;
-  --font-body:     'Outfit', 'Segoe UI', system-ui, sans-serif;
-  --font-mono:     'IBM Plex Mono', 'Consolas', monospace;
+  --font-display:  'Space Grotesk', 'SF Pro Display', system-ui, sans-serif;
+  --font-body:     'DM Sans', 'SF Pro Text', system-ui, sans-serif;
+  --font-mono:     'Fira Code', 'Cascadia Code', 'Consolas', monospace;
 
   --text-xs:   clamp(0.7rem, 0.65rem + 0.25vw, 0.8rem);
   --text-sm:   clamp(0.8rem, 0.75rem + 0.25vw, 0.875rem);
@@ -64,11 +83,11 @@
   --text-4xl:  clamp(2.2rem, 1.8rem + 2vw, 3.2rem);
   --text-5xl:  clamp(2.8rem, 2.2rem + 3vw, 4.2rem);
 
+  --weight-light:    300;
   --weight-normal:   400;
   --weight-medium:   500;
   --weight-semibold: 600;
   --weight-bold:     700;
-  --weight-black:    900;
 
   --leading-tight:   1.15;
   --leading-snug:    1.35;
@@ -99,16 +118,18 @@
   --radius-full: 9999px;
 
   /* ── Shadows ── */
-  --shadow-xs:  0 1px 2px rgba(28, 20, 16, 0.04);
-  --shadow-sm:  0 2px 4px rgba(28, 20, 16, 0.06);
-  --shadow-md:  0 4px 12px rgba(28, 20, 16, 0.08);
-  --shadow-lg:  0 8px 24px rgba(28, 20, 16, 0.1);
-  --shadow-xl:  0 16px 40px rgba(28, 20, 16, 0.12);
-  --shadow-hover: 0 8px 30px rgba(28, 20, 16, 0.14);
+  --shadow-xs:    0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-sm:    0 2px 6px rgba(0, 0, 0, 0.35);
+  --shadow-md:    0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg:    0 8px 30px rgba(0, 0, 0, 0.45);
+  --shadow-xl:    0 16px 50px rgba(0, 0, 0, 0.5);
+  --shadow-glow:  0 0 30px rgba(59, 130, 246, 0.15);
+  --shadow-glow-v: 0 0 30px rgba(139, 92, 246, 0.15);
+  --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.08);
 
   /* ── Transitions ── */
-  --ease:       cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-out:   cubic-bezier(0, 0, 0.2, 1);
+  --ease:        cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:    cubic-bezier(0, 0, 0.2, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --duration-fast:  150ms;
   --duration-base:  250ms;
@@ -125,4 +146,10 @@
   /* ── Layout ── */
   --max-width:   1200px;
   --nav-height:  72px;
+
+  /* ── Gradients ── */
+  --gradient-primary: linear-gradient(135deg, var(--blue) 0%, var(--violet) 100%);
+  --gradient-surface: linear-gradient(180deg, var(--cosmos) 0%, var(--space) 100%);
+  --gradient-shine:   linear-gradient(135deg, var(--blue-400) 0%, var(--violet-400) 50%, var(--cyan) 100%);
+  --gradient-text:    linear-gradient(135deg, var(--blue-300) 0%, var(--violet-300) 100%);
 }

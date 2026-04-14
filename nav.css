@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════
-   NAVIGATION — Matematik Pusulası (Warm Academic)
-   Floating glassmorphic pill navbar with compass logo
+   NAVIGATION — Matematik Pusulası · Cosmic Mathematics
+   Dark glassmorphic navbar with neon accents
    ═══════════════════════════════════════════════════════════════ */
 
 .nav {
@@ -14,16 +14,17 @@
   align-items: center;
   justify-content: center;
   padding: 0 var(--sp-6);
-  background: rgba(250, 247, 242, 0.85);
-  backdrop-filter: blur(16px) saturate(1.2);
-  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  background: rgba(10, 14, 26, 0.75);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
   border-bottom: 1px solid var(--border);
   transition: all var(--duration-base) var(--ease);
 }
 
 .nav--scrolled {
-  background: rgba(250, 247, 242, 0.95);
-  box-shadow: var(--shadow-md);
+  background: rgba(10, 14, 26, 0.92);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  border-bottom-color: var(--border-hover);
 }
 
 .nav__inner {
@@ -47,17 +48,18 @@
 .nav__logo {
   width: 36px;
   height: 36px;
-  background: linear-gradient(135deg, var(--terracotta), var(--terracotta-600));
+  background: var(--gradient-primary);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   transition: transform var(--duration-base) var(--ease);
+  box-shadow: var(--blue-glow);
 }
 
 .nav__brand:hover .nav__logo {
-  transform: rotate(-8deg) scale(1.05);
+  transform: rotate(-6deg) scale(1.08);
 }
 
 .nav__logo svg { width: 20px; height: 20px; }
@@ -91,30 +93,29 @@
 
 .nav__link:hover {
   color: var(--heading);
-  background: var(--ivory);
+  background: rgba(59, 130, 246, 0.06);
 }
 
 .nav__link--active {
-  color: var(--terracotta);
+  color: var(--blue-400);
   font-weight: var(--weight-semibold);
 }
 
 /* ── CTA button in nav ── */
 .nav__cta {
-  background: var(--terracotta);
+  background: var(--gradient-primary) !important;
   color: #fff !important;
   font-weight: var(--weight-semibold) !important;
   padding: var(--sp-2) var(--sp-5) !important;
   border-radius: var(--radius-md) !important;
-  box-shadow: 0 2px 8px rgba(196, 101, 74, 0.2);
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.25);
   margin-left: var(--sp-2);
 }
 
 .nav__cta:hover {
-  background: var(--terracotta-600) !important;
   color: #fff !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(196, 101, 74, 0.3);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
 }
 
 /* ── Mobile Toggle ── */
@@ -134,11 +135,9 @@
 }
 
 .nav__toggle:hover {
-  background: var(--ivory);
+  background: rgba(59, 130, 246, 0.06);
   border-color: var(--border-hover);
 }
-
-.nav__toggle svg { width: 20px; height: 20px; }
 
 /* ── Mobile Menu ── */
 @media (max-width: 860px) {
@@ -151,20 +150,20 @@
     flex-direction: column;
     align-items: stretch;
     padding: var(--sp-4);
-    background: rgba(250, 247, 242, 0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(10, 14, 26, 0.97);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     border-bottom: 1px solid var(--border);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
     gap: var(--sp-1);
   }
 
   .nav__links--open {
     display: flex;
-    animation: slideDown 0.25s var(--ease-out);
+    animation: nav-slide-down 0.25s var(--ease-out);
   }
 
-  @keyframes slideDown {
+  @keyframes nav-slide-down {
     from { opacity: 0; transform: translateY(-8px); }
     to   { opacity: 1; transform: translateY(0); }
   }
@@ -175,7 +174,7 @@
     font-size: var(--text-base);
   }
 
-  .nav__link:hover { background: var(--ivory); }
+  .nav__link:hover { background: rgba(59, 130, 246, 0.08); }
 
   .nav__cta {
     margin-left: 0 !important;
@@ -189,17 +188,7 @@
   }
 }
 
-/* Toggle icon animation */
-.nav__toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
-  transform: translateY(6px) rotate(45deg);
-}
-.nav__toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
-  opacity: 0;
-}
-.nav__toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
-  transform: translateY(-6px) rotate(-45deg);
-}
-
+/* Hamburger lines */
 .hamburger-line {
   display: block;
   width: 18px;
@@ -211,3 +200,14 @@
 }
 
 .hamburger-line + .hamburger-line { margin-top: 4px; }
+
+/* Hamburger → X animation */
+.nav__toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.nav__toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+.nav__toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}

@@ -7,7 +7,7 @@
     <meta name="description" content="Matematik Pusulası dergisi. 40 sayfa dolusu matematik tarihi, dahiler, bulmacalar, doğa ve teknoloji.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fira+Code:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="design-tokens.css">
     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="nav.css">
@@ -28,19 +28,18 @@
             inset: 0;
             z-index: 0;
             background:
-                radial-gradient(ellipse at 70% 20%, rgba(196, 101, 74, 0.06) 0%, transparent 60%),
-                radial-gradient(ellipse at 20% 80%, rgba(61, 90, 128, 0.04) 0%, transparent 60%),
-                var(--cream);
+                radial-gradient(ellipse at 70% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 60%),
+                var(--space);
         }
 
-        /* Decorative grid dots */
         .hero__bg::after {
             content: '';
             position: absolute;
             inset: 0;
-            background-image: radial-gradient(circle, var(--sand) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.4;
+            background-image: radial-gradient(circle, rgba(99, 179, 237, 0.08) 1px, transparent 1px);
+            background-size: 48px 48px;
+            opacity: 0.5;
         }
 
         .hero__inner {
@@ -68,27 +67,28 @@
             gap: var(--sp-2);
             align-self: flex-start;
             padding: var(--sp-2) var(--sp-4);
-            background: var(--terracotta-50);
-            color: var(--terracotta);
+            background: var(--blue-50);
+            color: var(--blue-400);
             font-weight: var(--weight-semibold);
             font-size: var(--text-xs);
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             border-radius: var(--radius-full);
-            border: 1px solid var(--terracotta-100);
+            border: 1px solid var(--blue-100);
         }
 
         .hero__badge-dot {
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: var(--terracotta);
-            animation: pulse 2s infinite;
+            background: var(--blue-400);
+            animation: pulse-dot 2s infinite;
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(59, 130, 246, 0.5); }
+            50% { opacity: 0.4; box-shadow: 0 0 4px rgba(59, 130, 246, 0.2); }
         }
 
         .hero__title {
@@ -98,8 +98,11 @@
         }
 
         .hero__title-accent {
-            color: var(--terracotta);
             display: block;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero__desc {
@@ -132,22 +135,22 @@
         .hero-stat__value {
             font-family: var(--font-display);
             font-size: var(--text-3xl);
-            font-weight: var(--weight-black);
+            font-weight: var(--weight-bold);
             color: var(--heading);
             line-height: 1;
         }
 
-        .hero-stat__value span { color: var(--terracotta); }
+        .hero-stat__value span { color: var(--blue-400); }
 
         .hero-stat__label {
             font-size: var(--text-xs);
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             font-weight: var(--weight-medium);
         }
 
-        /* Hero visual — geometric compass SVG composition */
+        /* Hero visual — constellation graphic */
         .hero__visual {
             position: relative;
             display: flex;
@@ -155,77 +158,76 @@
             justify-content: center;
         }
 
-        .hero__compass {
+        .hero__constellation {
             width: 100%;
             max-width: 420px;
             aspect-ratio: 1;
             position: relative;
         }
 
-        .compass-ring {
+        .const-ring {
             position: absolute;
             border-radius: 50%;
-            border: 1.5px solid var(--sand);
         }
 
-        .compass-ring--outer {
+        .const-ring--outer {
             inset: 0;
-            border-color: var(--sand-dark);
+            border: 1.5px solid rgba(59, 130, 246, 0.12);
         }
 
-        .compass-ring--mid {
+        .const-ring--mid {
             inset: 12%;
-            border-style: dashed;
-            border-color: var(--sand);
+            border: 1.5px dashed rgba(139, 92, 246, 0.12);
         }
 
-        .compass-ring--inner {
+        .const-ring--inner {
             inset: 28%;
-            border-color: var(--terracotta-200);
-            border-width: 2px;
+            border: 2px solid rgba(59, 130, 246, 0.18);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.06);
         }
 
-        .compass-center {
+        .const-center {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 18px;
             height: 18px;
-            background: var(--terracotta);
+            background: var(--blue);
             border-radius: 50%;
-            box-shadow: 0 0 24px rgba(196, 101, 74, 0.3);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5), 0 0 60px rgba(59, 130, 246, 0.2);
         }
 
-        .compass-label {
+        .const-label {
             position: absolute;
             font-family: var(--font-mono);
             font-size: 11px;
-            color: var(--walnut);
+            color: var(--comet);
             letter-spacing: 0.15em;
             font-weight: var(--weight-semibold);
         }
 
-        .compass-n { top: 4%; left: 50%; transform: translateX(-50%); }
-        .compass-s { bottom: 4%; left: 50%; transform: translateX(-50%); }
-        .compass-e { right: 4%; top: 50%; transform: translateY(-50%); }
-        .compass-w { left: 4%; top: 50%; transform: translateY(-50%); }
+        .const-n { top: 4%; left: 50%; transform: translateX(-50%); }
+        .const-s { bottom: 4%; left: 50%; transform: translateX(-50%); }
+        .const-e { right: 4%; top: 50%; transform: translateY(-50%); }
+        .const-w { left: 4%; top: 50%; transform: translateY(-50%); }
 
-        /* Floating math symbols around compass */
+        /* Floating math symbols */
         .math-float {
             position: absolute;
             font-family: var(--font-display);
-            color: var(--sand-dark);
+            color: var(--asteroid);
             font-size: 24px;
-            opacity: 0.55;
+            opacity: 0.5;
+            text-shadow: 0 0 12px rgba(59, 130, 246, 0.15);
         }
 
-        .mf-1 { top: 5%; left: 10%; font-size: 28px; }
-        .mf-2 { top: 15%; right: 5%; }
+        .mf-1 { top: 5%; left: 10%; font-size: 28px; color: var(--blue-400); opacity: 0.3; }
+        .mf-2 { top: 15%; right: 5%; color: var(--violet-400); opacity: 0.25; }
         .mf-3 { bottom: 20%; left: 2%; font-size: 20px; }
-        .mf-4 { bottom: 8%; right: 12%; font-size: 22px; }
+        .mf-4 { bottom: 8%; right: 12%; font-size: 22px; color: var(--green-400); opacity: 0.25; }
         .mf-5 { top: 40%; right: 0; font-size: 18px; }
-        .mf-6 { bottom: 35%; left: 8%; }
+        .mf-6 { bottom: 35%; left: 8%; color: var(--violet-400); opacity: 0.3; }
 
         /* ═══ TABLE OF CONTENTS ═══ */
         .toc-grid {
@@ -244,7 +246,7 @@
 
         .toc-group:hover {
             border-color: var(--border-hover);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-hover);
         }
 
         .toc-group__header {
@@ -268,10 +270,10 @@
 
         .toc-group__icon svg { width: 18px; height: 18px; }
 
-        .toc-group__icon--terra  { background: var(--terracotta-50); color: var(--terracotta); }
-        .toc-group__icon--indigo { background: var(--indigo-50); color: var(--indigo); }
-        .toc-group__icon--sage   { background: var(--sage-50); color: var(--sage); }
-        .toc-group__icon--amber  { background: var(--amber-50); color: var(--amber); }
+        .toc-group__icon--blue   { background: var(--blue-50); color: var(--blue-400); border: 1px solid var(--blue-100); }
+        .toc-group__icon--violet { background: var(--violet-50); color: var(--violet-400); border: 1px solid var(--violet-100); }
+        .toc-group__icon--green  { background: var(--green-50); color: var(--green-400); border: 1px solid var(--green-100); }
+        .toc-group__icon--amber  { background: var(--amber-50); color: var(--amber); border: 1px solid var(--amber-100); }
 
         .toc-group__title {
             font-family: var(--font-display);
@@ -290,10 +292,11 @@
             color: var(--text);
             font-size: var(--text-sm);
             transition: all var(--duration-fast) var(--ease);
+            cursor: pointer;
         }
 
         .toc-item:hover {
-            background: var(--ivory);
+            background: var(--blue-50);
             color: var(--heading);
             padding-left: var(--sp-4);
         }
@@ -302,16 +305,17 @@
             font-family: var(--font-mono);
             font-size: var(--text-xs);
             font-weight: var(--weight-semibold);
-            color: var(--terracotta);
-            background: var(--terracotta-50);
+            color: var(--blue-400);
+            background: var(--blue-50);
             padding: 2px 8px;
             border-radius: var(--radius-xs);
             min-width: 32px;
             text-align: center;
             flex-shrink: 0;
+            border: 1px solid var(--blue-100);
         }
 
-        /* ═══ DAHILER ═══ */
+        /* ═══ DAHİLER ═══ */
         .dahiler-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -333,8 +337,8 @@
         }
 
         .dahi-card:hover {
-            border-color: var(--terracotta-200);
-            box-shadow: var(--shadow-md);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-hover);
             transform: translateY(-3px);
         }
 
@@ -352,10 +356,10 @@
             flex-shrink: 0;
         }
 
-        .dahi-card__initial--terra  { background: linear-gradient(135deg, var(--terracotta), var(--terracotta-600)); }
-        .dahi-card__initial--indigo { background: linear-gradient(135deg, var(--indigo), var(--indigo-600)); }
-        .dahi-card__initial--sage   { background: linear-gradient(135deg, var(--sage), #4a7050); }
-        .dahi-card__initial--amber  { background: linear-gradient(135deg, var(--amber), #c28800); }
+        .dahi-card__initial--blue   { background: linear-gradient(135deg, var(--blue), var(--blue-700)); box-shadow: var(--blue-glow); }
+        .dahi-card__initial--violet { background: linear-gradient(135deg, var(--violet), var(--violet-600)); box-shadow: var(--violet-glow); }
+        .dahi-card__initial--green  { background: linear-gradient(135deg, var(--green), var(--green-600)); }
+        .dahi-card__initial--amber  { background: linear-gradient(135deg, var(--amber), var(--amber-600)); }
 
         .dahi-card h3 {
             font-size: var(--text-lg);
@@ -373,7 +377,7 @@
         .dahi-card__link {
             font-size: var(--text-xs);
             font-weight: var(--weight-semibold);
-            color: var(--terracotta);
+            color: var(--blue-400);
             display: flex;
             align-items: center;
             gap: var(--sp-1);
@@ -400,11 +404,12 @@
             text-decoration: none;
             color: var(--text);
             transition: all var(--duration-base) var(--ease);
+            cursor: pointer;
         }
 
         .feature-card:hover {
             border-color: var(--border-hover);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-hover);
             transform: translateY(-2px);
         }
 
@@ -420,10 +425,10 @@
 
         .feature-card__icon svg { width: 22px; height: 22px; }
 
-        .feature-card__icon--terra  { background: var(--terracotta-50); color: var(--terracotta); }
-        .feature-card__icon--indigo { background: var(--indigo-50); color: var(--indigo); }
-        .feature-card__icon--sage   { background: var(--sage-50); color: var(--sage); }
-        .feature-card__icon--amber  { background: var(--amber-50); color: var(--amber); }
+        .feature-card__icon--blue   { background: var(--blue-50); color: var(--blue-400); border: 1px solid var(--blue-100); }
+        .feature-card__icon--violet { background: var(--violet-50); color: var(--violet-400); border: 1px solid var(--violet-100); }
+        .feature-card__icon--green  { background: var(--green-50); color: var(--green-400); border: 1px solid var(--green-100); }
+        .feature-card__icon--amber  { background: var(--amber-50); color: var(--amber); border: 1px solid var(--amber-100); }
 
         .feature-card h3 {
             font-size: var(--text-base);
@@ -442,7 +447,7 @@
         .feature-card__link {
             font-size: var(--text-xs);
             font-weight: var(--weight-semibold);
-            color: var(--terracotta);
+            color: var(--blue-400);
         }
 
         /* ═══ BULMACA GRID ═══ */
@@ -466,7 +471,7 @@
 
         .bulmaca-card:hover {
             border-color: var(--border-hover);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-hover);
             transform: translateY(-3px);
         }
 
@@ -497,13 +502,13 @@
         }
 
         .bulmaca-card--highlight {
-            background: linear-gradient(135deg, var(--terracotta-50), var(--indigo-50));
-            border-color: var(--terracotta-100);
+            background: linear-gradient(135deg, var(--blue-50), var(--violet-50));
+            border-color: var(--blue-100);
         }
 
         /* ═══ CTA SECTION ═══ */
         .cta {
-            background: var(--espresso);
+            background: var(--void);
             color: #fff;
             text-align: center;
             padding: var(--sp-20) var(--sp-6);
@@ -515,18 +520,30 @@
             content: '';
             position: absolute;
             inset: 0;
-            background-image: radial-gradient(circle, rgba(250, 247, 242, 0.03) 1px, transparent 1px);
-            background-size: 32px 32px;
+            background-image: radial-gradient(circle, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .cta::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(ellipse, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .cta h2 {
-            color: rgba(250, 247, 242, 0.95);
+            color: var(--heading);
             position: relative;
             margin-bottom: var(--sp-3);
         }
 
         .cta p {
-            color: rgba(250, 247, 242, 0.6);
+            color: var(--text-secondary);
             position: relative;
             margin-bottom: var(--sp-8);
         }
@@ -550,7 +567,7 @@
         }
 
         .team-card:hover {
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-hover);
             transform: translateY(-2px);
         }
 
@@ -572,8 +589,8 @@
             font-size: var(--text-xs);
             font-weight: var(--weight-semibold);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--terracotta);
+            letter-spacing: 0.12em;
+            color: var(--blue-400);
             margin-bottom: var(--sp-1);
         }
 
@@ -601,7 +618,7 @@
             .hero__desc { margin: 0 auto; }
             .hero__actions { justify-content: center; }
             .hero__stats { justify-content: center; }
-            .hero__compass { max-width: 300px; }
+            .hero__constellation { max-width: 300px; }
         }
 
         @media (max-width: 768px) {
@@ -620,6 +637,12 @@
     </style>
 </head>
 <body>
+
+<div class="ambient">
+    <div class="ambient__orb ambient__orb--blue"></div>
+    <div class="ambient__orb ambient__orb--violet"></div>
+</div>
+<div class="grid-bg"></div>
 
 <a href="#main" class="skip-link">Ana içeriğe geç</a>
 
@@ -700,15 +723,15 @@
             </div>
         </div>
         <div class="hero__visual" data-reveal>
-            <div class="hero__compass">
-                <div class="compass-ring compass-ring--outer"></div>
-                <div class="compass-ring compass-ring--mid"></div>
-                <div class="compass-ring compass-ring--inner"></div>
-                <div class="compass-center"></div>
-                <span class="compass-label compass-n">K</span>
-                <span class="compass-label compass-s">G</span>
-                <span class="compass-label compass-e">D</span>
-                <span class="compass-label compass-w">B</span>
+            <div class="hero__constellation">
+                <div class="const-ring const-ring--outer"></div>
+                <div class="const-ring const-ring--mid"></div>
+                <div class="const-ring const-ring--inner"></div>
+                <div class="const-center"></div>
+                <span class="const-label const-n">K</span>
+                <span class="const-label const-s">G</span>
+                <span class="const-label const-e">D</span>
+                <span class="const-label const-w">B</span>
                 <span class="math-float mf-1">π</span>
                 <span class="math-float mf-2">∞</span>
                 <span class="math-float mf-3">∑</span>
@@ -736,7 +759,7 @@
             <!-- Matematik Tarihi -->
             <div class="toc-group">
                 <div class="toc-group__header">
-                    <div class="toc-group__icon toc-group__icon--terra">
+                    <div class="toc-group__icon toc-group__icon--blue">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                     </div>
                     <h3 class="toc-group__title">Matematik Tarihi</h3>
@@ -745,12 +768,12 @@
                 <a href="magazine.html#page-6" class="toc-item"><span class="toc-page">6</span>Pi Sayısının Destansı Yolculuğu</a>
                 <a href="magazine.html#page-7" class="toc-item"><span class="toc-page">7</span>Osmanlı'da Matematik</a>
                 <a href="magazine.html#page-8" class="toc-item"><span class="toc-page">8</span>İslam Dünyasında Matematik</a>
-                <a href="magazine.html#page-9" class="toc-item"><span class="toc-page">9</span>Euler'in Köprüleri & Graf Teorisi</a>
+                <a href="magazine.html#page-9" class="toc-item"><span class="toc-page">9</span>Euler'in Köprüleri &amp; Graf Teorisi</a>
             </div>
             <!-- Dahilerin Hikâyesi -->
             <div class="toc-group">
                 <div class="toc-group__header">
-                    <div class="toc-group__icon toc-group__icon--indigo">
+                    <div class="toc-group__icon toc-group__icon--violet">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
                     </div>
                     <h3 class="toc-group__title">Dahilerin Hikâyesi</h3>
@@ -766,25 +789,25 @@
             <!-- Doğada Matematik -->
             <div class="toc-group">
                 <div class="toc-group__header">
-                    <div class="toc-group__icon toc-group__icon--sage">
+                    <div class="toc-group__icon toc-group__icon--green">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1.5 2 2.1 4.9A7 7 0 0 1 11 20z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
                     </div>
                     <h3 class="toc-group__title">Doğada Matematik</h3>
                 </div>
                 <a href="magazine.html#page-17" class="toc-item"><span class="toc-page">17</span>Altın Oran — Doğanın Şifresi</a>
-                <a href="magazine.html#page-18" class="toc-item"><span class="toc-page">18</span>Fibonacci & Doğanın Kodu</a>
+                <a href="magazine.html#page-18" class="toc-item"><span class="toc-page">18</span>Fibonacci &amp; Doğanın Kodu</a>
                 <a href="magazine.html#page-19" class="toc-item"><span class="toc-page">19</span>Fraktallar Dünyası</a>
                 <a href="magazine.html#page-20" class="toc-item"><span class="toc-page">20</span>Evrendeki Matematik</a>
             </div>
             <!-- Modern Matematik & Teknoloji -->
             <div class="toc-group">
                 <div class="toc-group__header">
-                    <div class="toc-group__icon toc-group__icon--indigo">
+                    <div class="toc-group__icon toc-group__icon--violet">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
                     </div>
-                    <h3 class="toc-group__title">Modern Matematik & Teknoloji</h3>
+                    <h3 class="toc-group__title">Modern Matematik &amp; Teknoloji</h3>
                 </div>
-                <a href="magazine.html#page-21" class="toc-item"><span class="toc-page">21</span>Yapay Zekâ & Matematik</a>
+                <a href="magazine.html#page-21" class="toc-item"><span class="toc-page">21</span>Yapay Zekâ &amp; Matematik</a>
                 <a href="magazine.html#page-22" class="toc-item"><span class="toc-page">22</span>Teknolojide Matematik</a>
                 <a href="magazine.html#page-23" class="toc-item"><span class="toc-page">23</span>Kriptografi — Şifrelerin Matematiği</a>
                 <a href="magazine.html#page-24" class="toc-item"><span class="toc-page">24</span>Oyun Teorisi</a>
@@ -795,7 +818,7 @@
                     <div class="toc-group__icon toc-group__icon--amber">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
                     </div>
-                    <h3 class="toc-group__title">Kültür & Hayat</h3>
+                    <h3 class="toc-group__title">Kültür &amp; Hayat</h3>
                 </div>
                 <a href="magazine.html#page-25" class="toc-item"><span class="toc-page">25</span>Günlük Hayatta Matematik</a>
                 <a href="magazine.html#page-26" class="toc-item"><span class="toc-page">26</span>Sporda Matematik</a>
@@ -808,15 +831,15 @@
             <!-- Bulmacalar & Kapanış -->
             <div class="toc-group">
                 <div class="toc-group__header">
-                    <div class="toc-group__icon toc-group__icon--terra">
+                    <div class="toc-group__icon toc-group__icon--blue">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12H22"/><path d="M2 12h1.5"/><path d="M12 2v1.5"/><path d="M12 20.5V22"/><path d="M4.93 4.93l1.06 1.06"/><path d="M18.01 18.01l1.06 1.06"/><path d="M18.01 5.99l1.06-1.06"/><path d="M4.93 19.07l1.06-1.06"/><circle cx="12" cy="12" r="4"/></svg>
                     </div>
-                    <h3 class="toc-group__title">Bulmacalar & Kapanış</h3>
+                    <h3 class="toc-group__title">Bulmacalar &amp; Kapanış</h3>
                 </div>
                 <a href="magazine.html#page-32" class="toc-item"><span class="toc-page">32</span>Sudoku Çılgınlığı</a>
                 <a href="magazine.html#page-33" class="toc-item"><span class="toc-page">33</span>Mantık Bulmacaları</a>
-                <a href="magazine.html#page-34" class="toc-item"><span class="toc-page">34</span>Sayı Piramidi & Sihirli Kareler</a>
-                <a href="magazine.html#page-35" class="toc-item"><span class="toc-page">35</span>Kakuro & KenKen</a>
+                <a href="magazine.html#page-34" class="toc-item"><span class="toc-page">34</span>Sayı Piramidi &amp; Sihirli Kareler</a>
+                <a href="magazine.html#page-35" class="toc-item"><span class="toc-page">35</span>Kakuro &amp; KenKen</a>
                 <a href="magazine.html#page-36" class="toc-item"><span class="toc-page">36</span>Karışık Bulmaca Festivali</a>
                 <a href="magazine.html#page-37" class="toc-item"><span class="toc-page">37</span>Kariyer Köşesi</a>
             </div>
@@ -837,19 +860,19 @@
         </div>
         <div class="dahiler-grid" data-reveal-stagger>
             <a href="magazine.html#page-10" class="dahi-card">
-                <div class="dahi-card__initial dahi-card__initial--terra">CA</div>
+                <div class="dahi-card__initial dahi-card__initial--blue">CA</div>
                 <h3>Cahit Arf</h3>
                 <p>10 TL'deki dahi. Arf İnvariyantı ile dünya çapında tanınan Türk matematikçi.</p>
                 <span class="dahi-card__link">Sayfa 10 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
             </a>
             <a href="magazine.html#page-11" class="dahi-card">
-                <div class="dahi-card__initial dahi-card__initial--indigo">EH</div>
+                <div class="dahi-card__initial dahi-card__initial--violet">EH</div>
                 <h3>El-Harezmi</h3>
                 <p>Cebirin babası, "algoritma" kelimesinin kaynağı. Bağdat Bilgelik Evi'nin yıldızı.</p>
                 <span class="dahi-card__link">Sayfa 11 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
             </a>
             <a href="magazine.html#page-12" class="dahi-card">
-                <div class="dahi-card__initial dahi-card__initial--sage">Hy</div>
+                <div class="dahi-card__initial dahi-card__initial--green">Hy</div>
                 <h3>Hypatia</h3>
                 <p>Antik çağın ilk kadın matematikçisi. İskenderiye'nin bilge kadını.</p>
                 <span class="dahi-card__link">Sayfa 12 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
@@ -861,19 +884,19 @@
                 <span class="dahi-card__link">Sayfa 13 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
             </a>
             <a href="magazine.html#page-14" class="dahi-card">
-                <div class="dahi-card__initial dahi-card__initial--terra">IN</div>
+                <div class="dahi-card__initial dahi-card__initial--blue">IN</div>
                 <h3>Isaac Newton</h3>
                 <p>Kalkülüsün mucidi, yerçekiminin keşfedicisi. "Mucize Yıl" hikâyesi.</p>
                 <span class="dahi-card__link">Sayfa 14 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
             </a>
             <a href="magazine.html#page-15" class="dahi-card">
-                <div class="dahi-card__initial dahi-card__initial--indigo">AT</div>
+                <div class="dahi-card__initial dahi-card__initial--violet">AT</div>
                 <h3>Alan Turing</h3>
                 <p>Enigma'yı kıran adam, bilgisayar biliminin babası.</p>
                 <span class="dahi-card__link">Sayfa 15 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
             </a>
             <a href="magazine.html#page-16" class="dahi-card">
-                <div class="dahi-card__initial dahi-card__initial--sage">SR</div>
+                <div class="dahi-card__initial dahi-card__initial--green">SR</div>
                 <h3>Ramanujan</h3>
                 <p>Sonsuzluğu gören dahi. Hindistan'dan dünyaya uzanan taksi numarası 1729.</p>
                 <span class="dahi-card__link">Sayfa 16 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
@@ -895,27 +918,27 @@
         </div>
         <div class="feature-grid" data-reveal-stagger>
             <a href="magazine.html#page-17" class="feature-card">
-                <div class="feature-card__icon feature-card__icon--sage">
+                <div class="feature-card__icon feature-card__icon--green">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
                 </div>
                 <div>
-                    <h3>Altın Oran & Fibonacci</h3>
+                    <h3>Altın Oran &amp; Fibonacci</h3>
                     <p>Doğanın gizli kodu: deniz kabukları, ayçiçekleri ve galaksilerdeki matematik.</p>
                     <span class="feature-card__link">Sayfa 17-18 →</span>
                 </div>
             </a>
             <a href="magazine.html#page-21" class="feature-card">
-                <div class="feature-card__icon feature-card__icon--indigo">
+                <div class="feature-card__icon feature-card__icon--violet">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/></svg>
                 </div>
                 <div>
-                    <h3>Yapay Zekâ & Matematik</h3>
+                    <h3>Yapay Zekâ &amp; Matematik</h3>
                     <p>Matrislerden ChatGPT'ye, tensörlerden otonom araçlara uzanan yol.</p>
                     <span class="feature-card__link">Sayfa 21 →</span>
                 </div>
             </a>
             <a href="magazine.html#page-23" class="feature-card">
-                <div class="feature-card__icon feature-card__icon--terra">
+                <div class="feature-card__icon feature-card__icon--blue">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                 </div>
                 <div>
@@ -929,13 +952,13 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
                 </div>
                 <div>
-                    <h3>Müzik & Matematik</h3>
+                    <h3>Müzik &amp; Matematik</h3>
                     <p>Pisagor'un telleri, frekanslar ve harmoninin matematiksel sırları.</p>
                     <span class="feature-card__link">Sayfa 27 →</span>
                 </div>
             </a>
             <a href="magazine.html#page-20" class="feature-card">
-                <div class="feature-card__icon feature-card__icon--indigo">
+                <div class="feature-card__icon feature-card__icon--violet">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                 </div>
                 <div>
@@ -945,7 +968,7 @@
                 </div>
             </a>
             <a href="magazine.html#page-31" class="feature-card">
-                <div class="feature-card__icon feature-card__icon--sage">
+                <div class="feature-card__icon feature-card__icon--green">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                 </div>
                 <div>
@@ -971,42 +994,42 @@
         </div>
         <div class="bulmaca-grid" data-reveal-stagger>
             <a href="bulmacalar.html#sudoku" class="bulmaca-card">
-                <div class="bulmaca-card__icon" style="background:var(--indigo-50);color:var(--indigo)">
+                <div class="bulmaca-card__icon" style="background:var(--violet-50);color:var(--violet-400);border:1px solid var(--violet-100)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
                 </div>
                 <h3>Sudoku</h3>
                 <p>4 farklı zorluk seviyesi</p>
             </a>
             <a href="bulmacalar.html#mantik" class="bulmaca-card">
-                <div class="bulmaca-card__icon" style="background:var(--terracotta-50);color:var(--terracotta)">
+                <div class="bulmaca-card__icon" style="background:var(--blue-50);color:var(--blue-400);border:1px solid var(--blue-100)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
                 </div>
                 <h3>Mantık Bulmacaları</h3>
                 <p>6 çetrefilli soru</p>
             </a>
             <a href="bulmacalar.html#piramit" class="bulmaca-card">
-                <div class="bulmaca-card__icon" style="background:var(--sage-50);color:var(--sage)">
+                <div class="bulmaca-card__icon" style="background:var(--green-50);color:var(--green-400);border:1px solid var(--green-100)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 22 22 22"/></svg>
                 </div>
                 <h3>Sayı Piramidi</h3>
                 <p>Piramidi doldur!</p>
             </a>
             <a href="bulmacalar.html#kakuro" class="bulmaca-card">
-                <div class="bulmaca-card__icon" style="background:var(--amber-50);color:var(--amber)">
+                <div class="bulmaca-card__icon" style="background:var(--amber-50);color:var(--amber);border:1px solid var(--amber-100)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                 </div>
-                <h3>Kakuro & KenKen</h3>
+                <h3>Kakuro &amp; KenKen</h3>
                 <p>İleri seviye</p>
             </a>
             <a href="sorular.html" class="bulmaca-card">
-                <div class="bulmaca-card__icon" style="background:var(--indigo-50);color:var(--indigo)">
+                <div class="bulmaca-card__icon" style="background:var(--violet-50);color:var(--violet-400);border:1px solid var(--violet-100)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                 </div>
                 <h3>Karışık Bulmaca</h3>
                 <p>8 soru + bonus</p>
             </a>
             <a href="cevaplar.html" class="bulmaca-card bulmaca-card--highlight">
-                <div class="bulmaca-card__icon" style="background:var(--sage-50);color:var(--sage)">
+                <div class="bulmaca-card__icon" style="background:var(--green-50);color:var(--green-400);border:1px solid var(--green-100)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 </div>
                 <h3>Çözümler</h3>
@@ -1039,25 +1062,25 @@
         </div>
         <div class="team-grid" data-reveal-stagger>
             <div class="team-card">
-                <div class="team-card__avatar" style="background:linear-gradient(135deg,var(--terracotta),var(--terracotta-600))">ME</div>
+                <div class="team-card__avatar" style="background:var(--gradient-primary);box-shadow:var(--blue-glow)">ME</div>
                 <div class="team-card__role">Lider</div>
                 <div class="team-card__name">Miraç Eymen Abanoz</div>
                 <div class="team-card__desc">Proje koordinasyonu</div>
             </div>
             <div class="team-card">
-                <div class="team-card__avatar" style="background:linear-gradient(135deg,var(--indigo),var(--indigo-600))">BD</div>
-                <div class="team-card__role">Dergi & Web Tasarım</div>
+                <div class="team-card__avatar" style="background:linear-gradient(135deg,var(--violet),var(--violet-600));box-shadow:var(--violet-glow)">BD</div>
+                <div class="team-card__role">Dergi &amp; Web Tasarım</div>
                 <div class="team-card__name">Bahadır Değirmenci</div>
-                <div class="team-card__desc">Görsel tasarım & geliştirme</div>
+                <div class="team-card__desc">Görsel tasarım &amp; geliştirme</div>
             </div>
             <div class="team-card">
-                <div class="team-card__avatar" style="background:linear-gradient(135deg,var(--sage),#4a7050)">AY</div>
+                <div class="team-card__avatar" style="background:linear-gradient(135deg,var(--green),var(--green-600))">AY</div>
                 <div class="team-card__role">Araştırma</div>
                 <div class="team-card__name">Arslan Yusuf Kadir</div>
-                <div class="team-card__desc">İçerik araştırma & yazım</div>
+                <div class="team-card__desc">İçerik araştırma &amp; yazım</div>
             </div>
             <div class="team-card">
-                <div class="team-card__avatar" style="background:linear-gradient(135deg,var(--amber),#c28800)">AI</div>
+                <div class="team-card__avatar" style="background:linear-gradient(135deg,var(--amber),var(--amber-600))">AI</div>
                 <div class="team-card__role">Kişisel LLM</div>
                 <div class="team-card__name">gpt-oss-20b</div>
                 <div class="team-card__desc">Kendi personalitisi ile katkı</div>
