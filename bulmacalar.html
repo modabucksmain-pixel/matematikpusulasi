@@ -182,8 +182,9 @@
             <button class="tab on" onclick="showPanel('paradoks',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Paradokslar</button>
             <button class="tab" onclick="showPanel('sudoku',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg> Sudoku</button>
             <button class="tab" onclick="showPanel('mantik',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"/><line x1="9" y1="21" x2="15" y2="21"/></svg> Mantık</button>
-            <button class="tab" onclick="showPanel('piramit',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 22 22 22"/></svg> Piramit &amp; Sihirli Kare</button>
-            <button class="tab" onclick="showPanel('kakuro',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Kakuro &amp; KenKen</button>
+            <button class="tab" onclick="showPanel('komplo',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Komplo Teorileri</button>
+            <button class="tab" onclick="showPanel('olimpiyat',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Olimpiyat Sorusu</button>
+            <button class="tab" onclick="showPanel('karisik',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg> Karışık</button>
         </div>
 
         <!-- ════════ PARADOKSLAR ════════ -->
@@ -207,6 +208,8 @@
             <div class="grid2">
                 <div class="puzzle-card"><div class="card-head"><h3>Sudoku №1</h3><span class="diff easy">Kolay</span></div><div class="sudoku-wrap"><div id="sg1" class="sudoku-grid"></div></div></div>
                 <div class="puzzle-card"><div class="card-head"><h3>Sudoku №2</h3><span class="diff mid">Orta</span></div><div class="sudoku-wrap"><div id="sg2" class="sudoku-grid"></div></div></div>
+                <div class="puzzle-card"><div class="card-head"><h3>Sudoku №3</h3><span class="diff hard">Zor</span></div><div class="sudoku-wrap"><div id="sg3" class="sudoku-grid"></div></div></div>
+                <div class="puzzle-card"><div class="card-head"><h3>Sudoku №4</h3><span class="diff expert">Uzman</span></div><div class="sudoku-wrap"><div id="sg4" class="sudoku-grid"></div></div></div>
             </div>
             <div class="puzzle-card" style="margin-top:var(--sp-6)">
                 <h3 style="color:var(--blue-400);font-size:var(--text-base);margin-bottom:var(--sp-2)">Sudoku Kuralları</h3>
@@ -226,31 +229,54 @@
             </div>
         </div>
 
-        <!-- ════════ PİRAMİT ════════ -->
-        <div id="piramit" class="panel">
+        <!-- ════════ KOMPLO TEORİLERİ (Sayfa 34) ════════ -->
+        <div id="komplo" class="panel">
             <div class="grid2">
-                <div class="puzzle-card"><div class="card-head"><h3>Piramit №1</h3><span class="diff easy">Kolay</span></div><p style="font-size:var(--text-sm);color:var(--text-secondary)">Üstteki sayı = altındaki iki sayının toplamı</p><div class="pyramid"><div class="pyr-row"><div class="pyr-cell empty"><input type="text" maxlength="3"></div></div><div class="pyr-row"><div class="pyr-cell empty"><input type="text" maxlength="3"></div><div class="pyr-cell given">15</div></div><div class="pyr-row"><div class="pyr-cell given">8</div><div class="pyr-cell empty"><input type="text" maxlength="3"></div><div class="pyr-cell given">6</div></div><div class="pyr-row"><div class="pyr-cell given">3</div><div class="pyr-cell given">5</div><div class="pyr-cell given">4</div><div class="pyr-cell given">2</div></div></div><button class="btn btn--ghost btn--sm" onclick="toggle('rp1')">Cevap</button><div id="rp1" class="reveal-box"><strong>Çözüm:</strong> 8,9,6 → 17,15 → <strong>32</strong></div></div>
-                <div class="puzzle-card"><div class="card-head"><h3>Sihirli Kare №1</h3><span class="diff easy">Kolay</span></div><p style="font-size:var(--text-sm);color:var(--text-secondary)">Her satır, sütun ve çapraz toplamı = 15</p><div class="magic-grid"><div class="magic-cell given">2</div><div class="magic-cell"><input type="text" maxlength="1"></div><div class="magic-cell given">6</div><div class="magic-cell"><input type="text" maxlength="1"></div><div class="magic-cell given">5</div><div class="magic-cell"><input type="text" maxlength="1"></div><div class="magic-cell given">4</div><div class="magic-cell"><input type="text" maxlength="1"></div><div class="magic-cell given">8</div></div><div style="margin-top:var(--sp-4)"><button class="btn btn--ghost btn--sm" onclick="toggle('rm1')">Cevap</button></div><div id="rm1" class="reveal-box"><strong>Çözüm:</strong> 2-7-6 / 9-5-1 / 4-3-8</div></div>
+                <div class="puzzle-card"><h3>📐 Giza Piramidi = Işık Hızı?</h3><p>Büyük Piramit'in koordinatları: 29.9792458°K. Işık hızı: 299,792,458 m/s. Tesadüf mü?</p><div class="hint">GPS koordinat sistemi 1960'larda icat edildi. Antik Mısırlılar "enlem" kavramını bilmiyordu.</div><span class="diff mid" style="margin-top:var(--sp-2);display:inline-block">🤔 Tesadüf mü?</span></div>
+                <div class="puzzle-card"><h3>🏛️ Euler Aslında Hırsız mı?</h3><p>Bazı tarihçiler, Euler'in Basel probleminin çözümünü Goldbach'tan çaldığını iddia eder.</p><div class="hint">Euler kendi başına bir deha. O dönemde fikir alışverişi yaygındı.</div><span class="diff easy" style="margin-top:var(--sp-2);display:inline-block">✅ Çürütüldü</span></div>
+                <div class="puzzle-card"><h3>🔢 Pi'de Gizli Mesajlar</h3><p>Pi'nin trilyonlarca basamağını tarayan yazılımlar, içinde doğum tarihlerini, telefon numaralarını buluyor! Pi sonsuz olduğu için tüm bilgiyi içeriyor mu?</p><div class="hint">Pi'nin "normal" olduğu kanıtlanamadı!</div><span class="diff hard" style="margin-top:var(--sp-2);display:inline-block">❓ Çözülemez</span></div>
+                <div class="puzzle-card"><h3>🌀 Simülasyon Hipotezi</h3><p>Evren bir bilgisayar simülasyonuysa, matematik "keşfedilen" değil "kodlanan" bir şey. Nick Bostrom: "Simülasyonda yaşama olasılığımız %50'den fazla"</p><div class="hint">Felsefi olarak çürütülemez ama test de edilemez.</div><span class="diff hard" style="margin-top:var(--sp-2);display:inline-block">❓ Kanıtsız</span></div>
+                <div class="puzzle-card"><h3>🎲 Fibonacci ve Borsa</h3><p>"Elliott Dalgaları" teorisine göre borsa Fibonacci sayılarına göre hareket eder. Wall Street traderları bunu milyarlarca dolar işlem için kullanıyor!</p><div class="hint">Bazı teknik analizlerde işe yarıyor gibi görünse de bilimsel kanıt zayıf.</div><span class="diff mid" style="margin-top:var(--sp-2);display:inline-block">🤔 Kısmen Doğru</span></div>
+                <div class="puzzle-card"><h3>👾 42 = Evrenin Cevabı?</h3><p>Douglas Adams'ın "Otostopçunun Galaksi Rehberi"nde süper bilgisayar, "Hayatın, evrenin ve her şeyin cevabı"nın 42 olduğunu söyler.</p><div class="hint">42 = 2×3×7. İlk 6 tek asalın toplamı. Rastgele değil belki?</div><span class="diff mid" style="margin-top:var(--sp-2);display:inline-block">🤔 İlginç</span></div>
             </div>
-            <div class="puzzle-card" style="margin-top:var(--sp-6)">
-                <div class="card-head"><h3>Sayı Dizileri</h3><span class="diff mid">Orta</span></div>
-                <div class="seq-row"><span>2, 6, 18, 54, <span class="blank">?</span></span><button class="btn btn--ghost btn--sm" onclick="alert('162 — Sürekli ×3')">Gör</button></div>
-                <div class="seq-row"><span>1, 4, 9, 16, 25, <span class="blank">?</span></span><button class="btn btn--ghost btn--sm" onclick="alert('36 — Tam kareler')">Gör</button></div>
-                <div class="seq-row"><span>1, 1, 2, 3, 5, 8, <span class="blank">?</span></span><button class="btn btn--ghost btn--sm" onclick="alert('13 — Fibonacci')">Gör</button></div>
-                <div class="seq-row"><span>2, 3, 5, 7, 11, <span class="blank">?</span></span><button class="btn btn--ghost btn--sm" onclick="alert('13 — Asal sayılar')">Gör</button></div>
+            <div class="puzzle-card" style="margin-top:var(--sp-6);text-align:center;background:var(--rose-50);border-color:var(--rose)">
+                <p style="font-weight:var(--weight-bold);color:var(--heading);margin:0">⚠️ Bu sayfa eğlence amaçlıdır. Bilimsel doğruluk garantisi verilmez!</p>
             </div>
         </div>
 
-        <!-- ════════ KAKURO ════════ -->
-        <div id="kakuro" class="panel">
-            <div class="puzzle-card" style="text-align:center;padding:var(--sp-12) var(--sp-6)">
-                <div style="margin-bottom:var(--sp-4)"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--blue-400)" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-                <h3 style="font-size:var(--text-2xl);margin-bottom:var(--sp-3)">Kakuro &amp; KenKen</h3>
-                <p style="max-width:28rem;margin:0 auto var(--sp-6);color:var(--text-secondary)">Bu bulmacalar grid yapısı gereği dergide en iyi deneyimlenirler. Doğrudan dergi sayfasından çözebilirsiniz!</p>
-                <a href="magazine.html#page-35" class="btn btn--primary">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                    Sayfa 35'e Git
-                </a>
+        <!-- ════════ OLİMPİYAT SORUSU (Sayfa 35) ════════ -->
+        <div id="olimpiyat" class="panel">
+            <div class="puzzle-card" style="padding:var(--sp-8)">
+                <div class="card-head"><h3>Günün Olimpiyat Sorusu</h3><span class="diff expert">IMO 2019 · Geometri · 45 dk</span></div>
+                <p style="margin:var(--sp-4) 0">ABC üçgeninde, A açısının açıortayı BC kenarını D noktasında keser. D noktasından AB ve AC kenarlarına çizilen dikmelerin ayakları sırasıyla E ve F olsun.</p>
+                <p>EF doğrusu ile BC doğrusu M noktasında kesişiyor. ABC üçgeninin çevrel çemberinin merkezi O olmak üzere:</p>
+                <div style="text-align:center;padding:var(--sp-4);margin:var(--sp-4) 0;background:var(--blue-50);border-radius:var(--radius-md);border:1px dashed var(--blue-400)">
+                    <p style="font-family:var(--font-mono);font-size:var(--text-xl);color:var(--blue-400);font-weight:var(--weight-bold)">MD · MA = MB · MC</p>
+                    <p style="font-size:var(--text-sm);color:var(--text-secondary);margin-top:var(--sp-2)">olduğunu kanıtlayınız.</p>
+                </div>
+                <div class="hint" style="margin-top:var(--sp-4)">İpucu 1: D, E, F, A noktaları bir çember üzerindedir.</div>
+                <div class="hint">İpucu 2: M noktasının konumunu Menelaus Teoremi ile ifade edin.</div>
+                <p style="margin-top:var(--sp-4);font-size:var(--text-sm);color:var(--text-secondary)">Kavramlar: Açıortay Teoremi · Kuvvet Noktası · Çevrel Çember · Harmonik Bölme</p>
+            </div>
+        </div>
+
+        <!-- ════════ KARIŞIK BULMACALAR (Sayfa 36) ════════ -->
+        <div id="karisik" class="panel">
+            <div class="grid2">
+                <div class="puzzle-card"><div class="card-head"><h3>① Yaş Problemi</h3><span class="diff easy">Cebir</span></div><p>Ayşe 15 yaşına geldiğinde babası 45 yaşında olacak. Şu an Ayşe'nin yaşı babasının yaşının 1/5'i ise Ayşe şu an kaç yaşındadır?</p><button class="btn btn--ghost btn--sm" onclick="toggle('rk1')">Çözümü Gör</button><div id="rk1" class="reveal-box"><strong>Cevap: 10 yaş.</strong> Ayşe = x, Baba = 5x → x = 10</div></div>
+                <div class="puzzle-card"><div class="card-head"><h3>② Saat Problemi</h3><span class="diff easy">Mantık</span></div><p>Bir saat her gün 3 dakika geri kalıyor. 20 gün sonra saat 14:00'ü gösterdiğinde gerçek saat kaçtır?</p><button class="btn btn--ghost btn--sm" onclick="toggle('rk2')">Çözümü Gör</button><div id="rk2" class="reveal-box"><strong>Cevap: 15:00.</strong> 20×3 dk = 60 dk geri</div></div>
+                <div class="puzzle-card"><div class="card-head"><h3>③ Havuz Problemi</h3><span class="diff easy">Oran</span></div><p>Bir musluk havuzu 6 saatte dolduruyor, diğeri 12 saatte. İkisi birlikte açılırsa havuz kaç saatte dolar?</p><button class="btn btn--ghost btn--sm" onclick="toggle('rk3')">Çözümü Gör</button><div id="rk3" class="reveal-box"><strong>Cevap: 4 saat.</strong> 1/6 + 1/12 = 1/4</div></div>
+                <div class="puzzle-card"><div class="card-head"><h3>④ Sayı Bulmaca</h3><span class="diff easy">Cebir</span></div><p>Bir sayının 3 katının 7 fazlası, o sayının 5 katının 3 eksiğine eşittir. Sayıyı bulunuz.</p><button class="btn btn--ghost btn--sm" onclick="toggle('rk4')">Çözümü Gör</button><div id="rk4" class="reveal-box"><strong>Cevap: 5.</strong> 3x + 7 = 5x − 3 → x = 5</div></div>
+                <div class="puzzle-card"><div class="card-head"><h3>⑤ Geometri</h3><span class="diff easy">Geometri</span></div><p>Bir karenin köşegeninin uzunluğu 10√2 cm ise kenar uzunluğu kaç cm'dir?</p><button class="btn btn--ghost btn--sm" onclick="toggle('rk5')">Çözümü Gör</button><div id="rk5" class="reveal-box"><strong>Cevap: 10 cm.</strong> Köşegen = a√2</div></div>
+                <div class="puzzle-card"><div class="card-head"><h3>⑥ Olasılık</h3><span class="diff mid">Olasılık</span></div><p>İki zar atılıyor. Zarların toplamının 7 gelme olasılığı nedir?</p><button class="btn btn--ghost btn--sm" onclick="toggle('rk6')">Çözümü Gör</button><div id="rk6" class="reveal-box"><strong>Cevap: 1/6.</strong> 36 sonuçtan 6'sı</div></div>
+                <div class="puzzle-card"><div class="card-head"><h3>⑦ Oturma Düzeni</h3><span class="diff mid">Kombinatorik</span></div><p>5 kişi bir sırada oturuyor. Ali ve Veli yan yana oturmak istemiyor. Kaç farklı oturma düzeni mümkündür?</p><button class="btn btn--ghost btn--sm" onclick="toggle('rk7')">Çözümü Gör</button><div id="rk7" class="reveal-box"><strong>Cevap: 72.</strong> 120 − 48 = 72</div></div>
+                <div class="puzzle-card"><div class="card-head"><h3>⑧ Kodlama</h3><span class="diff mid">Kodlama</span></div><p>A=1, B=2, C=3 ... Z=26 olduğuna göre, MATEMATİK kelimesinin harflerinin toplamı kaçtır?</p><button class="btn btn--ghost btn--sm" onclick="toggle('rk8')">Çözümü Gör</button><div id="rk8" class="reveal-box"><strong>Cevap: 93.</strong></div></div>
+            </div>
+            <div class="puzzle-card" style="margin-top:var(--sp-6);text-align:center;background:var(--blue-50);border-color:var(--blue-100)">
+                <h3 style="color:var(--blue-400);margin-bottom:var(--sp-2)">🌟 Bonus Soru</h3>
+                <p>0'dan 1000'e kadar kaç kez "3" rakamı yazılır?</p>
+                <button class="btn btn--ghost btn--sm" style="margin-top:var(--sp-3)" onclick="toggle('rkb')">Cevabı Gör</button>
+                <div id="rkb" class="reveal-box"><strong>Cevap: 300 kez.</strong></div>
             </div>
         </div>
     </div>
@@ -271,10 +297,12 @@ function toggle(id){
     el.classList.toggle('open');
     el.style.display=el.classList.contains('open')?'block':'none';
 }
-const S1=[[4,0,5,0,2,0,6,0,0],[9,0,0,3,0,5,0,0,1],[0,0,1,8,0,6,4,0,0],[0,0,3,4,0,8,0,9,6],[0,4,0,0,0,0,3,1,0],[0,8,9,0,1,0,5,0,0],[0,1,2,0,8,0,9,0,7],[6,0,0,9,0,1,0,4,0],[0,9,0,7,0,2,1,0,0]];
-const S2=[[2,0,0,0,8,0,3,0,0],[0,6,0,0,7,0,0,8,4],[0,3,0,5,0,0,2,0,9],[0,0,3,0,5,0,7,0,0],[0,0,0,0,0,0,0,0,0],[0,9,0,3,2,0,4,0,0],[0,4,0,8,0,0,9,0,0],[0,7,5,9,0,0,8,0,0],[0,0,2,0,0,0,5,0,0]];
+const S1=[[0,4,7,0,8,5,2,0,6],[1,0,3,4,6,0,0,8,0],[5,6,8,0,2,0,3,0,0],[2,1,4,5,3,6,7,0,0],[3,5,6,0,0,8,0,2,4],[0,8,0,2,0,0,0,0,5],[4,0,5,8,0,1,9,6,2],[0,7,1,0,4,0,8,0,0],[8,9,2,0,0,0,0,0,0]];
+const S2=[[4,0,0,0,3,0,9,0,0],[0,3,0,0,0,0,0,4,0],[0,0,0,0,4,5,0,3,6],[2,1,3,4,0,0,6,9,8],[0,0,0,6,0,8,0,1,2],[0,0,0,3,1,2,0,7,4],[3,0,0,0,7,0,0,0,0],[8,0,4,9,0,0,0,5,0],[0,7,5,8,6,0,4,0,0]];
+const S3=[[5,0,3,0,0,4,0,0,2],[0,0,0,3,0,9,6,7,8],[6,7,0,0,2,0,3,0,5],[2,0,0,0,0,0,0,0,0],[3,0,0,0,0,0,0,0,0],[7,0,0,0,0,0,0,0,0],[0,0,0,0,8,0,5,9,7],[8,5,0,0,7,0,0,6,0],[9,0,7,0,4,0,8,2,3]];
+const S4=[[4,0,0,0,0,7,8,0,0],[0,0,0,0,0,0,0,7,0],[7,8,0,0,0,0,1,4,0],[0,0,0,0,0,0,0,0,0],[3,6,0,8,0,0,2,0,0],[0,0,8,0,2,4,0,1,0],[0,0,0,0,4,2,0,0,0],[8,0,0,9,7,0,5,0,0],[9,0,0,0,8,1,0,3,0]];
 function buildGrid(d,c){const g=document.getElementById(c);d.forEach(r=>{r.forEach(v=>{const el=document.createElement('input');el.className='s-cell';el.maxLength=1;if(v){el.value=v;el.classList.add('given');el.readOnly=true;}el.addEventListener('input',function(){this.value=this.value.replace(/[^1-9]/g,'');});g.appendChild(el);});});}
-buildGrid(S1,'sg1');buildGrid(S2,'sg2');
+buildGrid(S1,'sg1');buildGrid(S2,'sg2');buildGrid(S3,'sg3');buildGrid(S4,'sg4');
 
 // Nav scroll
 const nav=document.getElementById('nav');
