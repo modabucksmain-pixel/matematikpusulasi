@@ -1,292 +1,239 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İlginç Matematik Gerçekleri — Matematik Pusulası</title>
+    <title>Sihirli İşlemler — Matematik Pusulası</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-        }
-
-        body {
-            background: #121825;
-            display: flex;
-            justify-content: center;
-            padding: 40px 0;
-        }
-
+        /* Base styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        body { background: #0f1a35; display: flex; justify-content: center; padding: 40px 0; }
+        
         .page {
             width: 210mm;
             height: 297mm;
-            background: #FAFAF5;
-            padding: 10mm 12mm 16mm;
+            background: #FAF8F0;
             position: relative;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            font-family: 'Crimson Pro', serif;
-            color: #333;
+            font-family: 'Cormorant Garamond', serif;
+            color: #2a1f0e;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
-        .gold-stripe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
+        .top-accent {
+            position: absolute; top: 0; left: 0; right: 0; height: 4px;
             background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
             z-index: 10;
         }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #0A1931;
-            padding-bottom: 7px;
-            margin-bottom: 8px;
+        .header-area {
+            padding: 12mm 15mm 5mm;
+            text-align: center;
         }
 
-        .header span {
+        .category {
             font-family: 'Montserrat', sans-serif;
-            font-size: 9pt;
+            font-size: 8pt;
             font-weight: 800;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: #0A1931;
-        }
-
-        .header .right {
             color: #C9A84C;
-            font-weight: 600;
+            margin-bottom: 6px;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 26pt;
+            font-size: 28pt;
             font-weight: 900;
-            text-align: center;
-            color: #0A1931;
-            margin-bottom: 2px;
+            color: #0f1a35;
+            line-height: 1.1;
+            margin-bottom: 5px;
         }
 
-        .page-subtitle {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 9pt;
-            text-align: center;
-            color: #C9A84C;
-            letter-spacing: 2px;
-            margin-bottom: 7px;
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 13pt;
+            font-style: italic;
+            color: #8B7355;
+            margin-bottom: 12px;
+        }
+        
+        .title-rule {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+            margin: 0 auto;
         }
 
-        .fact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
+        .content-area {
+            padding: 5mm 15mm 15mm;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .fact-card {
+        .interactive-section {
             background: #fff;
-            border-radius: 8px;
-            padding: 7px 10px;
-            position: relative;
-            border-left: 4px solid #C9A84C;
-            box-shadow: 0 1px 4px rgba(10, 25, 49, 0.06);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-top: 4px solid #0f1a35;
+            padding: 15px 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        .fact-card:nth-child(even) {
-            border-color: #0A1931;
+        .interactive-section.gold {
+            border-top-color: #C9A84C;
         }
 
-        .fact-card .num {
+        .sec-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13pt;
+            font-weight: 800;
+            color: #0f1a35;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sec-title span {
             font-family: 'Playfair Display', serif;
-            font-size: 26pt;
-            font-weight: 900;
-            opacity: 0.08;
-            position: absolute;
-            top: 0px;
-            right: 7px;
-            color: #0A1931;
+            font-size: 24pt;
+            color: #C9A84C;
         }
 
-        .fact-card h3 {
+        .instructions {
+            font-size: 11.5pt;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            color: #2a1f0e;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+        
+        .instructions li {
+            margin-bottom: 4px;
+        }
+
+        .workspace {
+            flex: 1;
+            border: 1.5px solid #C9A84C;
+            background: #FAF8F0;
+            position: relative;
+            margin-top: 10px;
+            padding: 15px;
+            min-height: 130px;
+        }
+
+        .workspace::before {
+            content: '✎ KENDİN DENE: İŞLEM ALANI';
+            position: absolute;
+            top: -9px;
+            left: 20px;
+            background: #fff;
+            padding: 0 10px;
             font-family: 'Montserrat', sans-serif;
             font-size: 8.5pt;
             font-weight: 800;
             letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 2px;
-            color: #0A1931;
+            color: #0f1a35;
         }
 
-        .fact-card p {
-            font-size: 9.5pt;
-            line-height: 1.35;
-        }
-
-        .inline-quote {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 12pt;
-            color: #C9A84C;
-            padding: 7px 18px;
-            margin: 4px 0;
-            border-top: 1.5px solid rgba(201, 168, 76, 0.3);
-            border-bottom: 1.5px solid rgba(201, 168, 76, 0.3);
-        }
-
-        .inline-quote .attr {
-            display: block;
-            font-size: 8pt;
-            color: #888;
-            font-style: normal;
-            margin-top: 3px;
-            font-family: 'Montserrat', sans-serif;
+        .grid-paper {
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(15, 26, 53, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 26, 53, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
         .page-footer {
             position: absolute;
-            bottom: 8mm;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Playfair Display', serif;
-            font-size: 11pt;
-            color: #0A1931;
+            bottom: 12mm; left: 50%; transform: translateX(-50%);
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            border: 2px solid #C9A84C;
-            padding: 3px 14px;
-            background: #fff;
-            z-index: 20;
-        }
-
-        .page-footer::before {
-            content: '◆';
-            font-size: 8px;
+            font-size: 9pt;
             color: #C9A84C;
-            margin-right: 7px;
+            display: flex; align-items: center; gap: 8px;
         }
-
-        .page-footer::after {
-            content: '◆';
-            font-size: 8px;
-            color: #C9A84C;
-            margin-left: 7px;
-        }
+        .footer-dot { width: 4px; height: 4px; background: #C9A84C; border-radius: 50%; }
 
         @media print {
-            @page {
-                size: A4;
-                margin: 0;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                background: none;
-                display: block;
-            }
-
-            .page {
-                margin: 0;
-                box-shadow: none;
-                page-break-after: always;
-            }
+            @page { size: A4; margin: 0; }
+            body { margin: 0; padding: 0; background: none; display: block; }
+            .page { margin: 0; box-shadow: none; page-break-after: always; }
         }
     </style>
     <link rel="stylesheet" href="magazine-common.css">
 </head>
-
 <body>
     <div class="page">
-        <div class="gold-stripe"></div>
-        <div class="header"><span>🎨 Kültür & Hayat</span><span class="right">Matematik Pusulası</span></div>
-        <h1>İLGİNÇ MATEMATİK GERÇEKLERİ</h1>
-        <div class="page-subtitle">Biliyor Muydunuz? 🤯</div>
+        <div class="top-accent"></div>
+        
+        <div class="header-area">
+            <div class="category">İNTERAKTİF MATEMATİK</div>
+            <h1>SAYILARIN BÜYÜSÜ</h1>
+            <div class="subtitle">Kaleminizi Alın ve Sihre Kendi Gözlerinizle Şahit Olun</div>
+            <div class="title-rule"></div>
+        </div>
 
-        <div class="fact-grid">
-            <div class="fact-card">
-                <div class="num">01</div>
-                <h3>🃏 Kart Karıştırma</h3>
-                <p>52 kartlık bir desteyi karıştırdığınızda oluşan sıra, <strong>evrenin tarihinde hiç
-                        oluşmamış</strong> olabilir. Olasılık: 52! ≈ 8×10⁶⁷!</p>
-            </div>
-            <div class="fact-card">
-                <div class="num">02</div>
-                <h3>🎂 Doğum Günü Paradoksu</h3>
-                <p>Bir sınıfta <strong>23 kişi</strong> varsa, iki kişinin aynı doğum gününe sahip olma olasılığı
-                    %50'den fazladır! 50 kişide %97'ye çıkar.</p>
-            </div>
-            <div class="fact-card">
-                <div class="num">03</div>
-                <h3>♾️ Sonsuzluğun Boyutları</h3>
-                <p>Georg Cantor kanıtladı: reel sayılar, doğal sayılardan "daha büyük bir sonsuzluk"tur. Bazı
-                    sonsuzluklar diğerlerinden büyük!</p>
-            </div>
-            <div class="fact-card">
-                <div class="num">04</div>
-                <h3>📏 Kağıt Katlama</h3>
-                <p>Bir kağıdı <strong>42 kez</strong> katlayabilseydiniz, kalınlığı Dünya-Ay mesafesini aşardı! 2⁴² ≈
-                    4.4 milyar katman.</p>
-            </div>
-
-            <div class="fact-card" style="grid-column:1/-1;border-left-color:#C9A84C;">
-                <div class="inline-quote">
-                    "Matematik, kalıpları keşfetme sanatıdır."
-                    <span class="attr">— W.W. Sawyer</span>
+        <div class="content-area">
+            
+            <div class="interactive-section">
+                <div class="sec-title"><span>#1</span> 1089 SİHRİ</div>
+                <div class="instructions">
+                    Hangi sayıyı seçerseniz seçin, matematiğin değişmez kuralı sizi her zaman <strong>1089</strong> sonucuna götürecek. İnanmıyor musunuz? Aşağıdaki adımları uygulayın:
+                    <ol>
+                        <li>Rakamları birbirinden farklı 3 basamaklı bir sayı yazın.</li>
+                        <li>Bu sayıyı tersten yazın (Örn: 421 ise 124).</li>
+                        <li>Büyük sayıdan küçük sayıyı çıkarın.</li>
+                        <li>Çıkan sonucu da tersten yazın.</li>
+                        <li>Son iki sayıyı toplayın. Sonuç <strong>1089</strong> çıktı mı?</li>
+                    </ol>
+                </div>
+                <div class="workspace">
+                    <div class="grid-paper"></div>
                 </div>
             </div>
 
-            <div class="fact-card">
-                <div class="num">05</div>
-                <h3>🔢 1089 Sihri</h3>
-                <p>3 basamaklı bir sayı alın (basamaklar farklı). Tersini çıkarın, sonuca tersini ekleyin. Sonuç HER
-                    ZAMAN <strong>1089</strong>!</p>
+            <div class="interactive-section gold">
+                <div class="sec-title"><span>#2</span> KAPREKAR'IN KARA DELİĞİ (6174)</div>
+                <div class="instructions">
+                    Matematikçilerin "Kara Delik" adını verdiği bu sayıya çekilmekten kurtulamazsınız. Hint matematikçi D.R. Kaprekar'ın keşfettiği bu sabite ulaşmayı deneyin:
+                    <ol>
+                        <li>4 basamaklı bir sayı tutun (Bütün rakamları aynı olmasın, örn: 1111 hariç).</li>
+                        <li>Sayının rakamlarını büyükten küçüğe doğru sıralayarak yeni bir sayı oluşturun.</li>
+                        <li>Rakamları küçükten büyüğe sıralayarak ikinci bir sayı daha oluşturun.</li>
+                        <li>Büyük sayıdan küçük sayıyı çıkarın. Çıkan sonuçla 2. adıma dönüp işlemi tekrarlayın.</li>
+                        <li>En fazla 7 işlem sonunda <strong>6174</strong> sayısına hapsolacaksınız!</li>
+                    </ol>
+                </div>
+                <div class="workspace">
+                    <div class="grid-paper"></div>
+                </div>
             </div>
-            <div class="fact-card">
-                <div class="num">06</div>
-<h3>🐝 Arıların Matematiği</h3>
-                <p>Arılar peteklerini altıgen yapar çünkü altıgen, en az malzemeyle en çok alan kaplayan şekildir. 2000
-                    yıllık iddia, 1999'da kanıtlandı!</p>
-            </div>
-            <div class="fact-card">
-                <div class="num">07</div>
-                <h3>🎲 Kumar Matematiği</h3>
-                <p>Ruletin keşfi Pascal'a aittir — perpetuum mobile makinesi yapmaya çalışırken icat etti. Olasılık
-                    teorisi bir kumarbazın sorusundan doğdu!</p>
-            </div>
-            <div class="fact-card">
-                <div class="num">08</div>
-                <h3>🌍 Dünyayı Saran İp</h3>
-                <p>Dünya'nın etrafına gergin bir ip sarın (≈40.000 km). İpe sadece <strong>1 metre</strong> eklerseniz
-                    yerden ~16 cm yükseğe kalkar! Gezegen boyutu fark etmez.</p>
-            </div>
-            <div class="fact-card">
-                <div class="num">09</div>
-                <h3>🧮 Googol ve Googolplex</h3>
-                <p>Googol = 10¹⁰⁰. Googolplex = 10^googol. Googolplex'i yazmak bile fiziksel olarak imkânsız — evrendeki
-                    tüm atomlardan daha fazla hanesi var!</p>
-            </div>
-            <div class="fact-card">
-                <div class="num">10</div>
-                <h3>🔁 Kaprekar Sabiti: 6174</h3>
-                <p>4 basamaklı herhangi bir sayı alın. Basamakları büyükten küçüğe ve küçükten büyüğe dizin, çıkarın. En
-                    fazla 7 adımda <strong>6174</strong>'e ulaşırsınız!</p>
-            </div>
+
         </div>
 
-        <div class="page-footer">29</div>
+        <div class="page-footer">
+            <span class="footer-dot"></span>
+            <span>29</span>
+            <span class="footer-dot"></span>
+        </div>
     </div>
 </body>
-
 </html>

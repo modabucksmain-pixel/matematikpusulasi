@@ -1,333 +1,244 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sporda Matematik — Matematik Pusulası</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-        }
-
-        body {
-            background: #121825;
-            display: flex;
-            justify-content: center;
-            padding: 40px 0;
-        }
-
+        /* Base styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        body { background: #0f1a35; display: flex; justify-content: center; padding: 40px 0; }
+        
         .page {
             width: 210mm;
             height: 297mm;
-            background: #FAFAF5;
-            padding: 10mm 12mm 16mm;
+            background: #FAF8F0;
             position: relative;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            font-family: 'Crimson Pro', serif;
-            color: #333;
+            font-family: 'Cormorant Garamond', serif;
+            color: #2a1f0e;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
-        .gold-stripe {
+        .top-accent {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 4px;
             background: linear-gradient(90deg, #C9A84C, #E8D48B, #C9A84C);
             z-index: 10;
         }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #0A1931;
-            padding-bottom: 7px;
-            margin-bottom: 8px;
+        .hero-banner {
+            width: 100%;
+            height: 38%;
+            position: relative;
+            background-image: url('/img/sports_math_hero.png');
+            background-size: cover;
+            background-position: center;
         }
 
-        .header span {
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(15, 26, 53, 0.2) 0%, rgba(15, 26, 53, 0.95) 100%);
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 25px; left: 0; right: 0;
+            z-index: 2;
+            text-align: center;
+            padding: 0 40px;
+        }
+
+        .masthead-sub {
             font-family: 'Montserrat', sans-serif;
-            font-size: 9pt;
-            font-weight: 800;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #0A1931;
-        }
-
-        .header .right {
+            font-size: 8pt;
+            letter-spacing: 4px;
             color: #C9A84C;
-            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 28pt;
+            font-size: 38pt;
             font-weight: 900;
-            text-align: center;
-            color: #0A1931;
+            color: #FAF8F0;
+            line-height: 1.1;
+            margin-bottom: 6px;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.6);
         }
 
         .page-subtitle {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 9pt;
-            color: #C9A84C;
-            text-align: center;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14pt;
+            font-style: italic;
+            color: #E8D48B;
+        }
+
+        .content-area {
+            padding: 10mm 15mm;
+            flex: 1;
         }
 
         .columns {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 20px;
         }
 
-        .sport-card {
-            background: #fff;
-            border: 1px solid rgba(10, 25, 49, 0.08);
-            padding: 8px 11px;
-            border-radius: 8px;
-            border-left: 4px solid #C9A84C;
-            box-shadow: 0 1px 4px rgba(10, 25, 49, 0.06);
-            margin-bottom: 6px;
+        .col { position: relative; }
+        .col+.col::before {
+            content: '';
+            position: absolute;
+            left: -10px; top: 0; bottom: 0;
+            width: 1px;
+            background: rgba(201, 168, 76, 0.3);
         }
 
-        .sport-card .icon {
-            font-size: 18pt;
-            margin-bottom: 2px;
-            display: block;
+        .col p {
+            font-size: 11pt;
+            text-align: justify;
+            line-height: 1.5;
+            margin-bottom: 0.6em;
+            color: #2a1f0e;
         }
 
-        .sport-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 9.5pt;
-            font-weight: 800;
-            color: #0A1931;
-            margin-bottom: 2px;
-        }
-
-        .sport-card p {
-            font-size: 9.5pt;
-            line-height: 1.35;
-            color: #555;
-        }
-
-        .stat-box {
-            background: #FAFAF5;
-            padding: 8px 12px;
-            border-radius: 8px;
-            text-align: center;
-            border: 2px solid #C9A84C;
-            margin-top: 6px;
-        }
-
-        .stat-box .big {
+        .col p.drop-cap::first-letter {
+            float: left;
             font-family: 'Playfair Display', serif;
-            font-size: 20pt;
+            font-size: 48pt;
+            line-height: 30pt;
             font-weight: 900;
-            color: #C9A84C;
+            padding: 4pt 6pt 0 0;
+            color: #0f1a35;
         }
 
-        .stat-box .label {
-            font-size: 8pt;
-            color: #aaa;
-            letter-spacing: 1px;
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9pt;
+            font-weight: 800;
+            color: #0f1a35;
             text-transform: uppercase;
-            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+            margin: 15px 0 5px;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+            padding-bottom: 3px;
         }
 
-        .try-this {
-            background: #0A1931;
-            color: #FAFAF5;
-            padding: 9px 13px;
-            border-radius: 8px;
-            margin-top: 7px;
-            border: 2px solid #C9A84C;
+        .info-box {
+            background: rgba(201, 168, 76, 0.08);
+            border: 1px solid rgba(201, 168, 76, 0.35);
+            padding: 10px 12px;
+            margin: 12px 0;
         }
 
-        .try-this h4 {
+        .info-box .label {
             font-family: 'Montserrat', sans-serif;
-            font-size: 8pt;
+            font-size: 7.5pt;
             font-weight: 800;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 3px;
             color: #C9A84C;
+            margin-bottom: 4px;
         }
 
-        .try-this p {
-            font-size: 9.5pt;
+        .info-box p {
+            font-size: 10pt;
             line-height: 1.4;
-            color: #ddd;
+            margin: 0;
         }
 
-        .pull-quote {
-            font-family: 'Playfair Display', serif;
-            font-size: 11pt;
-            font-style: italic;
-            text-align: center;
-            color: #0A1931;
-            padding: 8px 14px;
-            margin: 6px 0;
-            border-left: 3px solid #C9A84C;
-            border-right: 3px solid #C9A84C;
-            line-height: 1.4;
-            background: rgba(201, 168, 76, 0.04);
+        .fact-strip {
+            display: flex;
+            justify-content: space-around;
+            background: #0A1931;
+            color: #F5ECD7;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
         }
-
-        .pull-quote .attribution {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 7pt;
-            font-style: normal;
-            color: #888;
-            margin-top: 3px;
-            letter-spacing: 1px;
-        }
+        .fact-item { text-align: center; }
+        .fact-item .num { font-family: 'Playfair Display', serif; font-size: 18pt; font-weight: 900; color: #C9A84C; }
+        .fact-item .desc { font-family: 'Montserrat', sans-serif; font-size: 7pt; letter-spacing: 1px; color: rgba(245, 236, 215, 0.6); text-transform: uppercase; margin-top: 2px; }
 
         .page-footer {
             position: absolute;
-            bottom: 8mm;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Playfair Display', serif;
-            font-size: 11pt;
-            color: #0A1931;
+            bottom: 12mm; left: 50%; transform: translateX(-50%);
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            border: 2px solid #C9A84C;
-            padding: 3px 14px;
-            background: #fff;
-            z-index: 20;
-        }
-
-        .page-footer::before {
-            content: '◆';
-            font-size: 8px;
+            font-size: 9pt;
             color: #C9A84C;
-            margin-right: 7px;
+            display: flex; align-items: center; gap: 8px;
         }
-
-        .page-footer::after {
-            content: '◆';
-            font-size: 8px;
-            color: #C9A84C;
-            margin-left: 7px;
-        }
+        .footer-dot { width: 4px; height: 4px; background: #C9A84C; border-radius: 50%; }
 
         @media print {
-            @page {
-                size: A4;
-                margin: 0;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                background: none;
-                display: block;
-            }
-
-            .page {
-                margin: 0;
-                box-shadow: none;
-                page-break-after: always;
-            }
+            @page { size: A4; margin: 0; }
+            body { margin: 0; padding: 0; background: none; display: block; }
+            .page { margin: 0; box-shadow: none; page-break-after: always; }
         }
     </style>
     <link rel="stylesheet" href="magazine-common.css">
 </head>
-
 <body>
     <div class="page">
-        <div class="gold-stripe"></div>
-        <div class="header"><span>🎨 Kültür & Hayat</span><span class="right">Matematik Pusulası</span></div>
-        <h1>SPORDA MATEMATİK</h1>
-        <div class="page-subtitle">Sahada Kazanmak İçin Sayıları Bilmek Gerek!</div>
-        <div style="width:100%; height:70px; overflow:hidden; border-radius:4px; margin-bottom:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); border-bottom:3px solid #C9A84C;">
-            <img src="/img/sports_math.png" alt="Sporda Matematik — Futbol Açı Hesapları ve Basketbol Parabol Atışları" style="width:100%; height:100%; object-fit:cover; object-position:center 30%;">
-        </div>
-        <div class="columns">
-            <div>
-                <div class="sport-card">
-<span class="icon">⚽</span>
-                    <h3>Futbol — Gol Açısı</h3>
-                    <p>Forvet oyuncusu kaleye ne kadar dar açıdan bakarsa, gol şansı o kadar düşer. Trigonometri, en iyi
-                        şut açısını hesaplar. Beklenen gol (xG) modeli, istatistiğin futbola devrimidir!</p>
-                </div>
-                <div class="sport-card"><span class="icon">🏀</span>
-                    <h3>Basketbol — Parabol Atışı</h3>
-                    <p>Basket topu bir parabol çizer: y = -ax² + bx + c. En ideal atış açısı 45°-52°. NBA takımları bu
-                        açıyı sensörlerle ölçer — Stephen Curry'nin atış açısı ~47°!</p>
-                </div>
-                <div class="sport-card"><span class="icon">🏎️</span>
-                    <h3>Formula 1 — Viraj Fiziği</h3>
-                    <p>Bir F1 aracı virajda ne kadar hızlı gidebilir? Merkezcil kuvvet: F = mv²/r. Yarıçap küçüldükçe
-                        hız düşmelidir — yoksa pist dışına çıkarsınız!</p>
-                </div>
-                <div class="sport-card"><span class="icon">🎯</span>
-                    <h3>Okçuluk — Balistik Eğrisi</h3>
-                    <p>Ok hedefi bulmak için yerçekimini yenmeli. Yayın gücü, okun ağırlığı ve mesafe — tümü
-                        diferansiyel denklemlerle modellenir.</p>
-                </div>
-                <div class="stat-box">
-                    <div class="big">92%</div>
-                    <div class="label">NBA takımlarının veri analisti istihdam oranı</div>
-                </div>
+        <div class="top-accent"></div>
+        
+        <div class="hero-banner">
+            <div class="hero-content">
+                <div class="masthead-sub">KÜLTÜR & HAYAT</div>
+                <h1>SPORDA MATEMATİK</h1>
+                <div class="page-subtitle">Sahada Kazanmak İçin Sayıları Bilmek Gerek!</div>
             </div>
-            <div>
-                <div class="sport-card"><span class="icon">🏊</span>
-                    <h3>Yüzme — Akışkanlar Dinamiği</h3>
-                    <p>Suyun direnci hıza bağlıdır: F_drag ∝ v². Yüzücüler sürtünmeyi azaltmak için vücut pozisyonunu
-                        optimize eder. Hız 2 katına çıkarsa direnç 4 katına çıkar!</p>
-                </div>
-                <div class="sport-card"><span class="icon">⚾</span>
-                    <h3>Beyzbol — Moneyball Devrimi</h3>
-                    <p>Oakland Athletics, 2002'de istatistiksel analiz kullanarak düşük bütçeyle büyük başarı yakaladı.
-                        "Sabermetrics" adlı bu yaklaşım tüm spor dünyasını değiştirdi.</p>
-                </div>
-                <div class="sport-card"><span class="icon">🎿</span>
-                    <h3>Kayak — Eğim & Hız</h3>
-                    <p>Dağın eğimi (derece/yüzde), hızlanma ivmesi ve sürtünme katsayısı — kayakçının güvenliği
-                        trigonometriye bağlıdır. %100 eğim = 45°!</p>
-                </div>
-                <div class="sport-card"><span class="icon">♟️</span>
-                    <h3>Satranç — Kombinatorik</h3>
-                    <p>İlk 4 hamleden sonra olası pozisyon sayısı: 288 milyar! Shannon sayısı ≈ 10¹²⁰ — evrendeki
-                        atomlardan bile fazla.</p>
-                </div>
-                <div class="stat-box">
-                    <div class="big">10¹²⁰</div>
-                    <div class="label">Satranç'taki olası oyun sayısı (Shannon sayısı)</div>
-                </div>
-            </div>
-        </div>
-<div class="try-this">
-            <div style="float:right; margin:0 0 6px 10px; width:28%; border-radius:10px; overflow:hidden; border:3px solid #fff; box-shadow: 2px 3px 10px rgba(0,0,0,0.2); transform:rotate(-1deg);">
-                <img src="/img/basketball_parabola.png" alt="Basketbol Parabol Atışı" style="width:100%; height:80px; object-fit:cover; display:block;">
-            </div>
-            <h4>🏀 Dene Bakalım!</h4>
-            <p>Bir basketbol potasının yüksekliği 3.05 m. Serbest atış çizgisi 4.57 m uzaklıkta. Topu 45° açıyla
-                atarsan, topun minimum hızı ne olmalıdır? (İpucu: v² = g·R/sin(2θ) formülünü kullan!)</p>
         </div>
 
-        <div class="pull-quote">
-            "İstatistik olmadan modern spor düşünülemez."
-            <div class="attribution">— Billy Beane</div>
+        <div class="content-area">
+            <div class="columns">
+                <div class="col">
+                    <p class="drop-cap">Modern sporlarda şampiyonluklar artık sadece kas gücüyle değil, veri analizi ve matematikle kazanılıyor. Antrenörlerin kararları, oyuncuların hareketleri ve oyunun stratejisi tamamen istatistiksel modellere dayanıyor.</p>
+                    
+                    <h2 class="section-title">Basketbol: Mükemmel Parabol</h2>
+                    <p>Bir basket topu potaya doğru yol alırken mükemmel bir parabol çizer (<span style="font-family:'Montserrat',sans-serif;font-size:8pt;font-weight:600;color:#0A1931;">y = -ax² + bx + c</span>). En ideal atış açısı fiziki olarak 45° ile 52° arasındadır. NBA'in efsanevi şutörü Stephen Curry'nin atışlarının büyük bir kısmı tam olarak 47°'lik açıyla potaya girer. Bu açı, çemberden geçiş hata payını maksimize eder.</p>
+
+                    <h2 class="section-title">Futbol: Beklenen Gol (xG)</h2>
+                    <p>Futbolda kaleye çekilen bir şutun gol olma ihtimali, açısına, mesafesine ve defansın konumuna göre hesaplanır. Trigonometri kullanılarak dar açılardan atılan şutların başarı oranı belirlenir ve takımlar hücum stratejilerini bu olasılıklara göre kurar.</p>
+                </div>
+                <div class="col">
+                    <div class="info-box">
+                        <div class="label">⚾ Moneyball Devrimi</div>
+                        <p>2002 yılında Oakland Athletics beyzbol takımı, düşük bütçesine rağmen tamamen "Sabermetrics" (istatistiksel veri analizi) kullanarak inanılmaz bir başarı yakaladı. Bu olay, tüm spor dünyasında veri analistlerinin yükselişini başlattı.</p>
+                    </div>
+
+                    <h2 class="section-title">Formula 1: Merkezcil Kuvvet</h2>
+                    <p>Bir Formula 1 aracının viraja giriş hızı, yol tutuşu ve merkezcil kuvvet (<span style="font-family:'Montserrat',sans-serif;font-size:8pt;font-weight:600;color:#0A1931;">F = mv²/r</span>) ile sınırlıdır. Mühendisler, aracın aerodinamiğini diferansiyel denklemlerle optimize ederek virajlarda kaybedilen saliseleri geri kazanmaya çalışırlar.</p>
+
+                    <div class="fact-strip">
+                        <div class="fact-item">
+                            <div class="num">92%</div>
+                            <div class="desc">NBA Takımlarında Veri Analisti Oranı</div>
+                        </div>
+                        <div class="fact-item">
+                            <div class="num">10¹²⁰</div>
+                            <div class="desc">Satrançtaki Olası Hamle Sayısı</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="page-footer">26</div>
+        <div class="page-footer">
+            <span class="footer-dot"></span>
+            <span>26</span>
+            <span class="footer-dot"></span>
+        </div>
     </div>
 </body>
-
 </html>
